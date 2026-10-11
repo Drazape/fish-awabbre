@@ -4,7 +4,7 @@ icon: lucide/life-buoy
 description: Show a reference manual for the given sub-command
 ---
 
-# Help
+# Universal Switch: Help
 Show a reference manual for the given sub-command
 
 ## Properties
