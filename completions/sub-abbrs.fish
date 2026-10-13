@@ -11,7 +11,7 @@ begin
             echo -n {$sub_path[1]}
             argparse --ignore-unknown /description=+\& -- (commandline --tokens-expanded --input=(functions --no-details -- {$parent_group}{$sub_path[1]})[1])
             echo -n \t{$_flag_description}
-            echo # Seperate new line from description, in case it doesn't exist
+            echo # Separate new line from description, in case it doesn't exist
         end
 
     end

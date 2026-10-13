@@ -1,5 +1,5 @@
 function sub-abbr --description='Create abbreviations for sub-commands'
-    # Nix dependencies: string placements to be overriden with store paths
+    # Nix dependencies: string placements to be overridden with store paths
     for dependency_configurations in /dev/null # shell-startup directories
         for dependency_config in {$dependency_configurations}/*
             source -- {$dependency_config}
@@ -46,7 +46,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 return
             end
 
-            # let hooks change identifers that are recieved. This can be useful for allowing the user to manage identifiers that are distributed in a conditional-loading way.
+            # let hooks change identifiers that are received. This can be useful for allowing the user to manage identifiers that are distributed in a conditional-loading way.
             emit -- subabbr_gather-identifiers {$identity_args}
 
             # common data
