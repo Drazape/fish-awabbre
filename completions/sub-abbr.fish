@@ -22,13 +22,14 @@ begin
     begin
         set --local -- identity_complete {$common_complete} \
             --condition='set --local -- unbase (__fish_print_cmd_args_without_options)[2..3]
-                    test (count {$unbase}) -eq 1 && test "$unbase[1]" = identity && ! contains "$unbase[2]" list erase'
+                    test (count {$unbase}) -eq 1 && test "$unbase[1]" = identity && ! contains -- "$unbase[2]" list show erase'
         $identity_complete --arguments=list --description='Get identifiers'
         $identity_complete --arguments=erase --description='Erase abbrs with identity'
+        $identity_complete --arguments=show --description='Show all details of an abbr'
     end
     $common_complete \
         --condition='set --local -- subcommands (__fish_print_cmd_args_without_options)[2..3]
-                test "$subcommands[1]" = identity && test "$subcommands[2]" = erase' \
+                test "$subcommands[1]" = identity && contains -- "$subcommands[2]" erase show' \
         --arguments='(sub-abbr identity list)'
 
     begin

@@ -8,9 +8,9 @@ description: List the identifier of each content-aware abbreviation loaded
 List the identifier of each content-aware abbreviation loaded
 
 ## Properties
-|  Name  |  Parent  |
-| :----: | :------: |
-| `list` | [Identity](../../index.md "Manage abbr by their identifiers"){data-preview} |
+|  Name  |  Parent  | Positional Values |
+| :----: | :------: | :-------: |
+| `list` | [Identity](../../index.md "Manage abbr by their identifiers"){data-preview} | Required |
 
 ## Details
 Miscallaneous details about the sub-command

@@ -134,8 +134,10 @@ Sub-command to create context-aware sub-command abbreviations
 Manage context-aware sub-command abbreviation by their identifiers
 ###### List
 Get the identifiers of loaded context-aware sub-command abbreviations
+###### Show
+Show the definition of an abbreviation, as passed to [*Add*](#Add)
 ###### Erase
-Erase a context-aware sub-command abbreviation by its identifier — obtained from the [list](#List)
+Erase a context-aware sub-command abbreviation by its identifier
 
 ## `sub-abbrs`
 Helper to conveniently enable compatible package groups, or packages.  

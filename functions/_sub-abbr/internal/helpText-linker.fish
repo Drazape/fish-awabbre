@@ -33,6 +33,8 @@ function _sub-abbr_internal_helpText-linker --description='Linker for fish-subAb
                     echo -- {$baseURL}/Sub-Commands/Identity/
                 case list
                     echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/List/
+                case show
+                    echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/Show/
                 case erase
                     echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/Erase/
             end

@@ -8,9 +8,9 @@ description: Erase a content-aware abbreviation by its identifier
 Erase a content-aware abbreviation by its identifier
 
 ## Properties
-|   Name  |  Parent  |
-| :-----: | :------: |
-| `erase` | [Identity](../index.md "Manage abbr by their identifiers"){data-preview} |
+|   Name  |  Parent  | Positional Values |
+| :-----: | :------: | :-------: |
+| `erase` | [Identity](../index.md "Manage abbr by their identifiers"){data-preview} | Required |
 
 ## Details
 Identifier Obtainment

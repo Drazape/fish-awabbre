@@ -30,17 +30,20 @@ function sub-abbr --description='Create abbreviations for sub-commands'
     end
 
     set --function -- identifier_prefix _sub-abbr_definition_
+    set --function -- internal_description_prefix 'subabbr: '
     # individual sub-commands
     switch "$argv[1]"
         case identity
             set --local -- identity_args {$argv[2..]} # arguments excluding the root sub-command
             set --local -- erase_description 'Erase an abbreviation by it\'s identifier'
+            set --local -- show_description 'Show the details of a context-aware Sub-Command abbreviation by its identifier'
             $argparse --stop-nonopt 'h/help&' -- {$identity_args}
             if set --query --local -- _flag_help
                 help-text --link=_sub-abbr_internal_helpText-linker 'Manage context-aware Sub-Command abbreviations by their identifiers' \
                     --sub-command={
                         'list | List the identifiers of each loaded abbreviation',
-                        'erase | '{$erase_description}
+                        'erase | '{$erase_description},
+                        'show | '{$show_description}
                     }
                 _sub-abbr_internal_revert-paths
                 return
@@ -53,7 +56,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             set --local -- prefix_length (string length {$identifier_prefix})
             set --local -- identifier_start (math {$prefix_length} + 1)
             for abbr in (abbr --show)
-                if ! argparse --ignore-unknown '/command=+&' '/function=&' -- (commandline --tokens-expanded --input={$abbr}) ||
+                if ! argparse --ignore-unknown '/description=&' '/command=+&' '/function=&' -- (commandline --tokens-expanded --input={$abbr}) ||
                         ! string match --quiet -- {$identifier_prefix} (string sub --end={$prefix_length} -- {$_flag_function})
                     continue
                 end
@@ -61,7 +64,9 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     string unescape --style=var -- (
                         string sub --start={$identifier_start} -- {$_flag_function}))
                 set --append --function -- identifiers {$identifier}
-                set --append --function -- (string escape --style=var -- $identifier)_commands {$_flag_command}
+                set --local -- identifier_variable_prefix (string escape --style=var -- {$identifier})
+                set --append --function -- {$identifier_variable_prefix}_commands {$_flag_command}
+                set --function -- {$identifier_variable_prefix}_description {$_flag_description}
             end
 
             # sub-commands
@@ -136,6 +141,60 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     else
                         string repeat -- 1 {$filtered_identifiers}
                     end
+                case show
+                    $argparse 'h/help&' -- {$identity_subcommand_args}
+                    if set --query --local -- _flag_help
+                        help-text --link=_sub-abbr_internal_helpText-linker {$show_description} \
+                            --positional='+Identifier | identifier of abbr to show details for'
+                        _sub-abbr_internal_revert-paths
+                        return
+                    end
+
+                    if ! _sub-abbr_internal_verify-arg_identifier-existance
+                        _sub-abbr_internal_revert-paths
+                        return 10
+                    end
+
+                    # main operation
+                    set --local -- identifiers_to_show {$identity_subcommand_args}
+                    test (count {$identifiers_to_show}) -eq 0 &&
+                        set --local -- identifiers_to_show {$identifiers}
+                    for identifier in {$identifiers_to_show}
+                        # gather info
+                        ## info in non-identifier
+                        set --local -- identifier_description_var_name (
+                                string escape --style=var -- {$identifier}
+                            )_description
+                        $argparse \
+                            r/regex=\* \
+                            c/set-cursor=? \
+                            e/expander \
+                            0/unprefix \
+                            s/regard-flags \
+                            -- (
+                                commandline --tokens-expanded --input=(
+                                    string sub --start=(
+                                        math 1 + (
+                                            string length -- {$internal_description_prefix}
+                                        )) -- {$$identifier_description_var_name}))
+                        set --local -- expander {$argv}
+
+                        ## info in identifier
+                        set --local -- escaped_identifier_positionals (
+                            string sub --start=4 -- {$identifier} |
+                            string split --max=1 -- '  ')
+                        set --local -- bases (string split -- ' ' {$escaped_identifier_positionals[1]})
+                        set --local -- initials {$escaped_identifier_positionals[2]}
+
+                        # display: machine parsable: commandline evaluation → argparse
+                        set --local -- base_flag_value {$bases}
+                        test (count {$bases}) -ne 1 &&
+                            set --local -- base_flag_value \{(
+                                string join -- , {$bases})\}
+                        test -n "$_flag_regex" &&
+                            set --local -- regex_equals '='
+                        echo -- --base={$base_flag_value} --regex"$regex_equals"{$_flag_regex} --set-cursor={$_flag_set_cursor} {$_flag_expander} {$_flag_unprefix} {$_flag_regard_flags} -- {$initials} {$expander}
+                    end
                 case erase
                     $argparse 'h/help&' -- {$identity_subcommand_args}
                     if set --query --local -- _flag_help
@@ -148,17 +207,13 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                         _sub-abbr_internal_revert-paths
                         return 2
                     end
-                    # main operation
-                    ## verify existance
-                    for identifier in {$identity_subcommand_args}
-                        if ! contains {$identifier} {$identifiers}
-                            $print 'unknown context-aware sub-command abbreviation:' (format text bold (format text italics (format text color red {$identifier}))) >&2
-                            _sub-abbr_internal_revert-paths
-                            return 3
-                        end
+                    if ! _sub-abbr_internal_verify-arg_identifier-existance
+                        _sub-abbr_internal_revert-paths
+                        return 3
                     end
 
-                    # Hook to erase unknown runtime data used by wrappers.
+                    # main operation
+                    ## Hook to erase unknown runtime data used by wrappers.
                     emit -- subabbr_erase {$identity_subcommand_args}
 
                     ## erase depending on type
@@ -272,9 +327,16 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 _sub-abbr_internal_default-prefix
                 set --query --local _flag_unprefix ||
                     set --local -- tolerate_prefixes --command={$subabbr_prefix}
+                test -n "$_flag_regex" &&
+                    set --local -- regex_equals '='
+                test -n "$_flag_set_cursor" &&
+                    set --local -- cursor_equals '='
+                set --local -- escaped_nonidentifier_arguments (
+                    string escape --style=script -- \
+                        --regex"$regex_equals"{$_flag_regex} {$_flag_expander} --set-color"$cursor_equals"{$_flag_set_color} {$_flag_unprefix} {$_flag_regard_flags} -- {$expansion})
                 set --local -- common_flags \
                     --add \
-                    --description='subabbr' \
+                    --description={$internal_description_prefix}"$escaped_nonidentifier_arguments" \
                     --command={$_flag_base} \
                     {$tolerate_prefixes} \
                     --function={$identifier} \
