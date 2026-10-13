@@ -22,7 +22,7 @@ Simplify creating context-aware Sub-Command abbreviations [^simplification]
 # Uses
 Following are some example uses of the program.
 ## Defaults (convenience)
-In these examples, additional functionality is added via abbreviations as a default
+In these examples, additional functionality is added as a “default” using abbreviations
 ### Switches for certain sub-commands  
 ```fish
 sub-abbr add --unprefix --set-cursor --base=run0 nh os switch{,' % --bypass-root-check'}

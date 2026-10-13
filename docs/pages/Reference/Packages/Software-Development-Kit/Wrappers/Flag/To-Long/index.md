@@ -35,7 +35,7 @@ Command-line tokens the wrapper accepts as arguments
 ### Switches
 Optional arguments which modify the behavior of the wrapper
 #### Un-inherited
-The following are switches that cannot be passed over via this wrapper:
+The following are switches that cannot be passed over through this wrapper:
 - [RegExp: `sub-command`](../../../../../Arguments/Sub-Commands/Add/Switches/Regular-Expression.md "Match command-line arguments with RegExp"){data-preview}
 - [Expander](../../../../../Arguments/Sub-Commands/Add/Switches/Expander.md "Use a command's output as the *Expansion*"){data-preview}
 - [Set Cursor](../../../../../Arguments/Sub-Commands/Add/Switches/Set-Cursor.md "Position the cursor at `%`"){data-preview}
