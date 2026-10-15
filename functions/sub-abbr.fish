@@ -268,7 +268,13 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             begin
                 _sub-abbr_internal_default-prefix
                 set --query --local _flag_unprefix || set --local -- tolerate_prefixes --command={$subabbr_prefix}
-                set --local -- common_flags --add --command={$_flag_base} {$tolerate_prefixes} --function={$identifier} {$set_cursor}
+                set --local -- common_flags \
+                    --add \
+                    --description='subabbr' \
+                    --command={$_flag_base} \
+                    {$tolerate_prefixes} \
+                    --function={$identifier} \
+                    {$set_cursor}
                 if set --query --local -- regex_subcommand
                     abbr {$common_flags} --regex="$subcommand" -- {$identifier}
                 else
