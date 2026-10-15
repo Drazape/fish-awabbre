@@ -239,9 +239,9 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     return 7
                 end
                 # Name arguments
-                set --function initial_args {$argv[1..-3]}
-                set --function subcommand {$argv[-2]}
-                set --function expansion {$argv[-1]}
+                set --function -- initial_args {$argv[1..-3]}
+                set --function -- subcommand {$argv[-2]}
+                set --function -- expansion {$argv[-1]}
                 # compatible subcommand name: must be a single token
                 begin
                     if _sub-abbr_internal_verify-arg_subcommand-contains ' ' || _sub-abbr_internal_verify-arg_subcommand-contains \n
