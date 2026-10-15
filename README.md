@@ -159,8 +159,10 @@ Group or Package path
 
 # Installation
 The following are some universal installation methods, for you can use them on any distribution.
-## User
-[**Fisher**](https://github.com/jorgebucaran/fisher "Fish plugin manager"): `fisher install Drazape/fish-subAbbr`
+## User: [Fisher](https://github.com/jorgebucaran/fisher "Fish plugin manager")
+```fish
+fisher install Drazape/fish-subAbbr
+```
 
 ## System
 ```fish

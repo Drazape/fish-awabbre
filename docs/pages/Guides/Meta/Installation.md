@@ -35,9 +35,11 @@ Each file in `functions/` must be renamed such that each sub-directory's name is
 The installation type determines the availability of the program to users
 ### User
 Under this scope, this program is only available to the user the installation is performed for.
-#### Automatic: Package Manager
-Auto-updates from the package manager  
-[**Fisher**](https://github.com/jorgebucaran/fisher "Fish plugin manager"){data-preview}: `#!fish fisher install Drazape/fish-subAbbr`
+#### Automatic: [Fisher](https://github.com/jorgebucaran/fisher "Fish plugin manager"){data-preview}
+Auto-updates from the package manager
+```fish
+fisher install Drazape/fish-subAbbr
+```
 #### Manual
 Move the directories into your user Fish configuration in your home directory (typically `~/.config/fish/`)
 
