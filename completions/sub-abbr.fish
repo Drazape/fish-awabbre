@@ -57,7 +57,7 @@ begin
         end
         $common_complete {$list_complete_condition} --arguments='(_subabbr_complete_list initials)'
         # not using `single-switch` since a value is mandatory
-            $common_complete {$list_complete_condition} --short-option=b --long-option=base --require-parameter \
+        $common_complete {$list_complete_condition} --short-option=b --long-option=base --require-parameter \
             --description='Filter by mandatorily accepted Base Commands' --arguments='(_subabbr_complete_list base)'
         $common_complete {$list_complete_condition} --short-option=m --long-option=match --require-parameter \
             --description='Filter by sub-command match type' \
