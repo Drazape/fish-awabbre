@@ -139,7 +139,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 case erase
                     $argparse 'h/help&' -- {$identity_subcommand_args}
                     if set --query --local -- _flag_help
-                        help-text --link=_sub-abbr_internal_helpText-linker {$erase_description} --positional='+Identifier | context-aware sub-command abbreviation identifier'
+                        help-text --link=_sub-abbr_internal_helpText-linker {$erase_description} --positional='+Identifier | the context-aware sub-command abbreviation identifier to erase'
                         _sub-abbr_internal_revert-paths
                         return
                     end
