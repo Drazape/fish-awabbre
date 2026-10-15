@@ -87,7 +87,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                         _subabbr_help_list= help-text --link=_sub-abbr_internal_helpText-linker 'List the identifiers of each loaded abbreviation' \
                             --flag={
                                 'base:b | Filter by Base Commands that must be accepted',
-                                'match:m | Only list identifiers with the specified Sub-Command string match type',
+                                'match:m | Only list identifiers with the specified Initials string match type',
                                 'invert:i | Invert the match result',
                                 'regex:r | Match command-line positionals with RegExp'
                             }
@@ -162,38 +162,18 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     for identifier in {$identifiers_to_show}
                         # gather info
                         ## info in non-identifier
-                        set --local -- identifier_description_var_name (
-                                string escape --style=var -- {$identifier}
-                            )_description
-                        $argparse \
-                            r/regex=\* \
-                            c/set-cursor=? \
-                            e/expander \
-                            0/unprefix \
-                            s/regard-flags \
-                            -- (
-                                commandline --tokens-expanded --input=(
-                                    string sub --start=(
-                                        math 1 + (
-                                            string length -- {$internal_description_prefix}
-                                        )) -- {$$identifier_description_var_name}))
-                        set --local -- expander {$argv}
-
-                        ## info in identifier
-                        set --local -- escaped_identifier_positionals (
-                            string sub --start=4 -- {$identifier} |
-                            string split --max=1 -- '  ')
-                        set --local -- bases (string split -- ' ' {$escaped_identifier_positionals[1]})
-                        set --local -- initials {$escaped_identifier_positionals[2]}
+                        _sub-abbr_internal_identifier-to-data {$identifier}
 
                         # display: machine parsable: commandline evaluation → argparse
                         set --local -- base_flag_value {$bases}
                         test (count {$bases}) -ne 1 &&
                             set --local -- base_flag_value \{(
                                 string join -- , {$bases})\}
-                        test -n "$_flag_regex" &&
+                        test -n "$regex_scopes" &&
                             set --local -- regex_equals '='
-                        echo -- --base={$base_flag_value} --regex"$regex_equals"{$_flag_regex} --set-cursor={$_flag_set_cursor} {$_flag_expander} {$_flag_unprefix} {$_flag_regard_flags} -- {$initials} {$expander}
+                        test -n "$cursor_string" &&
+                            set --local -- cursor_equals '='
+                        echo -- --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
                     end
                 case erase
                     $argparse 'h/help&' -- {$identity_subcommand_args}
@@ -216,14 +196,16 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     ## erase depending on type
                     for identifier in {$identity_subcommand_args}
                         set --local -- internal_identifier
-                        if test (string sub --end=1 -- {$identifier}) = '='
-                            set -- internal_identifier (string split --right --max=1 --fields=2 -- ' ' {$identifier})
-                        else
+                        _sub-abbr_internal_identifier-to-data {$identifier}
+                        if contains -- sub-command {$regex_scopes} || contains -- \0 {$regex_scopes}
                             set -- internal_identifier {$identifier_prefix}(
                                 string sub --end=2 -- {$identifier}
                             )(string escape --style=var -- (
                                 string sub --start=3 -- {$identifier}
                             ))
+                        else
+                            set -- internal_identifier (
+                                string split --right --max=1 --fields=2 -- ' ' {$identifier})
                         end
                         functions --erase -- {$internal_identifier} # internal specialized expander
                         set --local -- commands_varname (string escape --style=var -- {$identifier})_commands
@@ -312,7 +294,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             # main operation
             begin
                 set --local -- regex_str =
-                set --query --local -- regex_subcommand &&
+                set --query --function -- regex_initials &&
                     set --local -- regex_str r
 
                 set --local -- escaped_bases (string escape --style=script --no-quoted -- {$_flag_base})
