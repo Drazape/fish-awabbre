@@ -52,7 +52,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             # common data
             set --local -- prefix_length (string length {$identifier_prefix})
             set --local -- identifier_start (math {$prefix_length} + 1)
-            for abbr in (abbr)
+            for abbr in (abbr --show)
                 if ! argparse --ignore-unknown '/command=+&' '/function=&' -- (commandline --tokens-expanded --input={$abbr}) ||
                         ! string match --quiet -- {$identifier_prefix} (string sub --end={$prefix_length} -- {$_flag_function})
                     continue
