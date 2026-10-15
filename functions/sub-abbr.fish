@@ -228,9 +228,11 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             end
             ### RegExp
             for value in \0 sub-command
-                contains -- {$value} {$_flag_regex} && set --function -- regex_subcommand
+                contains -- {$value} {$_flag_regex} &&
+                    set --function -- regex_subcommand
             end
-            contains -- initials {$_flag_regex} && set --function -- regex_initials --regex
+            contains -- initials {$_flag_regex} &&
+                set --function -- regex_initials --regex
             ## Positional
             begin
                 # appropriate number of arguments. Not using `argparse` so that `--help can have as many arguments as it wants` and better formatted output
@@ -255,7 +257,8 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             # main operation
             begin
                 set --local -- regex_str =
-                set --query --local -- regex_subcommand && set --local -- regex_str r
+                set --query --local -- regex_subcommand &&
+                    set --local -- regex_str r
 
                 set --local -- escaped_bases (string escape --style=script --no-quoted -- {$_flag_base})
                 set --local -- escaped_arguments (string escape --style=script --no-quoted -- {$initial_args} {$subcommand})
