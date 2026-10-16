@@ -38,5 +38,5 @@ Use-cases
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr --base=<BASE-COMMANDS> … (?:--) <initial_arguments> <sub-command> <expansion>
+sub-abbr {-b|--base=}<BASE-COMMANDS>… <creation_flags> -- <initials> <sub-command> <expansion>
 ```

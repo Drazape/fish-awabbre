@@ -27,7 +27,7 @@ Use
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr (?:<sub-command>) <HELP FLAG> (?:`--`) …
+sub-abbr [<sub-command>…] <HELP-FLAG>
 ```
 
 !!! info "Insignificance of Arguments"

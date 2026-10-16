@@ -29,6 +29,5 @@ Manage context-aware Sub-Command abbreviations by their identifiers
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr add … <CREATION FLAGS> (?:`--`) …
+sub-abbr identity <sub-command> [<arguments>…]
 ```
-

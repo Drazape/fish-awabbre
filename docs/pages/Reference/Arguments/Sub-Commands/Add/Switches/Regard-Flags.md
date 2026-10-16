@@ -27,7 +27,7 @@ Effect
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr add … <REGARD-FLAGS_FLAG> (?:`--`) …
+sub-abbr add --base=<base-commands>… {-s|--regard-flags} -- <initials-with-flags> <subcommand> <expansion>
 ```
 
 !!! example

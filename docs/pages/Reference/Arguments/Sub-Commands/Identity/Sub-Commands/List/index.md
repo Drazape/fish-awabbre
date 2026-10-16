@@ -28,7 +28,7 @@ Unlike `abbr` which can have the same identifier repeated (and would require the
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr <LIST FLAG>
+sub-abbr identity list [<flags>… -- Initials Sub-Command]
 ```
 
 ### Output

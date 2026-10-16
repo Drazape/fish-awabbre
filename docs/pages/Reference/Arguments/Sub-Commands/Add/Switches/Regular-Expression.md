@@ -42,5 +42,5 @@ Matching command-line arguments dynamically
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr add … <REGEXP FLAG> (?:`--`) …
+sub-abbr add --base=<base-commands>… --regex[=<value>…] <creation_flags>… -- <initials> <sub-command> <expansion>
 ```

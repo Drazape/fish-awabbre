@@ -32,5 +32,5 @@ Command-line arguments accepted by the *Add* sub-command
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr add --base=<BASE_COMMANDS> <OPTIONAL_CREATION_FLAGS> (?:`--`) …
+sub-abbr add --base=<base_commands>… [<creation_flags>] -- <initials> <sub-command> <expansion>
 ```
