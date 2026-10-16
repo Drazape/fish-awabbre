@@ -19,8 +19,8 @@ Identifier Obtainment
 Uses
 :   Intuitively deletion in case of [RegExp](../../Add/Switches/Regular-Expression.md "Match *Sub-Command* with RegExp"){data-preview} context-aware abbreviations
 
-Implementation
-:   The human ID is converted into the ID identified by `builtin abbr`
+!!! info "Implementation"
+    The human ID is converted into the ID identified by `builtin abbr`
     - *RegExp*: the entire command-line
     - *Fixed String*: The Sub-Command (`builtin abbr` limitation)
 

@@ -21,8 +21,9 @@ Miscallaneous details about the switch
 The string to replace with the cursor (default: `%`)
 ### Use-case
 Putting arguments after the cursor; when there are arguments that need positioned before a specific argument
-### Implementation
-It is directly passed to `builtin abbr`, along with the value
+
+!!! info "Implementation"
+    It is directly passed to `builtin abbr`, along with the value
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

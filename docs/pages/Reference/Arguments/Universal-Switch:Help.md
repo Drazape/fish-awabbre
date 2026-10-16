@@ -19,11 +19,11 @@ Universal
 Relation with other arguments
 :   All the other switches are ignored with this one
 
-Implementation
-:   It uses [*fish-helpText*](https://github.com/Drazape/fish-helpText "Fish library to generate formatted ANSI reference texts"){data-preview} for transpiling the input into ANSI
-
 Use
 :   Doesn't do any operation. Only for recalling command usage.
+
+!!! info "Implementation"
+    It uses [*fish-helpText*](https://github.com/Drazape/fish-helpText "Fish library to generate formatted ANSI reference texts"){data-preview} for transpiling the input into ANSI
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

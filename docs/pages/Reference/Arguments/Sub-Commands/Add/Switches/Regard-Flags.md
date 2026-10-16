@@ -22,8 +22,8 @@ Use-case
 Effect
 :   It doesn't affect the passed *Initial Arguments*'s parsing, but makes abbreviations with flags passed (before `--`, obviously) expandable
 
-Implementation
-:   It otherwise uses `builtin argparse` to filter the flags (ignoring positionals disguised as “flags” after `--`)
+!!! info "Implementation"
+    It otherwise uses `builtin argparse` to filter the flags (ignoring positionals disguised as “flags” after `--`)
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

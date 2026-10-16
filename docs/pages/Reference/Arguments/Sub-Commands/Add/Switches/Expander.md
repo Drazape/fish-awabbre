@@ -30,8 +30,8 @@ Use-case
     Pair it with [*Regular Expressions*][regexp]{data-preview} to generate *Expansions* based on a dynamic [*Sub-Command*][subcommand]{data-preview} on the command-line
 
 
-Implementation
-:   Not passed to `builtin abbr`. The command is executed manually, but the same arguments are passed.
+!!! info "Implementation"
+    Not passed to `builtin abbr`. The command is executed manually, but the same arguments are passed.
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

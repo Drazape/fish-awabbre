@@ -33,12 +33,12 @@ Matching command-line arguments dynamically
 !!! tip "Switch Combo"
     Pair it with [*Expander*](Expander.md "Use a command's output as the *Expansion*"){data-preview} to generate [*Expansions*](../../../Positionals/Expansion.md "replacement string"){data-preview} based on the current command-line
 
-### Implementation
-Sub-Command
-:   It is directly passed to `builtin abbr` with the [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} as the value
+!!! info "Implementation"
+    Sub-Command
+    :   It is directly passed to `builtin abbr` with the [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} as the value
 
-Initial Arguments
-:   [*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding"){data-preview} in itself is a `sub-abbr` exclusive feature. Thus, manually matched
+    Initial Arguments
+    :   [*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding"){data-preview} in itself is a `sub-abbr` exclusive feature. Thus, manually matched
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

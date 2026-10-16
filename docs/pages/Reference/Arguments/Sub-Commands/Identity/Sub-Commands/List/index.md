@@ -20,10 +20,11 @@ Miscallaneous details about the sub-command
 - Selectively erasing the filtered content-aware abbreviations
 ### Arguments
 All the arguments of this command ([switches](./Switches/){data-preview} and [positionals](./Positionals.md){data-preview}) filter the abbreviations listed by solely the information encoded in their identifiers—the information just enough to generate a unique identifier for each abbreviation (see the [output](#output) to know the components included in the identifier)
-### Implementation
-The output from `abbr` is parsed to get the identifier encoded into the function name, which is further parsed to generate a human-intuitive identifier
 ### Single ID
 Unlike `abbr` which can have the same identifier repeated (and would require the `--command` flag), this program uses a content-addressable identifier
+
+!!! info "Implementation"
+    The output from `abbr` is parsed to get the identifier encoded into the function name, which is further parsed to generate a human-intuitive identifier
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

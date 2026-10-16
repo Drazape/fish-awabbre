@@ -48,9 +48,9 @@ sub-abbr identity list … (?:<INITIAL_ARGUMENTS>) <Sub-Command>
     - `#!fish sub-abbr add --base=run0 -0c `**`nh os`**` switch 'switch % --bypass-root-check'`
     - `#!fish sub-abbr identity list --base=run0 `**`nh os`**` switch`
 
-## Implementation Details
-Each argument is separately matched by parsing the command-line as follows:
+!!! info "Implementation Details"
+    Each argument is separately matched by parsing the command-line as follows:
 
-1. `run0` is stripped out (unless [Unprefixed](../Sub-Commands/Add/Switches/Unprefix.md){data-preview})
-2. All the arguments are captured
-3. Any flags found are stripped out (unless [regarded](../Sub-Commands/Add/Switches/Regard-Flags.md "Acknowledge flags in Initial Args"){data-preview})
+    1. `run0` is stripped out (unless [Unprefixed](../Sub-Commands/Add/Switches/Unprefix.md){data-preview})
+    2. All the arguments are captured
+    3. Any flags found are stripped out (unless [regarded](../Sub-Commands/Add/Switches/Regard-Flags.md "Acknowledge flags in Initial Args"){data-preview})
