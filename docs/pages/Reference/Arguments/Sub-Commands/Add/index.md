@@ -21,12 +21,12 @@ Command-line arguments accepted by the *Add* sub-command
 ### Local Switches
 | Name | Description | Long | Short | Inherited [^inherited-switches] |
 | :--: | ----------- | :--: | :---: | :-----------------------------: |
-| [**Base**](Switches/Base.md){data-preview} | Specify the Base Commands the abbreviation triggers for | `base` | `b` | ✅ true |
-| [**Unprefix**](Switches/Unprefix.md){data-preview} | Deactivate toleration of `$subabbr_prefix` before the *Base Command*; that is, do not expand the *Sub-Command* if the *Initial Args* are prefixed with `run0` | `unprefix` | `0` | ❌ false |
-| [**Regard Flags**](Switches/Regard-Flags.md){data-preview} | Acknowledge flags in the [*Initial Arguments*](../../Positionals/Initial-Arguments.md){data-preview}; If not set, switches in the *Initial Arguments* are ignored | `regard-flags` | `s` | ❌ false |
-| [**RegExp**](Switches/Regular-Expression.md){data-preview} | Match command-line arguments with Regular Expressions. Essential with [Sub-Command](../../Positionals/Sub-Command.md){data-preview} for abbreviating the same pair of [*Sub-Command*](../../Positionals/Sub-Command){data-preview} & [*Initial Arguments*](../../Positionals/Initial-Arguments.md){data-preview} | `regex` | `r` | ✅ true |
-| [**Set Cursor**](Switches/Set-Cursor.md){data-preview} | Set the cursor to a position. Same usage as the internal switch | `set-cursor` | `c` | ✅ true | 
-| [**Expander**](Switches/Expander.md){data-preview} | Use the output of a command as the [*Expansion*](../../Positionals/Expansion.md){data-preview} | `expander` | `e` | ✅ true |
+| [**RegExp**](Switches/Regular-Expression.md){data-preview} | Match command-line arguments with Regular Expressions. Essential with [Sub-Command](../../Positionals/Sub-Command.md){data-preview} for abbreviating the same pair of [*Sub-Command*](../../Positionals/Sub-Command){data-preview} & [*Initial Arguments*](../../Positionals/Initial-Arguments.md){data-preview} | `regex` | `r` | ⏫ extended |
+| [**Expander**](Switches/Expander.md){data-preview} | Use the output of a command as the [*Expansion*](../../Positionals/Expansion.md){data-preview} | `expander` | `e` | ⏫ extended |
+| [**Base**](Switches/Base.md){data-preview} | Specify the Base Commands the abbreviation triggers for | `base` | `b` | ✅ retained |
+| [**Set Cursor**](Switches/Set-Cursor.md){data-preview} | Set the cursor to a position. Same usage as the internal switch | `set-cursor` | `c` | ✅ retained | 
+| [**Unprefix**](Switches/Unprefix.md){data-preview} | Deactivate toleration of `$subabbr_prefix` before the *Base Command*; that is, do not expand the *Sub-Command* if the *Initial Args* are prefixed with `run0` | `unprefix` | `0` | ❌ exclusive |
+| [**Regard Flags**](Switches/Regard-Flags.md){data-preview} | Acknowledge flags in the [*Initial Arguments*](../../Positionals/Initial-Arguments.md){data-preview}; If not set, switches in the *Initial Arguments* are ignored | `regard-flags` | `s` | ❌ exclusive |
 
 [^inherited-switches]: These are supported switches inherited from `abbr` that can also be used with `sub-abbr`. These switches may or may not be passed directly to `abbr` and could also contain enhancements.
 
