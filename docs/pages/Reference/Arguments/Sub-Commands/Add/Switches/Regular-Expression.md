@@ -15,7 +15,7 @@ Match command-line arguments with *Regular Expression*s
 ## Details
 Miscallaneous details about the switch
 ### Values
-`sub-command`
+`sub-command` (default)
 :   Applies to the [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview}
 
 `initials`
