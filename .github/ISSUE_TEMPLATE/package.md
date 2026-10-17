@@ -17,13 +17,17 @@ assignees: ''
 - [ ] I have already tried creating issues on their repository to add their abbrevations here
 - [ ] The package's license allows it to be added
 
+
 <!-- ELSE: -->
+
 
 # Command
 [<Command Name>](<URL to the program that provides the command> "<Short description of the command>")
 
+
 # Examples
 <!-- Explain all the examples of the Sub-Command abbreviations you can think of, along with any implementations you figured out -->
+
 
 # Acknowledgements
 - [ ] I have already tried searching for existing abbreviations online
