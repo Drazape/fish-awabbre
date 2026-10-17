@@ -213,9 +213,6 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     end
 
                     # main operation
-                    ## Hook to erase unknown runtime data used by wrappers.
-                    emit -- subabbr_erase {$identity_subcommand_args}
-
                     ## erase depending on type
                     for identifier in {$identity_subcommand_args}
                         set --local -- internal_identifier
@@ -232,6 +229,9 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                         set --local -- commands_varname (string escape --style=var -- {$identifier})_commands
                         abbr --erase --command={$$commands_varname} -- {$internal_identifier}
                     end
+
+                    ## Hook to erase unknown runtime data used by wrappers.
+                    emit -- subabbr_erase {$identity_subcommand_args}
                 case \*
                     $print unknown (format text italics 'Identity') sub-command: (format text bold (format background red --bright {$identity_args[1]})) >&2
                     _sub-abbr_internal_revert-paths
