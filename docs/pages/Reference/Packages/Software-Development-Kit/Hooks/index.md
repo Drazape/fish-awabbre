@@ -1,4 +1,5 @@
 ---
+status: new
 comments: true
 icon: lucide/fishing-hook
 description: Triggers for arbitrary plugins

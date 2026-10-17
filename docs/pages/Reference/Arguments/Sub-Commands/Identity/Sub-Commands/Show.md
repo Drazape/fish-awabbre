@@ -1,4 +1,5 @@
 ---
+status: new
 comments: true
 icon: lucide/eye
 description: Show definition of a abbr by its identity
