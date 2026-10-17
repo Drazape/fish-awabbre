@@ -229,8 +229,8 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                             ))
                         end
                         functions --erase -- {$internal_identifier} # internal specialized expander
-                        set --local -- commands (string escape --style=var -- {$identifier})_commands
-                        abbr --erase --command={$$commands} -- {$internal_identifier}
+                        set --local -- commands_varname (string escape --style=var -- {$identifier})_commands
+                        abbr --erase --command={$$commands_varname} -- {$internal_identifier}
                     end
                 case \*
                     $print unknown (format text italics 'Identity') sub-command: (format text bold (format background red --bright {$identity_args[1]})) >&2
