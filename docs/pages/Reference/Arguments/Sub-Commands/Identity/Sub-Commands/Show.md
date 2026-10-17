@@ -69,5 +69,7 @@ That is, each of the flags are kept as flags, and the positionals are escaped by
     set -- subcommand {$argv[-2]}
     set -- expansion {$argv[-1]}
     ```
+    !!! warning "Internal Parser"
+        It would be easier to just use the internal function `_sub-abbr_internal_identifier-to-data`, but it isn't part of the public API.
 
 [add-subcommand]: ../../Add/index.md
