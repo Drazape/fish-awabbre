@@ -93,11 +93,11 @@ sub-abbr add --base=jj ci commit
 
 > [!TIP]
 > ### Quick Start
-> Simply Add (without any arguments)
+> Simply add the following command to your Fish configuration (without any arguments):
 > ```fish
 > sub-abbrs
 > ```
-> to your Fish configuration, and all official packages (included abbreviations) will automatically be loaded
+> Doing so will load all the packages (that is, the included abbreviations) on each shell startup
 
 > [!TIP]
 > ### Detailed [documentation](https://drazape.github.io/fish-subAbbr/ "GitHub Pages: Zensical documentation")
