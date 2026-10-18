@@ -150,7 +150,9 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     set --local -- regex_equals '='
                 test -n "$cursor_string" &&
                     set --local -- cursor_equals '='
-                echo -- --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
+                for command in echo emit
+                    $command -- --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
+                end
             end
         case erase
             $argparse 'h/help&' -- {$subcommand_args}
