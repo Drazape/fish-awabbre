@@ -10,7 +10,20 @@ description: Trigger before gathering identities
 | Before gathering identities | `subabbr_gather-identifiers` |
 
 ## Tokens
-No tokens are passed to the hook function when the event is emitted.
+The hook functions may be passed the following fixed tokens as arguments.  
+These tokens are optional data scopes that `sub-abbr` has requested:
+`commands`
+:   These are commands the `abbr` built-in internally looks for. Other than the [Base Command][base-command-add-switch]{data-preview}, it also includes all the [prefix][prefix-config]{data-preview} tokens.
+
+[base-command-add-switch]: ../../../Arguments/Sub-Commands/Add/Switches/Base.md
+[prefix-config]: ../../../Configuration/Prefix.md
+
+`description`
+:   This is the internal description passed to the `abbr` built-in by `sub-abbr`. It embeds all the information passed to [Add][add-subommand]{data-preview}, other than the Base Commands and the [Initial Arguments][initials-positional]{data-preview}, for they are already embedded in the identifier.
+
+[add-subcommand]: ../../../Arguments/Sub-Commands/Add/index.md
+[initials-positional]: ../../../Arguments/Positionals/Initial-Arguments.md
+
 ## Example Use: universal identity management
 ### Problem: unloaded abbreviations
 Take a case of a package that loads context-aware sub-command abbreviation by an unofficially supported method.  

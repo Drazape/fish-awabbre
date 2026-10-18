@@ -1,6 +1,6 @@
 function _sub-abbr_internal_identifier-data_gather-list --no-scope-shadowing --inherit-variable={identifier_prefix,identifier_start,prefix_length} --description='Gather identifiers and store their embedded data as requested'
     # let hooks change identifiers that are received. This can be useful for allowing the user to manage identifiers that are distributed in a conditional-loading way.
-    emit -- subabbr_gather-identifiers
+    emit -- subabbr_gather-identifiers {$argv}
 
     contains -- description {$argv} &&
         set --local -- description_flag '/description=&'
