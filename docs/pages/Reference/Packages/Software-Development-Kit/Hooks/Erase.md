@@ -12,7 +12,7 @@ description: Trigger before erasing an abbreviation
 ## Tokens
 When the event is emitted, all the identifiers passed by the user (to the [*Erase* sub-command][erase-subcommand]{data-preview} of `sub-abbr`) are passed as is to the hook function.
 
-[erase-subcommand]: ../../../../Arguments/Sub-Commands/Identity/Sub-Commands/Erase.md
+[erase-subcommand]: ../../../Arguments/Sub-Commands/Erase.md
 
 ## Example uses
 Validating requests

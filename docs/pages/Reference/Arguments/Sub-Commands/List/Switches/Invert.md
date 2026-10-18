@@ -16,7 +16,7 @@ The command can invert both the [positionals][positionals]{data-preview}, and th
 
 !!! example "List abbreviations not made for Jujutsu"
     ```fish {title="Command"}
-    sub-abbr identity list --invert jj
+    sub-abbr list --invert jj
     ```
 
 

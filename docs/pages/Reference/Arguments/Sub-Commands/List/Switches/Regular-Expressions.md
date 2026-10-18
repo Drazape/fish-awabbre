@@ -23,11 +23,11 @@ This allows much more flexible matching of the arguments, which would otherwise 
 
 !!! example "List abbreviations for the help switch"
     ```fish {title="Command"}
-    sub-abbr identity list --regex -- '--help|-h'
+    sub-abbr list --regex -- '--help|-h'
     ```
 
 
 [list]: ../index.md
-[initials]: ../../../../../Positionals/Initial-Arguments.md
-[subcommand]: ../../../../../Positionals/Sub-Command.md
-[add]: ../../../../Add/index.md
+[initials]: ../../../Positionals/Initial-Arguments.md
+[subcommand]: ../../../Positionals/Sub-Command.md
+[add]: ../../Add/index.md

@@ -18,11 +18,16 @@ function sub-abbr --description='Create abbreviations for sub-commands'
 
     # general sub-command reference
     set --local -- add_description 'Create context-aware sub-command abbreviations'
+    set --local -- list_description 'List the identifiers of each loaded abbreviation'
+    set --local -- show_description 'Show the details of a context-aware Sub-Command abbreviation by its identifier'
+    set --local -- erase_description 'Erase an abbreviation by it\'s identifier'
     if set --query --local -- _flag_help
         help-text --link=_sub-abbr_internal_helpText-linker 'Context-aware Sub-Command abbreviations' \
             --sub-command={
                 'add | '{$add_description},
-                'identity | Manage abbreviations by their identifiers'
+                'list | '{$list_description},
+                'show | '{$show_description},
+                'erase | '{$erase_description}
             } \
             --flag='help:h | Show a reference manual for a sub-command'
         _sub-abbr_internal_revert-paths
@@ -31,194 +36,162 @@ function sub-abbr --description='Create abbreviations for sub-commands'
 
     set --function -- identifier_prefix _sub-abbr_definition_
     set --function -- internal_description_prefix 'subabbr: '
+    # common prefix length data for identity sub-commands
+    if contains -- {$argv[1]} list show erase
+        set --function -- prefix_length (string length {$identifier_prefix})
+        set --function -- identifier_start (math {$prefix_length} + 1)
+    end
+
+    set --local -- subcommand_args {$argv[2..]} # Trimmed sub-commands
     # individual sub-commands
     switch "$argv[1]"
-        case identity
-            set --local -- identity_args {$argv[2..]} # arguments excluding the root sub-command
-            set --local -- erase_description 'Erase an abbreviation by it\'s identifier'
-            set --local -- show_description 'Show the details of a context-aware Sub-Command abbreviation by its identifier'
-            $argparse --stop-nonopt 'h/help&' -- {$identity_args}
-            if set --query --local -- _flag_help
-                help-text --link=_sub-abbr_internal_helpText-linker 'Manage context-aware Sub-Command abbreviations by their identifiers' \
-                    --sub-command={
-                        'list | List the identifiers of each loaded abbreviation',
-                        'erase | '{$erase_description},
-                        'show | '{$show_description}
-                    }
+        case list
+            if ! $argparse \
+                    'b/base=*&' \
+                    'r/regex&' \
+                    'i/invert&' \
+                    'm/match=&!_sub-abbr_internal_verify-arg_match-type' \
+                    'h/help&' \
+                    -- {$subcommand_args}
                 _sub-abbr_internal_revert-paths
-                return
+                return 1
             end
-
-            # let hooks change identifiers that are received. This can be useful for allowing the user to manage identifiers that are distributed in a conditional-loading way.
-            emit -- subabbr_gather-identifiers {$identity_args}
-
-            # common data
-            set --local -- prefix_length (string length {$identifier_prefix})
-            set --local -- identifier_start (math {$prefix_length} + 1)
-            for abbr in (abbr --show)
-                if ! argparse --ignore-unknown '/description=&' '/command=+&' '/function=&' -- (commandline --tokens-expanded --input={$abbr}) ||
-                        ! string match --quiet -- {$identifier_prefix} (string sub --end={$prefix_length} -- {$_flag_function})
-                    continue
-                end
-                set --local -- identifier (
-                    string unescape --style=var -- (
-                        string sub --start={$identifier_start} -- {$_flag_function}))
-                set --append --function -- identifiers {$identifier}
-                set --local -- identifier_variable_prefix (string escape --style=var -- {$identifier})
-                set --append --function -- {$identifier_variable_prefix}_commands {$_flag_command}
-                set --function -- {$identifier_variable_prefix}_description {$_flag_description}
-            end
-
-            # sub-commands
-            set --local -- identity_subcommand_args {$identity_args[2..]} # Trimmed sub-commands: `identity` `list`/`erase`; arguments used sub-commands `identity`
-            switch "$identity_args[1]"
-                case list
-                    if ! $argparse \
-                            'b/base=*&' \
-                            'r/regex&' \
-                            'i/invert&' \
-                            'm/match=&!_sub-abbr_internal_verify-arg_match-type' \
-                            'h/help&' \
-                            -- {$identity_subcommand_args}
-                        _sub-abbr_internal_revert-paths
-                        return 1
-                    end
-                    if set --query --local -- _flag_help
-                        _subabbr_help_list= help-text --link=_sub-abbr_internal_helpText-linker 'List the identifiers of each loaded abbreviation' \
-                            --flag={
+            if set --query --local -- _flag_help
+                _subabbr_help_list= help-text --link=_sub-abbr_internal_helpText-linker {$list_description} \
+                    --flag={
                                 'base:b | Filter by Base Commands that must be accepted',
                                 'match:m | Only list identifiers with the specified Initials string match type',
                                 'invert:i | Invert the match result',
                                 'regex:r | Match command-line positionals with RegExp'
                             }
-                        _sub-abbr_internal_revert-paths
-                        return
-                    end
-                    set --local -- filtered_identifiers
-                    for identifier in {$identifiers}
-                        set --local -- identifier_division (string split --max=1 -- '  ' {$identifier})
-                        set --local -- identifier_match_and_bases (commandline --tokens-expanded --input={$identifier_division[1]})
-                        if set --query --local -- _flag_match
-                            switch (string split --{fields,max}=1 -- : {$identifier_match_and_bases[1]})
-                                case =
-                                    test {$_flag_match} != fixed &&
-                                        continue
-                                case r
-                                    test {$_flag_match} != regex &&
-                                        continue
-                            end
-                        end
-                        if set --query --local -- _flag_base
-                            for passed_base in {$_flag_base}
-                                contains -- {$passed_base} {$identifier_match_and_bases[2..]} ||
-                                    set --function -- bases_unmatched # continue outside the current loop
-                            end
-                            if set --query --function -- bases_unmatched
-                                set --erase --function -- bases_unmatched
+                _sub-abbr_internal_revert-paths
+                return
+            end
+
+            _sub-abbr_internal_identifier-data_gather-list
+            set --local -- filtered_identifiers
+            for identifier in {$identifiers}
+                set --local -- identifier_division (string split --max=1 -- '  ' {$identifier})
+                set --local -- identifier_match_and_bases (commandline --tokens-expanded --input={$identifier_division[1]})
+                if set --query --local -- _flag_match
+                    switch (string split --{fields,max}=1 -- : {$identifier_match_and_bases[1]})
+                        case =
+                            test {$_flag_match} != fixed &&
                                 continue
-                            end
-                        end
-                        if test (count {$argv}) -gt 0
-                            set --local -- identifier_initials (commandline --tokens-expanded --input={$identifier_division[2..]})
-                            set --local -- index_count 1
-                            for passed_init_match in {$argv}
-                                string match --quiet {$_flag_regex} -- "$passed_init_match" "$identifier_initials[$index_count]" ||
-                                    set --function -- init_unmatched # continue outside the current loop
-                                set -- index_count (math {$index_count} + 1)
-                            end
-                            if set --query --function -- init_unmatched
-                                set --erase --function -- init_unmatched
+                        case r
+                            test {$_flag_match} != regex &&
                                 continue
-                            end
-                        end
-                        set --append -- filtered_identifiers {$identifier}
                     end
-                    if set --query --local -- _flag_invert
-                        for identifier in {$identifiers}
-                            contains -- {$identifier} {$filtered_identifiers} ||
-                                echo {$identifier}
-                        end
-                    else
-                        string repeat -- 1 {$filtered_identifiers}
+                end
+                if set --query --local -- _flag_base
+                    for passed_base in {$_flag_base}
+                        contains -- {$passed_base} {$identifier_match_and_bases[2..]} ||
+                            set --function -- bases_unmatched # continue outside the current loop
                     end
-                case show
-                    $argparse 'h/help&' -- {$identity_subcommand_args}
-                    if set --query --local -- _flag_help
-                        help-text --link=_sub-abbr_internal_helpText-linker {$show_description} \
-                            --positional='+Identifier | identifier of abbr to show details for'
-                        _sub-abbr_internal_revert-paths
-                        return
+                    if set --query --function -- bases_unmatched
+                        set --erase --function -- bases_unmatched
+                        continue
                     end
+                end
+                if test (count {$argv}) -gt 0
+                    set --local -- identifier_initials (commandline --tokens-expanded --input={$identifier_division[2..]})
+                    set --local -- index_count 1
+                    for passed_init_match in {$argv}
+                        string match --quiet {$_flag_regex} -- "$passed_init_match" "$identifier_initials[$index_count]" ||
+                            set --function -- init_unmatched # continue outside the current loop
+                        set -- index_count (math {$index_count} + 1)
+                    end
+                    if set --query --function -- init_unmatched
+                        set --erase --function -- init_unmatched
+                        continue
+                    end
+                end
+                set --append -- filtered_identifiers {$identifier}
+            end
+            if set --query --local -- _flag_invert
+                for identifier in {$identifiers}
+                    contains -- {$identifier} {$filtered_identifiers} ||
+                        echo {$identifier}
+                end
+            else
+                string repeat -- 1 {$filtered_identifiers}
+            end
+        case show
+            $argparse 'h/help&' -- {$subcommand_args}
+            if set --query --local -- _flag_help
+                help-text --link=_sub-abbr_internal_helpText-linker {$show_description} \
+                    --positional='+Identifier | identifier of abbr to show details for'
+                _sub-abbr_internal_revert-paths
+                return
+            end
 
-                    if ! _sub-abbr_internal_verify-arg_identifier-existance
-                        _sub-abbr_internal_revert-paths
-                        return 10
-                    end
+            # main operation
+            _sub-abbr_internal_identifier-data_gather-list description
+            if test (count {$subcommand_args}) -eq 0
+                set --function -- identifiers_to_show {$identifiers}
+            else
+                if ! _sub-abbr_internal_verify-arg_identifier-existance
+                    _sub-abbr_internal_revert-paths
+                    return 10
+                end
+                set --function -- identifiers_to_show {$subcommand_args}
+            end
+            for identifier in {$identifiers_to_show}
+                # gather info
+                ## info in non-identifier
+                _sub-abbr_internal_identifier-data_individual-info {$identifier}
 
-                    # main operation
-                    set --local -- identifiers_to_show {$identity_subcommand_args}
-                    test (count {$identifiers_to_show}) -eq 0 &&
-                        set --local -- identifiers_to_show {$identifiers}
-                    for identifier in {$identifiers_to_show}
-                        # gather info
-                        ## info in non-identifier
-                        _sub-abbr_internal_identifier-to-data {$identifier}
-
-                        # display: machine parsable: commandline evaluation → argparse
-                        set --local -- base_flag_value {$bases}
-                        test (count {$bases}) -ne 1 &&
-                            set --local -- base_flag_value \{(
+                # display: machine parsable: commandline evaluation → argparse
+                set --local -- base_flag_value {$bases}
+                test (count {$bases}) -ne 1 &&
+                    set --local -- base_flag_value \{(
                                 string join -- , {$bases})\}
-                        test -n "$regex_scopes" &&
-                            set --local -- regex_equals '='
-                        test -n "$cursor_string" &&
-                            set --local -- cursor_equals '='
-                        echo -- --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
-                    end
-                case erase
-                    $argparse 'h/help&' -- {$identity_subcommand_args}
-                    if set --query --local -- _flag_help
-                        help-text --link=_sub-abbr_internal_helpText-linker {$erase_description} --positional='+Identifier | the context-aware sub-command abbreviation identifier to erase'
-                        _sub-abbr_internal_revert-paths
-                        return
-                    end
+                test -n "$regex_scopes" &&
+                    set --local -- regex_equals '='
+                test -n "$cursor_string" &&
+                    set --local -- cursor_equals '='
+                echo -- --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
+            end
+        case erase
+            $argparse 'h/help&' -- {$subcommand_args}
+            if set --query --local -- _flag_help
+                help-text --link=_sub-abbr_internal_helpText-linker {$erase_description} --positional='+Identifier | the context-aware sub-command abbreviation identifier to erase'
+                _sub-abbr_internal_revert-paths
+                return
+            end
 
-                    if ! _sub-abbr_internal_verify-arg_more-args 1 {$identity_subcommand_args}
-                        _sub-abbr_internal_revert-paths
-                        return 2
-                    end
-                    if ! _sub-abbr_internal_verify-arg_identifier-existance
-                        _sub-abbr_internal_revert-paths
-                        return 3
-                    end
+            _sub-abbr_internal_identifier-data_gather-list description commands
+            if ! _sub-abbr_internal_verify-arg_more-args 1 {$subcommand_args}
+                _sub-abbr_internal_revert-paths
+                return 2
+            end
+            if ! _sub-abbr_internal_verify-arg_identifier-existance
+                _sub-abbr_internal_revert-paths
+                return 3
+            end
 
-                    # main operation
-                    ## erase depending on type
-                    for identifier in {$identity_subcommand_args}
-                        set --local -- internal_identifier
-                        _sub-abbr_internal_identifier-to-data {$identifier}
-                        if contains -- sub-command {$regex_scopes} || contains -- \0 {$regex_scopes}
-                            set -- internal_identifier {$identifier_prefix}(
+            # main operation
+            ## erase depending on type
+            for identifier in {$subcommand_args}
+                set --local -- internal_identifier
+                _sub-abbr_internal_identifier-data_individual-info {$identifier}
+                if contains -- sub-command {$regex_scopes} || contains -- \0 {$regex_scopes}
+                    set -- internal_identifier {$identifier_prefix}(
                                 string sub --end=2 -- {$identifier}
                             )(string escape --style=var -- (
                                 string sub --start=3 -- {$identifier}
                             ))
-                        else
-                            set -- internal_identifier (
+                else
+                    set -- internal_identifier (
                                 string split --right --max=1 --fields=2 -- ' ' {$identifier})
-                        end
-                        functions --erase -- {$internal_identifier} # internal specialized expander
-                        set --local -- commands_varname (string escape --style=var -- {$identifier})_commands
-                        abbr --erase --command={$$commands_varname} -- {$internal_identifier}
-                    end
-
-                    ## Hook to erase unknown runtime data used by wrappers.
-                    emit -- subabbr_erase {$identity_subcommand_args}
-                case \*
-                    $print unknown (format text italics 'Identity') sub-command: (format text bold (format background red --bright {$identity_args[1]})) >&2
-                    _sub-abbr_internal_revert-paths
-                    return 4
+                end
+                functions --erase -- {$internal_identifier} # internal specialized expander
+                set --local -- commands_varname (string escape --style=var -- {$identifier})_commands
+                abbr --erase --command={$$commands_varname} -- {$internal_identifier}
             end
+
+            ## Hook to erase unknown runtime data used by wrappers.
+            emit -- subabbr_erase {$subcommand_args}
         case add
             # arguments
             ## Switches
@@ -230,7 +203,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     h/help\& \
                     0/unprefix \
                     s/regard-flags \
-                    -- {$argv[2..]}
+                    -- {$subcommand_args}
                 _sub-abbr_internal_revert-paths
                 return 5
             end

@@ -8,47 +8,39 @@ begin
     $common_complete
     single-switch --short-option=h --long-option=help --description='Reference manuals' \
         --condition='set --local -- unbase (__fish_print_cmd_args_without_options)[2..3]
-                 test (count {$unbase}) -eq 0 && return 0
-                 test "$unbase[1]" = add && return 0
-                 test "$unbase[1]" = identity && return 0
+                 if test (count {$unbase}) -eq 0 || test "$unbase[1]" = add
+                     return 0
+                 end
                  return 1'
 
     begin
         set --local -- subcommand_complete {$common_complete} --condition='test (__fish_number_of_cmd_args_wo_opts) -lt 2'
         $subcommand_complete --arguments=add --description='Create abbrs'
-        $subcommand_complete --arguments=identity --description='Manage abbrs by their identifiers'
+        $subcommand_complete --arguments=list --description='Get identifiers'
+        $subcommand_complete --arguments=erase --description='Erase abbrs with their identity'
+        $subcommand_complete --arguments=show --description='Show all details of an abbr'
     end
 
-    begin
-        set --local -- identity_complete {$common_complete} \
-            --condition='set --local -- unbase (__fish_print_cmd_args_without_options)[2..3]
-                    test (count {$unbase}) -eq 1 && test "$unbase[1]" = identity && ! contains -- "$unbase[2]" list show erase'
-        $identity_complete --arguments=list --description='Get identifiers'
-        $identity_complete --arguments=erase --description='Erase abbrs with identity'
-        $identity_complete --arguments=show --description='Show all details of an abbr'
-    end
     $common_complete \
-        --condition='set --local -- subcommands (__fish_print_cmd_args_without_options)[2..3]
-                test "$subcommands[1]" = identity && contains -- "$subcommands[2]" erase show' \
-        --arguments='(sub-abbr identity list)'
+        --condition='contains -- "$(__fish_print_cmd_args_without_options)[2]" erase show' \
+        --arguments='(sub-abbr list)'
 
     begin
         set --local -- list_complete_condition \
-            --condition='set --local -- subcommands (__fish_print_cmd_args_without_options)[2..3]
-            test "$subcommands[1]" = identity && test "$subcommands[2]" = list'
+            --condition='test "$(__fish_print_cmd_args_without_options)[2]" = list'
 
         function _subabbr_complete_list --argument-names=component
             argparse --move-unknown 'b/base=*&' 'm/match=&' 'r/regex&' -- (__fish_print_cmd_args)[4..]
             set --local -- commandline_positionals (__fish_print_cmd_args_without_options)[4..]
             if test {$component} = initials
-                for matched_identifier in (sub-abbr identity list {$_flag_regex} --base={$_flag_base} --match={$_flag_match} -- {$commandline_positionals})
+                for matched_identifier in (sub-abbr list {$_flag_regex} --base={$_flag_base} --match={$_flag_match} -- {$commandline_positionals})
                     set --local -- identifier_positionals (commandline --tokens-expanded --input=(string split --fields=2 --max=1 -- '  ' {$matched_identifier}))
                     test (count {$identifier_positionals}) -le (count {$commandline_positionals}) &&
                         continue
                     echo {$identifier_positionals[(math 1 + (count {$commandline_positionals}))]}
                 end
             else if test {$component} = base
-                for matched_identifier_unfiltered_base in (sub-abbr identity list {$_flag_regex} --match={$_flag_match} -- {$commandline_positionals})
+                for matched_identifier_unfiltered_base in (sub-abbr list {$_flag_regex} --match={$_flag_match} -- {$commandline_positionals})
                     for found_base in (string repeat -- 1 (commandline --tokens-expanded --input=(string split --{fields,max}=1 -- '  ' {$matched_identifier_unfiltered_base}))[2..])
                         contains -- {$found_base} {$_flag_base} ||
                             echo {$found_base}\t(type --type -- {$found_base})

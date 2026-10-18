@@ -29,7 +29,7 @@ It must comprise only one token; that is, only one token can be replaced by the 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
 sub-abbr add --base=<base-command> <initial-arguments> <SUB-COMMAND> <Expansion>
-sub-abbr identity list … (?:<initial-arguments>) <SUB-COMMAND>
+sub-abbr list … (?:<initial-arguments>) <SUB-COMMAND>
 ```
 
 !!! Example
@@ -38,5 +38,5 @@ sub-abbr identity list … (?:<initial-arguments>) <SUB-COMMAND>
 
     - `#!fish sub-abbr add --base=jj `**`ci`**` commit`
     - `#!fish sub-abbr add -0c --base=run0 nh os `**`switch`**` 'switch % --bypass-root-check'`
-    - `#!fish sub-abbr identity list --base=jj `**`ci`**
-    - `#!fish sub-abbr identity list -0c --base=run0 nh os `**`switch`**
+    - `#!fish sub-abbr list --base=jj `**`ci`**
+    - `#!fish sub-abbr list -0c --base=run0 nh os `**`switch`**

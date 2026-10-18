@@ -29,14 +29,12 @@ function _sub-abbr_internal_helpText-linker --description='Linker for fish-subAb
             switch $name
                 case add
                     echo -- {$baseURL}/Sub-Commands/Add/
-                case identity
-                    echo -- {$baseURL}/Sub-Commands/Identity/
                 case list
-                    echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/List/
+                    echo -- {$baseURL}/Sub-Commands/List/
                 case show
-                    echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/Show/
+                    echo -- {$baseURL}/Sub-Commands/Show/
                 case erase
-                    echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/Erase/
+                    echo -- {$baseURL}/Sub-Commands/Erase/
             end
         case flag
             switch $name
@@ -50,22 +48,22 @@ function _sub-abbr_internal_helpText-linker --description='Linker for fish-subAb
                     echo -- {$baseURL}/Sub-Commands/Add/Switches/Regard-Flags/
                 case regex
                     if set --query --local -- _subabbr_help_list
-                        echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/List/Switches/Regular-Expression/
+                        echo -- {$baseURL}/Sub-Commands/List/Switches/Regular-Expression/
                     else
                         echo -- {$baseURL}/Sub-Commands/Add/Switches/Regular-Expression/
                     end
                 case base
                     if set --query --local -- _subabbr_help_list
-                        echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/List/Switches/Base/
+                        echo -- {$baseURL}/Sub-Commands/List/Switches/Base/
                     else
                         echo -- {$baseURL}/Sub-Commands/Add/Switches/Base/
                     end
                 case set-cursor
                     echo -- {$baseURL}/Sub-Commands/Add/Switches/Set-Cursor/
                 case match
-                    echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/List/Switches/Match/
+                    echo -- {$baseURL}/Sub-Commands/List/Switches/Match/
                 case invert
-                    echo -- {$baseURL}/Sub-Commands/Identity/Sub-Commands/List/Switches/Invert/
+                    echo -- {$baseURL}/Sub-Commands/List/Switches/Invert/
             end
     end
 end

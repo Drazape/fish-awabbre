@@ -37,7 +37,7 @@ Variable Arguments
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
 sub-abbr add --base=<base-command> … -- (?:<INITIAL_ARGUMENTS>) <Sub-Command> <Expansion>
-sub-abbr identity list … (?:<INITIAL_ARGUMENTS>) <Sub-Command>
+sub-abbr list … (?:<INITIAL_ARGUMENTS>) <Sub-Command>
 ```
 
 !!! example
@@ -46,7 +46,7 @@ sub-abbr identity list … (?:<INITIAL_ARGUMENTS>) <Sub-Command>
 
     - `#!fish sub-abbr add --base=jj ci commit` (does not use *Initial Arguments*)
     - `#!fish sub-abbr add --base=run0 -0c `**`nh os`**` switch 'switch % --bypass-root-check'`
-    - `#!fish sub-abbr identity list --base=run0 `**`nh os`**` switch`
+    - `#!fish sub-abbr list --base=run0 `**`nh os`**` switch`
 
 !!! info "Implementation Details"
     Each argument is separately matched by parsing the command-line as follows:

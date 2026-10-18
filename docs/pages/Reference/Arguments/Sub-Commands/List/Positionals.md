@@ -18,11 +18,11 @@ After they are provided, only the context-aware sub-command abbreviations whose 
 
 !!! example "List identifiers filtered by sub-commands"
     ```fish {title="Jujutsu log"}
-    sub-abbr identity list log
+    sub-abbr list log
     ```
     ```fish {title="Nix3 shell"}
-    sub-abbr identity list shell
+    sub-abbr list shell
     ```
 
-[add]: ../../../Add/index.md
-[expansion]: ../../../../Positionals/Expansion.md
+[add]: ../Add/index.md
+[expansion]: ../../Positionals/Expansion.md

@@ -42,7 +42,7 @@ This program is designed carefully to tackle these issues; for that, it does the
 
 - Makes creation of such abbreviations accessible by abstracting the complex boilerplate
 - Remain customizable for complex abbreviations with the help of various switches
-- Manage such abbreviations using helpers and abstracte identity databases
+- Manage such abbreviations using helpers and abstracted identity databases
 - Lets the distribution of such abbreviations originate multiple sources (like possible with completions), and allow them to them co-exist.
 - Improve upon `builtin abbr`
 	- Once the user escapes the *Sub-Command* in the current command, you don't have to escape it again

@@ -130,13 +130,11 @@ Sub-command to create context-aware sub-command abbreviations
 
 [^inherited-switches]: These are supported switches inherited from `abbr` that can also be used with `sub-abbr`. These switches may or may not be passed directly to `abbr`, and could also contain enhancements.
 [^multi-bases]: *RegExp* must be passed in order to use the same *Sub-Command* with the same *Base-Command* in a different position. For example, you can only have `jj l{,og}` and `jj op l{,og}` if *RegExp* is used. (You don't have to do anything extra, other than escape any regular expressions)
-##### Identity
-Manage context-aware sub-command abbreviation by their identifiers
-###### List
+##### List
 Get the identifiers of loaded context-aware sub-command abbreviations
-###### Show
+##### Show
 Show the definition of an abbreviation, as passed to [*Add*](#Add)
-###### Erase
+##### Erase
 Erase a context-aware sub-command abbreviation by its identifier
 
 ## `sub-abbrs`

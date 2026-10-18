@@ -9,9 +9,9 @@ description: Show definition of a abbr by its identity
 Show the definition of context-aware sub-command abbreviations as it would be passed to [*Add*][add-subcommand]{data-preview}
 
 ## Properties
-|   Name  |  Parent  | Positional Values |
-| :-----: | :------: | :-------: |
-| `show` | [Identity](../index.md "Manage abbr by their identifiers"){data-preview} | Optional |
+|  Name  | Positional Values |
+| :----: | :---------------: |
+| `show` | Optional |
 
 ## Details
 Positionals
@@ -31,7 +31,7 @@ Uses
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr identity show [<IDENTIFIER>…]
+sub-abbr show [<IDENTIFIER>…]
 ```
 
 ### Output
@@ -71,6 +71,6 @@ That is, each of the flags are kept as flags, and the positionals are escaped by
     set -- expansion {$argv[-1]}
     ```
     !!! warning "Internal Parser"
-        It would be easier to just use the internal function `_sub-abbr_internal_identifier-to-data`, but it isn't part of the public API.
+        It would be easier to just use the internal function `_sub-abbr_internal_identifier-data_individual-info`, but it isn't part of the public API.
 
-[add-subcommand]: ../../Add/index.md
+[add-subcommand]: ./Add/index.md

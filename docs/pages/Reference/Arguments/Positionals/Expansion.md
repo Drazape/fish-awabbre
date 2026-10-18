@@ -8,7 +8,7 @@ description: The string that replaces the *Sub-Command* on match
 The string that replaces the [*Sub-Command*](./Sub-Command.md){data-preview} on match
 
 !!! note "Only for creation"
-    Since this positional is not part of the [identity](../Sub-Commands/Identity/index.md){data-preview}, it is only accepted by the [Add](../Sub-Commands/Add/index.md){data-preview} sub-command.
+    Since this positional is not part of the identity, it is only accepted by the [Add](../Sub-Commands/Add/index.md){data-preview} sub-command.
 
 ## Properties
 | Position | Presence |

@@ -24,18 +24,18 @@ Filter the abbreviations listed by how their [Initial Arguments][initials]{data-
 
 !!! example "List abbrs with *RegExp*-matched Initials"
     ```fish {title="Command"}
-    sub-abbr identity list --match=regex
+    sub-abbr list --match=regex
     ```
 !!! example "List abbrs with exactly-matched Initials"
     ```fish {title="Command"}
-    sub-abbr identity list --match=fixed
+    sub-abbr list --match=fixed
     ```
 
 !!! note "Both by default"
     If this switch isn't provided, both the types will be listed.
 
 
-[initials]: ../../../../../Positionals/Initial-Arguments.md
+[initials]: ../../../Positionals/Initial-Arguments.md
 [list]: ../index.md
-[regexp]: ../../../../Add/Switches/Regular-Expression.md
-[add]: ../../../../Add/index.md
+[regexp]: ../../Add/Switches/Regular-Expression.md
+[add]: ../../Add/index.md

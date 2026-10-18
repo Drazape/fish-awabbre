@@ -1,13 +1,13 @@
 ---
 comments: true
 icon: lucide/broom
-description: How to erase sub-abbrs filtered with `sub-abbr identity list` in your current Fish environment.
+description: How to erase sub-abbrs filtered with `sub-abbr list` in your current Fish environment.
 ---
 
 # Erasing filtered sub-abbrs
-To erase all the context-aware sub-command abbreviations matched to your filter in your current Fish environment, simply pass the filtered list of identifiers to `sub-abbr identity erase` as arguments:
+To erase all the context-aware sub-command abbreviations matched to your filter in your current Fish environment, simply pass the filtered list of identifiers to `sub-abbr erase` as arguments:
 ```fish { title="Command" .no-select .no-copy }
-sub-abbr identity erase (sub-abbr identity list <filter>)
+sub-abbr erase (sub-abbr list <filter>)
 ```
 
 !!! bug "Unknown function"
@@ -20,35 +20,35 @@ sub-abbr identity erase (sub-abbr identity list <filter>)
     For now, you can work this around the same way you work around the use of command substitutions in the place of the base commands:
     ```fish {title="Workaround"}
     begin
-        set --local -- subabbr_identifiers (sub-abbr identity list <filter>)
-        sub-abbr identity erase {$subabbr_identifiers}
+        set --local -- subabbr_identifiers (sub-abbr list <filter>)
+        sub-abbr erase {$subabbr_identifiers}
     end
     ```
 
 !!! example "Clear All"
-    To clear all the abbreviations, simply don't apply a filter to `sub-abbr identity list`:
+    To clear all the abbreviations, simply don't apply a filter to `sub-abbr list`:
     ```fish { title="Command" .no-select }
-    sub-abbr identity erase (sub-abbr identity list)
+    sub-abbr erase (sub-abbr list)
     ```
 !!! example "Clear sub-abbrs whose sub-command is matched with RegExp"
     To clear all the abbreviations whose sub-command is matched with a RegExp, set the match type to `regex`:
     ```fish { title="Command" .no-select }
-    sub-abbr identity erase (sub-abbr identity list --match=regex)
+    sub-abbr erase (sub-abbr list --match=regex)
     ```
 !!! example "Clear sub-abbrs for the Jujutsu command"
-    To clear all the abbreviations for the Jujutsu command, simply pass the [*Base Command*](../../Reference/Arguments/Sub-Commands/Identity/Sub-Commands/List/Switches/Base.md){data-preview} for it to `sub-abbr identity list`:
+    To clear all the abbreviations for the Jujutsu command, simply pass the [*Base Command*](../../Reference/Arguments/Sub-Commands/List/Switches/Base.md){data-preview} for it to `sub-abbr list`:
     ```fish { title="Base Command" .no-select }
-    sub-abbr identity erase (sub-abbr identity list --base=jj)
+    sub-abbr erase (sub-abbr list --base=jj)
     ```
     ---
     You can further filter the abbreviations by passing the next sub-command too as the next positional argument:
     ```fish { title="Rebase Sub-command" .no-select }
-    sub-abbr identity erase (sub-abbr identity list --base=jj rebase)
+    sub-abbr erase (sub-abbr list --base=jj rebase)
     ```
     ---
     Furthermore, you can apply the match type to the filter on top of it:
     ```fish { title="Rebase Sub-command with Fixed match" .no-select }
-    sub-abbr identity erase (sub-abbr identity list --match=fixed --base=jj rebase)
+    sub-abbr erase (sub-abbr list --match=fixed --base=jj rebase)
     ```
 
 

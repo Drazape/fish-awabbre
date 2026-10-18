@@ -16,11 +16,6 @@ The hooks are activated through [Fish events](https://fishshell.com/docs/current
     That is, only after the user configuration is resolved, and all the checks are validated.  
     Furthermore, the hook is not triggered when the user simply uses the command to [print out a reference help text](../../../Arguments/Universal-Switch:Help.md){data-preview}
 
-    !!! warning "Exception"
-        The [hook for gathering identifiers](./Identity/index.md){data-preview} is triggered before the sub-commands beneath can perform any checks, or resolve any flags.
-
-        Due to this, it may be triggered even if the command is malformed, or only the help reference it requested.
-
 Each event name is prepended with `subabbr`—for example, the [event for Add](./Add.md){data-preview} would be `subabbr_add`
 
 The hook function can accept these emissions, and use the context tokens passed along as arguments to perform its operations.

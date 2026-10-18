@@ -1,8 +1,18 @@
-function _sub-abbr_internal_identifier-to-data --no-scope-shadowing --argument-names=identifier --description='Accept an identifier, and parse it to gather data into the outer scope'
+function _sub-abbr_internal_identifier-data_individual-info --no-scope-shadowing --argument-names=identifier --inherit-variable=internal_description_prefix --description='Accept an identifier, and parse it to gather data into the outer scope'
+    # info embedded in identifier
+    set --local -- escaped_identifier_positionals (
+        string sub --start=4 -- {$identifier} |
+        string split --max=1 -- '  ')
+    set --function -- bases (
+        string split -- ' ' {$escaped_identifier_positionals[1]})
+    set --function -- initials {$escaped_identifier_positionals[2]}
+
     # info from internal description
     set --local -- identifier_description_var_name (
             string escape --style=var -- {$identifier}
         )_description
+    set --query --local -- {$identifier_description_var_name} ||
+        return 1 # only sets embedded information
     $argparse \
         r/regex=\* \
         c/set-cursor=? \
@@ -21,12 +31,4 @@ function _sub-abbr_internal_identifier-to-data --no-scope-shadowing --argument-n
         read --function --line -- use_expander forget_prefixes regard_flags
 
     set --function -- expander {$argv}
-
-    # info embedded in identifier
-    set --local -- escaped_identifier_positionals (
-        string sub --start=4 -- {$identifier} |
-        string split --max=1 -- '  ')
-    set --function -- bases (
-        string split -- ' ' {$escaped_identifier_positionals[1]})
-    set --function -- initials {$escaped_identifier_positionals[2]}
 end

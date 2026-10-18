@@ -8,12 +8,26 @@ description: List the identifier of each content-aware abbreviation loaded
 List the identifier of each content-aware abbreviation loaded
 
 ## Properties
-|  Name  |  Parent  | Positional Values |
-| :----: | :------: | :-------: |
-| `list` | [Identity](../../index.md "Manage abbr by their identifiers"){data-preview} | Required |
+|  Name  | Positional Values |
+| :----: | :---------------: |
+| `list` | Required |
 
 ## Details
 Miscallaneous details about the sub-command
+
+!!! info "Why separate data inputs"
+    While *Erase* and *Show* could have simply used the same intuitive input as *List*, that is not done because Fish only supports Lists as the built-in data structures. If we were to use the input that List accepts, then that would itself be several tokens, that is, a list on its own.
+    Essentially, the user storing multiple identifiers (for any purpose) would have to work it around somehow; that could be possibly done by:
+
+    - Storing a [list of variable strings that each point to a separate identifier][dereference-variables]. This method is native to Fish, and is easier. If this method is used, if the identifiers are to be passed around—which is their entire purpose, one would have to either make the variables global, or call the command repeatedly; this easily makes this method impractical for all most scenarios.
+    - Storing each of the identifiers as a parsable string in a List, which is later parsed by the commands. This is the current internal implementation, since it is the only implementation possible out of the 2 to be directly embedded into the command.
+
+    [dereference-variables]: https://fishshell.com/docs/current/language.html#dereferencing-variables "Official Fish Shell documentaiton on Dereferencing variables"
+
+    If an internal implementation is not maintained, each of the commands the identifiers are passed to would have to manually do this labor.
+
+    Even if Fish supported more complex data structures, List would still remain the preferred way to pass identifiers because of the filtering options it provides.
+
 ### Uses
 - Intuitively erasing content-aware abbreviations in case of when the sub-command is matched with [Regular Expressions][RegExp]{data-preview})
 - Checking if a specific abbreviation already exists
@@ -28,7 +42,7 @@ Unlike `abbr` which can have the same identifier repeated (and would require the
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-sub-abbr identity list [<flags>… -- Initials Sub-Command]
+sub-abbr list [<flags>… -- Initials Sub-Command]
 ```
 
 ### Output
@@ -43,6 +57,6 @@ sub-abbr identity list [<flags>… -- Initials Sub-Command]
     |   `r`  |  [Regular Expression][RegExp]{data-preview} |
     |   `=`  |                 Fixed String                |
 
-[RegExp]: ../../../Add/Switches/Regular-Expression.md
-[initials]: ../../../../Positionals/Initial-Arguments.md
-[subcommand]: ../../../../Positionals/Sub-Command.md
+[RegExp]: ../Add/Switches/Regular-Expression.md
+[initials]: ../../Positionals/Initial-Arguments.md
+[subcommand]: ../../Positionals/Sub-Command.md
