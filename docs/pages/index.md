@@ -12,6 +12,11 @@ This is a 3rd-party solution to the problems likewise faced by the developer:
 [Discussion](https://github.com/fish-shell/fish-shell/discussions/11682 "Discussion in the official Fish repository"){ data-preview .md-button .md-button--primary }
 [Issue](https://github.com/fish-shell/fish-shell/issues/11944 "Issue in the official Fish repository"){ data-preview .md-button }
 
+!!! note "Pre-requisite knowledge"
+    You don't need any experience with the Fish shell or the Fish script to use this program.  
+    However, the documentation throughout this site assumes advanced fluency with the command-line itself.  
+    Furthermore, you additionally need proficiency with Fish to [create packages for fish-subAbbr](./Reference/Packages/Repository-Helper/Package-Tree.md){data-preview}, and use the provided [Software Development Kit](./Reference/Packages/Software-Development-Kit/Expanders/index.md){data-preview}.
+
 ### Internal Built-in
 Though the original `abbr` built-in is capable of creating all sorts of abbreviations, if we use the built-in methods without any complex custom functions and parsing of `commandline`, it leads to abbreviations that are:
 
