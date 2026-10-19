@@ -27,14 +27,14 @@ begin
 
     begin
         set --local -- list_complete_condition \
-            --condition='test "$(__fish_print_cmd_args_without_options)[2]" = list'
+            'test "$(__fish_print_cmd_args_without_options)[2]" = list'
 
         function _subabbr_complete_list --argument-names=component
-            argparse --move-unknown 'b/base=*&' 'm/match=&' 'r/regex&' -- (__fish_print_cmd_args)[4..]
-            set --local -- commandline_positionals (__fish_print_cmd_args_without_options)[4..]
+            argparse --move-unknown 'b/base=*&' 'm/match=&' 'r/regex&' -- (__fish_print_cmd_args)[3..]
+            set --local -- commandline_positionals (__fish_print_cmd_args_without_options)[3..]
             if test {$component} = initials
                 for matched_identifier in (sub-abbr list {$_flag_regex} --base={$_flag_base} --match={$_flag_match} -- {$commandline_positionals})
-                    set --local -- identifier_positionals (commandline --tokens-expanded --input=(string split --fields=2 --max=1 -- '  ' {$matched_identifier}))
+                    set --local -- identifier_positionals (commandline --tokens-expanded --input=(string split --fields=2 --max=1 -- '  ' {$matched_identifier}))[..-2]
                     test (count {$identifier_positionals}) -le (count {$commandline_positionals}) &&
                         continue
                     echo {$identifier_positionals[(math 1 + (count {$commandline_positionals}))]}
@@ -48,58 +48,60 @@ begin
                 end
             end
         end
-        $common_complete {$list_complete_condition} --arguments='(_subabbr_complete_list initials)'
+        $common_complete --condition={$list_complete_condition} --arguments='(_subabbr_complete_list initials)'
         # not using `single-switch` since a value is mandatory
-        $common_complete {$list_complete_condition} --short-option=b --long-option=base --require-parameter \
+        $common_complete --condition={$list_complete_condition} --short-option=b --long-option=base --require-parameter \
             --description='Filter by mandatorily accepted Base Commands' --arguments='(_subabbr_complete_list base)'
-        $common_complete {$list_complete_condition} --short-option=m --long-option=match --require-parameter \
+        $common_complete --condition={$list_complete_condition} --short-option=m --long-option=match --require-parameter \
             --description='Filter by sub-command match type' \
             --arguments='
             fixed\t\'Exactly matched sub-command\'
             regex\t\'Sub-command matched with RegExp\'
         '
-        single-switch {$list_complete_condition} --short-option=i --long-option=invert --description='Invert the match'
-        single-switch {$list_complete_condition} --short-option=r --long-option=regex --description='Match command-line positionals with RegExp'
-    end
+        single-switch --condition={$list_complete_condition} --short-option=i --long-option=invert --description='Invert the match'
+        single-switch --condition={$list_complete_condition} --short-option=r --long-option=regex --description='Match command-line positionals with RegExp'
 
-    begin
-        set --local -- creation_condition --condition='test "$(__fish_print_cmd_args_without_options)[2]" = add'
-        function _subabbr_complete_creation_initials
-            argparse --move-unknown 'b/base=*&' -- (__fish_print_cmd_args)[3..]
-            if test -z "$_flag_base"
-                echo -- --base=
-                return
-            end
-            set --local -- initials (__fish_print_cmd_args_without_options)[3..]
-            if test (count {$_flag_base}) -eq 1
-                complete --do-complete="$_flag_base $initials "
-            else
-                for base_command in {$_flag_base}
-                    for single_completions in (complete --do-complete="$base_command $initials ")
-                        set --local -- completion_components (string split -- \t {$single_completions})
-                        echo -n -- {$completion_components[1]}\t{$base_command}
-                        echo :\ {$completion_components[2]}
+        begin
+            set --local -- creation_condition 'test "$(__fish_print_cmd_args_without_options)[2]" = add'
+            function _subabbr_complete_creation_initials
+                argparse --move-unknown 'b/base=*&' -- (__fish_print_cmd_args)[3..]
+                if test -z "$_flag_base"
+                    echo -- --base=
+                    return
+                end
+                set --local -- initials (__fish_print_cmd_args_without_options)[3..]
+                if test (count {$_flag_base}) -eq 1
+                    complete --do-complete="$_flag_base $initials "
+                else
+                    for base_command in {$_flag_base}
+                        for single_completions in (complete --do-complete="$base_command $initials ")
+                            set --local -- completion_components (string split -- \t {$single_completions})
+                            echo -n -- {$completion_components[1]}\t{$base_command}
+                            echo :\ {$completion_components[2]}
+                        end
                     end
                 end
             end
-        end
-        $common_complete {$creation_condition} --arguments='(_subabbr_complete_creation_initials)' --keep-order
-        $common_complete {$creation_condition} --short-option=b --long-option=base --require-parameter --description='Accepted Base Commands' --arguments=\(__fish_complete_command\)
-        begin
-            set --local -- single_complete single-switch {$creation_condition}
-            $single_complete --short-option=c --long-option=set-cursor --description='Position the cursor at % post-expansion'
-            $single_complete --short-option=0 --long-option=unprefix --description='don\'t tolerate prefixes before Base Command'
-            $single_complete --short-option=s --long-option=regard-flags --description='Acknowledge flags in the Initial Command'
-            $single_complete --short-option=e --long-option=expander --description='Use the output of a command as the Expansion'
-        end
+            $common_complete --condition={$creation_condition} --arguments='(_subabbr_complete_creation_initials)' --keep-order
+            $common_complete --condition={$creation_condition} --short-option=b --long-option=base --require-parameter --description='Accepted Base Commands' --arguments=\(__fish_complete_command\)
 
-        begin
-            set --local regex_complete {$common_complete} {$creation_condition} --short-option=r --long-option=regex
-            $regex_complete --description='Match command-line arguments with RegExp'
+            set --local -- creation_or_list_condition_flag --condition={$creation_condition}' || '{$list_complete_condition}
             begin
-                set --local -- regex_value {$regex_complete} --condition='string match --quiet --regex -- \'^(--regex=|-r)\w*$\' (commandline -xtc)'
-                $regex_value --arguments=sub-command --description='Match the sub-command with RegExp'
-                $regex_value --arguments=initials --description='Match Initial Arguments with RegExp'
+                set --local -- single_complete single-switch {$creation_or_list_condition_flag}
+                $single_complete --short-option=c --long-option=set-cursor --description='Position the cursor at % post-expansion'
+                $single_complete --short-option=0 --long-option=unprefix --description='don\'t tolerate prefixes before Base Command'
+                $single_complete --short-option=s --long-option=regard-flags --description='Acknowledge flags in the Initial Command'
+                $single_complete --short-option=e --long-option=expander --description='Use the output of a command as the Expansion'
+            end
+
+            begin
+                set --local regex_complete {$common_complete} {$creation_or_list_condition_flag} --short-option=r --long-option=regex
+                $regex_complete --description='Match command-line arguments with RegExp'
+                begin
+                    set --local -- regex_value {$regex_complete} --condition='string match --quiet --regex -- \'^(--regex=|-r)\w*$\' (commandline -xtc)'
+                    $regex_value --arguments=sub-command --description='Match the sub-command with RegExp'
+                    $regex_value --arguments=initials --description='Match Initial Arguments with RegExp'
+                end
             end
         end
     end

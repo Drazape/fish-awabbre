@@ -38,7 +38,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
     set --function -- internal_description_prefix 'subabbr: '
     # common prefix length data for identity sub-commands
     if contains -- {$argv[1]} list show erase
-        set --function -- prefix_length (string length {$identifier_prefix})
+        set --function -- prefix_length (string length -- {$identifier_prefix})
         set --function -- identifier_start (math {$prefix_length} + 1)
     end
 
@@ -47,65 +47,100 @@ function sub-abbr --description='Create abbreviations for sub-commands'
     switch "$argv[1]"
         case list
             if ! $argparse \
-                    'b/base=*&' \
-                    'r/regex&' \
+                    # exclusive switches
+                    'm/pos-regexp&' \
                     'i/invert&' \
-                    'm/match=&!_sub-abbr_internal_verify-arg_match-type' \
                     'h/help&' \
+                    'S/sub-command=&' \
+                    'E/expansion=&' \
+                    # Add switches
+                    'b/base=+&' \
+                    'r/regex=*&!_sub-abbr_internal_verify-arg_regex-val' \
+                    'e/expander&' \
+                    'c/set-cursor=?&' \
+                    '0/unprefix&' \
+                    's/regard-flags&' \
                     -- {$subcommand_args}
                 _sub-abbr_internal_revert-paths
                 return 1
             end
             if set --query --local -- _flag_help
                 _subabbr_help_list= help-text --link=_sub-abbr_internal_helpText-linker {$list_description} \
+                    --positional='Initials | Filter by arguments that are matched before expanding the sub-command' \
                     --flag={
-                                'base:b | Filter by Base Commands that must be accepted',
-                                'match:m | Only list identifiers with the specified Initials string match type',
                                 'invert:i | Invert the match result',
-                                'regex:r | Match command-line positionals with RegExp'
+                                'pos-regexp:m | Match command-line positionals with RegExp',
+                                'sub-command:S | Filter out abbreviations that don\'t match the specified Sub-Command',
+                                'expansion:E | Filter out abbreviations that don\'t match the specified Expansion'
                             }
                 _sub-abbr_internal_revert-paths
                 return
             end
+            set --query --local -- _flag_regex &&
+                test (count {$_flag_regex}) -eq 0 &&
+                set --local -- _flag_regex sub-command
 
             _sub-abbr_internal_identifier-data_gather-list
             set --local -- filtered_identifiers
+            set --query --local -- _flag_pos_regexp &&
+                set --local -- positionals_regex_flag --regex
             for identifier in {$identifiers}
-                set --local -- identifier_division (string split --max=1 -- '  ' {$identifier})
-                set --local -- identifier_match_and_bases (commandline --tokens-expanded --input={$identifier_division[1]})
-                if set --query --local -- _flag_match
-                    switch (string split --{fields,max}=1 -- : {$identifier_match_and_bases[1]})
-                        case =
-                            test {$_flag_match} != fixed &&
-                                continue
-                        case r
-                            test {$_flag_match} != regex &&
-                                continue
+                _sub-abbr_internal_identifier-data_individual-info {$identifier}
+                set --query --local -- _flag_expander &&
+                    ! set --query --local -- use_expander &&
+                    continue
+                set --query --local -- _flag_unprefix &&
+                    ! set --query --local -- forget_prefixes &&
+                    continue
+                set --query --local -- _flag_regard_flags &&
+                    ! set --query --local -- regard_flags &&
+                    continue
+                set --local -- regex_scope_unmatched 0
+                for scope in {$_flag_regex}
+                    if ! contains -- {$scope} {$regex_scopes}
+                        set -- regex_scope_unmatched 1 # continue outside superloop
+                        break
                     end
                 end
-                if set --query --local -- _flag_base
-                    for passed_base in {$_flag_base}
-                        contains -- {$passed_base} {$identifier_match_and_bases[2..]} ||
-                            set --function -- bases_unmatched # continue outside the current loop
-                    end
-                    if set --query --function -- bases_unmatched
-                        set --erase --function -- bases_unmatched
+                test "$regex_scope_unmatched" -eq 1 &&
+                    continue
+                set --query --local -- _flag_set_cursor &&
+                    if ! set --query --local -- cursor_string
+                        continue
+                    else if test (count {$_flag_set_cursor}) -eq 1 && test {$_flag_set_cursor} != {$cursor_string}
                         continue
                     end
+                if set --query --local -- _flag_base
+                    set --local -- bases_unmatched 0
+                    for passed_base in {$_flag_base}
+                        if ! contains -- {$passed_base} {$bases}
+                            set -- bases_unmatched 1 # continue outside superloop
+                            break
+                        end
+                    end
+                    test "$bases_unmatched" -eq 1 &&
+                        continue
                 end
+                set --query --local -- _flag_sub_command &&
+                    test {$_flag_sub_command} != {$subcommand} &&
+                    continue
+                set --query --local -- _flag_expansion &&
+                    test {$_flag_expansion} != {$expansion} &&
+                    continue
                 if test (count {$argv}) -gt 0
-                    set --local -- identifier_initials (commandline --tokens-expanded --input={$identifier_division[2..]})
                     set --local -- index_count 1
+                    set --local -- init_unmatched 0
                     for passed_init_match in {$argv}
-                        string match --quiet {$_flag_regex} -- "$passed_init_match" "$identifier_initials[$index_count]" ||
-                            set --function -- init_unmatched # continue outside the current loop
+                        if ! string match --quiet {$positionals_regex_flag} -- "$passed_init_match" "$initials[$index_count]"
+                            set -- init_unmatched 1 # continue outside superloop
+                            break
+                        end
                         set -- index_count (math {$index_count} + 1)
                     end
-                    if set --query --function -- init_unmatched
-                        set --erase --function -- init_unmatched
+                    test "$init_unmatched" -eq 1 &&
                         continue
-                    end
                 end
+                set --erase --local -- bases initials subcommand expansion regex_scopes cursor_string use_expander forget_prefixes regard_flags
                 set --append -- filtered_identifiers {$identifier}
             end
             if set --query --local -- _flag_invert
@@ -126,7 +161,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             end
 
             # main operation
-            _sub-abbr_internal_identifier-data_gather-list description
+            _sub-abbr_internal_identifier-data_gather-list
             if test (count {$argv}) -eq 0
                 set --function -- identifiers_to_show {$identifiers}
             else
@@ -146,16 +181,22 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 test (count {$bases}) -ne 1 &&
                     set --local -- base_flag_value \{(
                                 string join -- , {$bases})\}
-                test -n "$regex_scopes" &&
-                    set --local -- regex_equals '='
-                test -n "$cursor_string" &&
-                    set --local -- cursor_equals '='
+
+                set --local -- cursor_equals
+                set --local -- cursor_flag
+                if set --query --local -- cursor_string
+                    set -- cursor_flag --set-cursor
+                    test -n "$cursor_string" &&
+                        set -- cursor_equals '='
+                end
+
                 for command in echo emit
-                    set --local -- definition_tokens --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
+                    set --local -- definition_tokens --base={$base_flag_value} --regex={$regex_scopes} {$cursor_flag}"$cursor_equals""$cursor_string" {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$subcommand} {$expansion}
                     set --query --local -- _flag_escaped &&
                         set --local -- definition_tokens (string escape --style=script -- {$definition_tokens})
                     $command -- {$definition_tokens}
                 end
+                set --erase --local -- bases initials subcommand expansion regex_scopes cursor_string use_expander forget_prefixes regard_flags
             end
         case erase
             $argparse 'h/help&' -- {$subcommand_args}
@@ -165,7 +206,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 return
             end
 
-            _sub-abbr_internal_identifier-data_gather-list description commands
+            _sub-abbr_internal_identifier-data_gather-list commands
             if ! _sub-abbr_internal_verify-arg_more-args 1 {$subcommand_args}
                 _sub-abbr_internal_revert-paths
                 return 2
@@ -193,6 +234,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 functions --erase -- {$internal_identifier} # internal specialized expander
                 set --local -- commands_varname (string escape --style=var -- {$identifier})_commands
                 abbr --erase --command={$$commands_varname} -- {$internal_identifier}
+                set --erase --local -- regex_scopes
             end
 
             ## Hook to erase unknown runtime data used by wrappers.
@@ -242,12 +284,14 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 set -- set_cursor --set-cursor={$_flag_set_cursor}
             end
             ### RegExp
-            for value in \0 sub-command
-                contains -- {$value} {$_flag_regex} &&
+            if set --query --local -- _flag_regex
+                test (count {$_flag_regex}) -eq 0 &&
+                    set -- _flag_regex sub-command
+                contains -- sub-command {$_flag_regex} &&
                     set --function -- regex_subcommand
+                contains -- initials {$_flag_regex} &&
+                    set --function -- regex_initials --regex
             end
-            contains -- initials {$_flag_regex} &&
-                set --function -- regex_initials --regex
             ## Positional
             begin
                 # appropriate number of arguments. Not using `argparse` so that `--help can have as many arguments as it wants` and better formatted output
@@ -287,13 +331,18 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 _sub-abbr_internal_default-prefix
                 set --query --local _flag_unprefix ||
                     set --local -- tolerate_prefixes --command={$subabbr_prefix}
-                test -n "$_flag_regex" &&
-                    set --local -- regex_equals '='
-                test -n "$_flag_set_cursor" &&
-                    set --local -- cursor_equals '='
+
+                set --local -- cursor_equals
+                set --local -- cursor_flag
+                if set --query --local -- _flag_set_cursor
+                    set -- cursor_flag --set-cursor
+                    test -n "$_flag_set_cursor" &&
+                        set -- cursor_equals '='
+                end
+
                 set --local -- escaped_nonidentifier_arguments (
                     string escape --style=script -- \
-                        --regex"$regex_equals"{$_flag_regex} {$_flag_expander} --set-color"$cursor_equals"{$_flag_set_color} {$_flag_unprefix} {$_flag_regard_flags} -- {$expansion})
+                        --regex={$_flag_regex} {$_flag_expander} "$cursor_flag""$cursor_equals"{$_flag_set_cursor} {$_flag_unprefix} {$_flag_regard_flags} -- {$expansion})
                 set --local -- common_flags \
                     --add \
                     --description={$internal_description_prefix}"$escaped_nonidentifier_arguments" \
