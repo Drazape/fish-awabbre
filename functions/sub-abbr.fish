@@ -117,7 +117,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 string repeat -- 1 {$filtered_identifiers}
             end
         case show
-            $argparse 'h/help&' -- {$subcommand_args}
+            $argparse 'e/escaped&' 'h/help&' -- {$subcommand_args}
             if set --query --local -- _flag_help
                 help-text --link=_sub-abbr_internal_helpText-linker {$show_description} \
                     --positional='+Identifier | identifier of abbr to show details for'
@@ -127,14 +127,14 @@ function sub-abbr --description='Create abbreviations for sub-commands'
 
             # main operation
             _sub-abbr_internal_identifier-data_gather-list description
-            if test (count {$subcommand_args}) -eq 0
+            if test (count {$argv}) -eq 0
                 set --function -- identifiers_to_show {$identifiers}
             else
-                if ! _sub-abbr_internal_verify-arg_identifier-existance
+                if ! _sub-abbr_internal_verify-arg_identifier-existance {$argv}
                     _sub-abbr_internal_revert-paths
                     return 10
                 end
-                set --function -- identifiers_to_show {$subcommand_args}
+                set --function -- identifiers_to_show {$argv}
             end
             for identifier in {$identifiers_to_show}
                 # gather info
@@ -151,7 +151,10 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 test -n "$cursor_string" &&
                     set --local -- cursor_equals '='
                 for command in echo emit
-                    $command -- --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
+                    set --local -- definition_tokens --base={$base_flag_value} --regex"$regex_equals"{$regex_scopes} --set-cursor"$cursor_equals"{$set_cursor_string} {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$expander}
+                    set --query --local -- _flag_escaped &&
+                        set --local -- definition_tokens (string escape --style=script -- {$definition_tokens})
+                    $command -- {$definition_tokens}
                 end
             end
         case erase
@@ -167,7 +170,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 _sub-abbr_internal_revert-paths
                 return 2
             end
-            if ! _sub-abbr_internal_verify-arg_identifier-existance
+            if ! _sub-abbr_internal_verify-arg_identifier-existance {$subcommand_args}
                 _sub-abbr_internal_revert-paths
                 return 3
             end
