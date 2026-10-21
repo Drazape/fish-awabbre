@@ -5,22 +5,15 @@ icon: lucide/eye
 description: Show definition of a abbr by its identity
 ---
 
-# Show
+# Show ^^`show`^^
 Show the definition of context-aware abbreviations as it would be passed to [*Add*][add-subcommand]{data-preview}
 
-## Properties
-|  Name  | Positional Values |
-| :----: | :---------------: |
-| `show` | Optional |
+## Uses
+Machine
+:   Storing the definition of an abbreviation for redefinition, or modification
 
-## Details
-Positionals
-:   **Selective**: To get the definitions of certain abbreviations, use their [identifier](../Common-Values/Identifier.md){data-preview} obtained from the [List sub-command](./List/index.md "Get identities of loaded abbrs"){data-preview}
-:   **All**: If no positionals are provided, the definitions for all the abbreviations will be shown
-
-Uses
-:   **Machine**: Storing the definition of an abbreviation for redefinition, or modification
-:   **Human**: Viewing the definition of an abbreviation for inspection and debugging
+Human
+:   Viewing the definition of an abbreviation for inspection and debugging
 
 !!! info "Implementation"
     The identifier only includes the details that are necessary for two abbreviations to be considered different.  
@@ -31,7 +24,7 @@ Uses
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-awabbre show [<IDENTIFIER>…]
+awabbre show [<switches>…] [<identifier>…]
 ```
 
 ### Output
@@ -73,4 +66,4 @@ That is, each of the flags are kept as flags, and the positionals are escaped by
     !!! warning "Internal Parser"
         It would be easier to just use the internal function `_awabbre_internal_identifier-data_individual-info`, but it isn't part of the public API.
 
-[add-subcommand]: ./Add/index.md
+[add-subcommand]: ../Add/index.md

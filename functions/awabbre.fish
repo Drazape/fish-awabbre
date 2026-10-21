@@ -175,7 +175,8 @@ function awabbre --description='Create abbreviations for sub-commands'
             $argparse 'e/escaped&' 'h/help&' -- {$subcommand_args}
             if set --query --local -- _flag_help
                 help-text --link=_awabbre_internal_helpText-linker {$show_description} \
-                    --positional='+Identifier | identifier of abbr to show details for'
+                    --positional='+Identifier | Identifier of abbr to show details for' \
+                    --flag='escaped:e | Print definition as if on the command-line'
                 _awabbre_internal_revert-paths
                 return
             end
@@ -197,10 +198,20 @@ function awabbre --description='Create abbreviations for sub-commands'
                 _awabbre_internal_identifier-data_individual-info {$identifier}
 
                 # display: machine parsable: commandline evaluation → argparse
-                set --local -- base_flag_value {$bases}
-                test (count {$bases}) -ne 1 &&
-                    set --local -- base_flag_value \{(
-                                string join -- , {$bases})\}
+                set --query --local -- _flag_escaped &&
+                    test (count {$regex_scopes}) -gt 1 &&
+                    set -- regex_scopes \{(string join -- , {$regex_scopes})\}
+
+                if test (count {$bases}) -ne 1 && set --query --local -- _flag_escaped
+                    set --function -- base_flag_value \{(
+                        string escape --style=script -- {$bases} |
+                            string join -- ,)\}
+                else
+                    set --function -- base_flag_value {$bases}
+                    set --query --local -- _flag_escaped &&
+                        set --function -- base_flag_value (
+                            string escape --style=script -- {$base_flag_value})
+                end
 
                 set --local -- cursor_equals
                 set --local -- cursor_flag
@@ -211,9 +222,10 @@ function awabbre --description='Create abbreviations for sub-commands'
                 end
 
                 for command in echo emit
-                    set --local -- definition_tokens --base={$base_flag_value} --regex={$regex_scopes} {$cursor_flag}"$cursor_equals""$cursor_placeholder" {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$subcommand} {$expansion}
+                    set --local -- definition_tokens {$cursor_flag}"$cursor_equals""$cursor_placeholder" {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$subcommand} {$expansion}
                     set --query --local -- _flag_escaped &&
                         set --local -- definition_tokens (string escape --style=script -- {$definition_tokens})
+                    set --prepend -- definition_tokens --base={$base_flag_value} --regex={$regex_scopes}
                     $command -- {$definition_tokens}
                 end
                 set --erase --local -- bases initials subcommand expansion regex_scopes cursor_placeholder use_expander forget_prefixes regard_flags

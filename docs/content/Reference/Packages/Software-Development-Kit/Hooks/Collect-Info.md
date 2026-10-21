@@ -12,7 +12,7 @@ description: Trigger before collecting info about an abbr
 ## Tokens
 The definition of the abbreviation as given by [Show][show-subcommand]{data-preview} in a machine parsable format, that is, as it is passed to [Add][add-subcommand]{data-preview}.
 
-[show-subcommand]: ../../../Arguments/Sub-Commands/Show.md
+[show-subcommand]: ../../../Arguments/Sub-Commands/Show/index.md
 [add-subcommand]: ../../../Arguments/Sub-Commands/Add/index.md
 
 ## Example Use: Displaying additional information
