@@ -19,18 +19,6 @@ flowchart TD
     helpText ==> subAbbr
 ```
 
-## Procedure
-The installation involves moving Fish files from the directories
-
-- [`functions`](https://github.com/Drazape/fish-subAbbr/tree/main/functions){data-preview} (→ `$fish_function_path`)
-- [`conf.d`](https://github.com/Drazape/fish-subAbbr/tree/main/conf.d){data-preview}
-
-to the appropriate paths in the host system, depending on the installation type.
-
-Each file in `functions/` must be renamed such that each sub-directory's name is prefixed to it such that the filename is `parentDir_childDir_file`
-!!! tip "Function Name"
-    See the function's name in the respective file to obtain the file-name of it (`.fish` suffixed)
-
 ## Scope
 The installation type determines the availability of the program to users
 ### User
@@ -94,3 +82,16 @@ Package Manager
 
 Local
 :   Local directory for non-packaged programs
+
+!!! info "Procedure"
+    The installation involves moving Fish files from the directories
+
+    - [`functions`](https://github.com/Drazape/fish-subAbbr/tree/main/functions){data-preview} (→ `$fish_function_path`)
+    - [`conf.d`](https://github.com/Drazape/fish-subAbbr/tree/main/conf.d){data-preview}
+
+    to the appropriate paths in the host system, depending on the installation type.
+
+    Each file in `functions/` must be renamed such that each sub-directory's name is prefixed to it such that the filename is `parentDir_childDir_file`
+    !!! tip "Function Name"
+        See the function's name in the respective file to obtain the file-name of it (`.fish` suffixed)
+
