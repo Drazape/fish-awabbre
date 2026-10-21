@@ -18,6 +18,7 @@ Configure the prefixes that will be tolerated if they precede the [*Base Comman
     sub-abbr add --base=cp -- -r --recursive
     ```
     If you create the preceding abbreviation while `$subabbr_prefix` is set to `run0`, the expansion would be performed regardless if the command is prepended by `run0`; that is, it would work for both the following command-line buffers:
+
     - `cp -r` → `cp --recursive`
     - `run0 cp -r` → `run0 cp --recursive`
 
