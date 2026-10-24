@@ -17,10 +17,10 @@ function sub-abbr --description='Create abbreviations for sub-commands'
     $argparse --stop-nonopt 'h/help&' -- {$argv}
 
     # general sub-command reference
-    set --local -- add_description 'Create context-aware sub-command abbreviations'
-    set --local -- list_description 'List the identifiers of each loaded abbreviation'
-    set --local -- show_description 'Show the details of a context-aware Sub-Command abbreviation by its identifier'
-    set --local -- erase_description 'Erase an abbreviation by it\'s identifier'
+    set --local -- add_description 'Create a new abbreviation, or override an existing one'
+    set --local -- list_description 'List the identifier of each abbreviation currently loaded'
+    set --local -- show_description 'Show the details of an abbreviation by its identifier'
+    set --local -- erase_description 'Erase an abbreviation by its identifier'
     if set --query --local -- _flag_help
         help-text --link=_sub-abbr_internal_helpText-linker 'Context-aware Sub-Command abbreviations' \
             --sub-command={
@@ -29,7 +29,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 'show | '{$show_description},
                 'erase | '{$erase_description}
             } \
-            --flag='help:h | Show a reference manual for a sub-command'
+            --flag='help:h | Display the reference manual for the current sub-command'
         _sub-abbr_internal_revert-paths
         return
     end
