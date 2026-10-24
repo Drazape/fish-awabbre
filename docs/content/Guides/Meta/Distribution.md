@@ -1,6 +1,6 @@
 ---
 comments: true
-icon: lucide/signpost
+icon: lucide/share
 description: Distribution ways
 ---
 

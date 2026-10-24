@@ -11,9 +11,11 @@ copyright = """
 docs_dir = "./content/"
 site_dir = "./site/"
 custom_dir = "./overrides/"
+extra_css = ["stylesheets/extra.css"]
 
 [project.extra]
 generator = false
+status.index = "Navigation Index"
 social = [
   {
     name = "GitHub",

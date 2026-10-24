@@ -128,7 +128,7 @@ Sub-command to create context-aware sub-command abbreviations
 | [**Unprefix**](https://drazape.github.io/fish-subAbbr/Reference/Arguments/Sub-Commands/Add/Switches/Unprefix "documentation") | Deactivate toleration of `$subabbr_prefix` before the Base Command; that is, do not expand the *Sub-Command* if the *Initial Args* is prefixed with `run0` | `unprefix` | `0` | ❌ exclusive |
 | [**Regard Flags**](https://drazape.github.io/fish-subAbbr/Reference/Arguments/Sub-Commands/Add/Switches/Regard-Flags "documentation") | Acknowledge flags in the *Initial Arguments*; If not set, switches in the *Initial Arguments* are ignored | `regard-flags` | `s` | ❌ exclusive |
 
-[^inherited-switches]: These are supported switches inherited from `abbr` that can also be used with `sub-abbr`. These switches may or may not be passed directly to `abbr`, and could also contain enhancements.
+[^inherited-switches]: ✅ retained switches are passed to `abbr`; ⏫ extended switches add behavior; ❌ exclusive switches are specific to `sub-abbr`.
 [^multi-bases]: *RegExp* must be passed in order to use the same *Sub-Command* with the same *Base-Command* in a different position. For example, you can only have `jj l{,og}` and `jj op l{,og}` if *RegExp* is used. (You don't have to do anything extra, other than escape any regular expressions)
 ##### List
 Get the identifiers of loaded context-aware sub-command abbreviations
