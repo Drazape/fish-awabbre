@@ -13,4 +13,5 @@ Each of the configuration variables are prefixed with `subabbr_`; for example, t
 ## Scope
 These variables can be in any [scope](https://fishshell.com/docs/current/language.html#variable-scope "official Fish Shell documentation page"), and that would not affect the behavior—as long as it reaches the program.
 
-The program isn't made to [inherit (snapshot)](https://fishshell.com/docs/current/cmds/function.html "official Fish Shell documentation page. See the “--inherit-variable” option.") the configuration from the parent scope (`local`, `function`); thus, the scope must be one that can reach the program without inheritance being required (`global`, `universal`).
+!!! warning "No Inheritance"
+    The program isn't made to [inherit (snapshot)](https://fishshell.com/docs/current/cmds/function.html "official Fish Shell documentation page. See the “--inherit-variable” option.") the configuration from the parent scope (`local`, `function`); thus, the scope must be one that can reach the program without inheritance being required (`global`, `universal`).
