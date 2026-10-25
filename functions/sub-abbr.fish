@@ -11,7 +11,8 @@ function sub-abbr --description='Create abbreviations for sub-commands'
     begin
         set --local -- output_name (format text dim (status function))
         set --function -- argparse argparse --name={$output_name}
-        set --function -- print echo {$output_name}(format text dim (format text color white ':'))
+        set --function -- error_output_prefix {$output_name}(format text dim (format text color white ':'))
+        set --function -- print echo -- {$error_output_prefix}
     end
 
     $argparse --stop-nonopt 'h/help&' -- {$argv}
@@ -274,7 +275,14 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 return
             end
             if ! set --query --local -- _flag_base
-                $print 'Missing required option:' (format background black --bright 'base')
+                echo -n -- {$error_output_prefix} 'Missing required option:' (format background black --bright 'base') >&2
+                echo -- \n{$error_output_prefix}\ (
+                    format background red --bright (
+                        string match --regex -- '^\-\-base.*' {$argv})
+                    )' might be meant to be specified earlier than '(
+                        format background black --bright '--'
+                    )'.' >&2
+                $print 'Run' (format background black --bright (status current-function)' add --help') 'to reference the' (format text italics 'Base') 'option.' >&2
                 return 6
             end
             ### Set Cursor
@@ -306,7 +314,9 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 # compatible subcommand name: must be a single token
                 begin
                     if _sub-abbr_internal_verify-arg_subcommand-contains ' ' || _sub-abbr_internal_verify-arg_subcommand-contains \n
-                        $print incompatible (format text italics 'Sub-Command') >&2
+                        $print incompatible (format text italics 'Sub-Command'): (format background red --bright {$subcommand}) >&2
+                        $print 'The' (format text italics 'Sub-Command') 'must be a single token.' >&2
+                        $print 'That is, it cannot contain spaces or newline characters—those are used for separating tokens.' >&2
                         _sub-abbr_internal_revert-paths
                         return 8
                     end
@@ -362,7 +372,12 @@ function sub-abbr --description='Create abbreviations for sub-commands'
 
             emit -- subabbr_add --identifier={$identifier} {$argv_opts} -- {$argv}
         case \*
-            $print 'unknown sub-command:' (format text bold (format background red --bright {$argv[1]})) >&2
+            if set --query --local -- argv[1]
+                $print 'invalid sub-command:' (format text bold (format background red --bright {$argv[1]})) >&2
+            else
+                $print 'no sub-command specified.' >&2
+            end
+            $print 'Run' (format background black --bright (status current-function)' --help') 'to reference the available sub-commands.' >&2
             _sub-abbr_internal_revert-paths
             return 9
     end

@@ -9,7 +9,7 @@ function _sub-abbr_internal_verify-arg_base-command --description='Verify the sp
         end
         if set --query --function -- invalid_base_commands
             $print Unknown (format text italics 'Base Command'): (format background red {$base_command}) >&2
-            $print see (format url https://drazape.github.io/fish-subAbbr/Usage/Reference/Configuration/Check_Base-Command/ 'Check Base Command') 'for more information'
+            $print See (format url https://drazape.github.io/fish-subAbbr/Usage/Reference/Configuration/Check_Base-Command/ 'Check Base Command') 'for more information'
             return 2
         end
         return 0
