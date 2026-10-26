@@ -28,6 +28,17 @@ Miscallaneous details about the switch
     Use `string escape --style=regex` for [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} for multiple permutations
 ### Single Token
 The *Regular Expression* is only matched against the individual arguments (not the entire command-line)
+
+!!! note "Same boundaries as `builtin abbr`"
+    When matching tokens on the command-line (both `sub-command` and `initials`), no leading or trailing tokens are matched by default.
+    That is, the inputted query is wrapped as follows: `^(QUERY)$`, retaining the behavior from `builtin abbr`
+    !!! example "Example invalid query"
+        The query `QUERY` does not match the target `prefix-QUERY-suffix`
+
+    If you aim for the default behavior of `string match --regex`, you must explicitly match the characters around your query by surrounding the said query with the `.*` Regexp pattern.
+    !!! example "Matching query by mitigating boundaries"
+        The query `.*QUERY.*` matches the query `prefix-QUERY-suffix`.
+
 ### Use-case
 Matching command-line arguments dynamically
 !!! tip "Switch Combo"

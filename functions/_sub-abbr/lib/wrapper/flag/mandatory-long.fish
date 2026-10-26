@@ -6,5 +6,5 @@ function _sub-abbr_lib_wrapper_flag_mandatory-long --description='Enforce input 
     test (count {$_flag_flag}) -ne 1 && set --function -- long_flag \("$(string join -- \| {$long_flag})"\) # If multiple flags are specified, split them with or.
 
     set --local -- cursor (status current-function)_cursor
-    sub-abbr add --expander --set-cursor={$cursor} --regex=sub-command {$argv_opts} -- {$argv} '\-\-'{$long_flag} _sub-abbr_internal_expander_flag_mandatory-long\ {$cursor}
+    sub-abbr add --expander --set-cursor={$cursor} --regex=sub-command {$argv_opts} -- {$argv} (string escape --style=regex -- --{$long_flag}) _sub-abbr_internal_expander_flag_mandatory-long\ {$cursor}
 end

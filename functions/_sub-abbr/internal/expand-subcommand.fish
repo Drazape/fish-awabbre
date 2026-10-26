@@ -32,7 +32,7 @@ function _sub-abbr_internal_expand-subcommand --description='Expand a subcommand
         set --local -- index_count 1
         for initial_arg in {$initial_args}
             if set --query --local -- _flag_regex
-                string match --regex --quiet -- {$initial_arg} {$active_sub_args[$index_count]} ||
+                string match --regex --quiet -- '^('{$initial_arg}')$' {$active_sub_args[$index_count]} ||
                     return 2
             else
                 test {$initial_arg} = {$active_sub_args[$index_count]} ||
