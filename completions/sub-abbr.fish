@@ -29,37 +29,81 @@ begin
         set --local -- list_complete_condition \
             'test "$(__fish_print_cmd_args_without_options)[2]" = list'
 
-        function _subabbr_complete_list --argument-names=component
-            argparse --move-unknown 'b/base=*&' 'm/match=&' 'r/regex&' -- (__fish_print_cmd_args)[3..]
-            set --local -- commandline_positionals (__fish_print_cmd_args_without_options)[3..]
-            if test {$component} = initials
-                for matched_identifier in (sub-abbr list {$_flag_regex} --base={$_flag_base} --match={$_flag_match} -- {$commandline_positionals})
-                    set --local -- identifier_positionals (commandline --tokens-expanded --input=(string split --fields=2 --max=1 -- '  ' {$matched_identifier}))[..-2]
-                    test (count {$identifier_positionals}) -le (count {$commandline_positionals}) &&
+        function _subabbr_complete_list --argument-names=requested_component
+            argparse --ignore-unknown \
+                # parse such that invalid or missing values are tolerated
+                # that is, singular values use a `?`, and multiple values use `*` instead of `+`.
+                m/pos-regexp i/invert S/sub-command=?\& E/expansion=?\& \
+                'b/base=*&' r/regex=\* e/expander c/set-cursor=? 0/unprefix s/regard-flags \
+                -- (__fish_print_cmd_args)[3..]
+            set --local -- commandline_initials {$argv}
+            switch {$requested_component} # erase partial values so they don't affect the output
+                case bases
+                    set --erase --local -- _flag_base
+                case subcommand
+                    set --erase --local -- _flag_sub_command
+                case expansion
+                    set --erase --local -- _flag_expansion
+                case initials
+                    set --erase --local -- commandline_initials[-1]
+                case cursor_placeholder
+                    set --erase --local -- _flag_set_cursor
+            end
+            # variables inherited by `identifier-data` functions
+            set --local -- argparse{,} --name='subabbr-list-completions'
+            set --local -- internal_description_prefix 'subabbr: '
+            set --local -- identifier_prefix _sub-abbr_definition_
+            set --local -- prefix_length (string length -- {$identifier_prefix})
+            set --local -- identifier_start (math {$prefix_length} + 1)
+            _sub-abbr_internal_identifier-data_gather-list
+            for matched_identifier in (sub-abbr list --base={$_flag_base} --sub-command={$_flag_sub_command} --expansion={$_flag_expansion} {$argv_opts} -- {$commandline_initials})
+                _sub-abbr_internal_identifier-data_individual-info {$matched_identifier}
+                set --local -- suggested_values {$$requested_component}
+                if test {$requested_component} = initials
+                    test (count {$initials}) -le (count {$commandline_initials}) &&
                         continue
-                    echo {$identifier_positionals[(math 1 + (count {$commandline_positionals}))]}
-                end
-            else if test {$component} = base
-                for matched_identifier_unfiltered_base in (sub-abbr list {$_flag_regex} --match={$_flag_match} -- {$commandline_positionals})
-                    for found_base in (string repeat -- 1 (commandline --tokens-expanded --input=(string split --{fields,max}=1 -- '  ' {$matched_identifier_unfiltered_base}))[2..])
-                        contains -- {$found_base} {$_flag_base} ||
-                            echo {$found_base}\t(type --type -- {$found_base})
+                    echo -- {$initials[(math (count {$commandline_initials}) + 1)]}
+                else
+                    set --local -- description_provider _subabbr_complete_list_description_{$requested_component}
+                    if functions --query -- {$description_provider}
+                        for value_suggested in {$suggested_values}
+                            echo -- {$value_suggested}\t($description_provider {$value_suggested})
+                        end
+                    else
+                        string repeat -- 1 {$suggested_values}\t
                     end
                 end
+                set --erase --local -- bases initials subcommand expansion regex_scopes cursor_placeholder use_expander forget_prefixes regard_flags
             end
         end
-        $common_complete --condition={$list_complete_condition} --arguments='(_subabbr_complete_list initials)'
-        # not using `single-switch` since a value is mandatory
-        $common_complete --condition={$list_complete_condition} --short-option=b --long-option=base --require-parameter \
-            --description='Filter by mandatorily accepted Base Commands' --arguments='(_subabbr_complete_list base)'
-        $common_complete --condition={$list_complete_condition} --short-option=m --long-option=match --require-parameter \
-            --description='Filter by sub-command match type' \
-            --arguments='
-            fixed\t\'Exactly matched sub-command\'
-            regex\t\'Sub-command matched with RegExp\'
-        '
+        function _subabbr_complete_list_description_bases --argument-names=command_name
+            type --type -- {$command_name}
+        end
+        begin
+            set --local -- list_complete {$common_complete} --condition={$list_complete_condition}
+            $list_complete --arguments='(_subabbr_complete_list initials)'
+
+            begin # not using `single-switch` since a value is mandatory
+                set --local -- list_mandatory_complete {$list_complete} --require-parameter
+                $list_mandatory_complete --short-option=b --long-option=base \
+                    --description='Filter by mandatorily accepted Base Commands' --arguments='(_subabbr_complete_list bases)'
+                $list_mandatory_complete --short-option=s --long-option=sub-command \
+                    --description='Filter by sub-command to expand' --argument='(_subabbr_complete_list subcommand)'
+                $list_mandatory_complete --short-option=e --long-option=expansion \
+                    --description='Filter by what the sub-command expands to' --argument='(_subabbr_complete_list expansion)'
+                $list_mandatory_complete --short-option=c --long-option=set-cursor \
+                    --description='Filter by what cursor placeholder is used' --arguments='(_subabbr_complete_list cursor_placeholder)'
+                $list_mandatory_complete --short-option=m --long-option=match --require-parameter \
+                    --description='Filter by sub-command match type' \
+                    --arguments='
+                        fixed\t\'Exactly matched sub-command\'
+                        regex\t\'Sub-command matched with RegExp\'
+                '
+            end
+        end
         single-switch --condition={$list_complete_condition} --short-option=i --long-option=invert --description='Invert the match'
         single-switch --condition={$list_complete_condition} --short-option=r --long-option=regex --description='Match command-line positionals with RegExp'
+        # Other switches common with Add are merged with the latter sub-command
 
         begin
             set --local -- creation_condition 'test "$(__fish_print_cmd_args_without_options)[2]" = add'

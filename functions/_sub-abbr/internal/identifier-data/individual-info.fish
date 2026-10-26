@@ -1,4 +1,4 @@
-function _sub-abbr_internal_identifier-data_individual-info --no-scope-shadowing --argument-names=identifier --inherit-variable=internal_description_prefix --description='Accept an identifier, and parse it to gather data into the outer scope'
+function _sub-abbr_internal_identifier-data_individual-info --no-scope-shadowing --argument-names=identifier --inherit-variable={internal_description_prefix,argparse} --description='Accept an identifier, and parse it to gather data into the outer scope'
     # WARNING
     # Make sure you erase the variable you use from the `local` scope, even when used in a `for` loop.
     # Not doing so would have the variables persist even outside the scope the function was called.
