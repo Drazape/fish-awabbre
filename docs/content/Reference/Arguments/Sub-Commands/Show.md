@@ -20,7 +20,7 @@ Positionals
 
 Uses
 :   **Machine**: Storing the definition of an abbreviation for redefinition, or modification
-:   **Human**: Veiwing the definition of an abbreviation for inspection and debugging
+:   **Human**: Viewing the definition of an abbreviation for inspection and debugging
 
 !!! info "Implementation"
     The identifier only includes the details that are necessary for two abbreviations to be considered different.  
@@ -48,7 +48,7 @@ Each entry itself occupies a single line.
 This line contains the definition as it would be passed on the command-line.  
 
 !!! tip "Parsing into tokens"
-    One can parse the definition into tokens by passign the entry into `#!fish commandline --tokens-expanded --input=<entry>`.
+    One can parse the definition into tokens by passing the entry into `#!fish commandline --tokens-expanded --input=<entry>`.
 ##### Definition
 Each entry is formatted as a valid definition for the [*Add* sub-command][add-subcommand]{data-preview}.  
 That is, each of the flags are kept as flags, and the positionals are escaped by being preceded with a `--` token.

@@ -13,7 +13,7 @@ List the identifier of each content-aware abbreviation loaded
 | `list` | Required |
 
 ## Details
-Miscallaneous details about the sub-command
+Miscellaneous details about the sub-command
 
 !!! info "Why separate data inputs"
     While *Erase* and *Show* could have simply used the same intuitive input as *List*, that is not done because Fish only supports Lists as the built-in data structures. If we were to use the input that List accepts, then that would itself be several tokens, that is, a list on its own.

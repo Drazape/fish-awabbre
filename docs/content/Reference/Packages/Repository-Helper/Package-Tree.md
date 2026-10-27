@@ -29,7 +29,7 @@ The packages are organised in a tree data-structure
 `2:-2` Collections
 :   Collections of packages and other groups. Used by users to easily enable a group of packages without curating them themselves.
 
-`2/-2` Shelfs
+`2/-2` Shelves
 :   Same as collections, but strictly contains only packages.
 
 `-1` Packages/Leaves
@@ -37,4 +37,4 @@ The packages are organised in a tree data-structure
     Used by users to selectively enable abbreviation sets
 
 !!! note "Structure Usage"
-    It is upto the repository helper used by the user to decide upon how to make use of this structure.
+    It is up to the repository helper used by the user to decide upon how to make use of this structure.

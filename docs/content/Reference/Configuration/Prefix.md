@@ -12,7 +12,7 @@ Configure the prefixes that will be tolerated if they precede the [*Base Comman
 | `subabbr_prefix` | Base Commands | `run0` `sudo` `doas` |
 
 !!! example "Elevation with `run0`"
-    If `$subabbr_prefix` is set to `run0`, then all abbrevations would expand even if the actual *Base Command* is preceded by `run0` for privilege escalation.
+    If `$subabbr_prefix` is set to `run0`, then all abbreviations would expand even if the actual *Base Command* is preceded by `run0` for privilege escalation.
 
     ```fish {title="Command"}
     sub-abbr add --base=cp -- -r --recursive

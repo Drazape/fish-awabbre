@@ -15,7 +15,7 @@ Group
         Specify the [Universal group](./Package-Tree.md#ranks){data-preview} (no arguments) to load all the installed packages.
 
 Package
-:   ofcourse, only the selected package
+:   of course, only the selected package
 
 ---
 

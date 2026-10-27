@@ -20,7 +20,7 @@ One might not be sure if the flag accepts a value, or if we're simply chaining s
 
 ### Switches
 Optional arguments which modify the behavior of the wrapper
-#### Un-inherited
+#### Uninherited
 The following are switches that cannot be passed over through this wrapper:
 - [RegExp: `sub-command`](../../../../Arguments/Sub-Commands/Add/Switches/Regular-Expression.md "Match command-line arguments with RegExp"){data-preview}
 - [Expander](../../../../Arguments/Sub-Commands/Add/Switches/Expander.md "Use a command's output as the *Expansion*"){data-preview}

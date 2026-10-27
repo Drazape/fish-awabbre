@@ -12,7 +12,7 @@ Hooks are triggers that can be used by arbitrary plugins for various purposes to
 The hooks are activated through [Fish events](https://fishshell.com/docs/current/language.html#event-handlers "official Fish Shell documentation page: Language#event-handlers"), which loaded functions can listen to.
 
 !!! note "Operations only"
-    The hook is trigged only when the main operation of one of the sub-commands is guaranteed to be executed.  
+    The hook is triggered only when the main operation of one of the sub-commands is guaranteed to be executed.  
     That is, only after the user configuration is resolved, and all the checks are validated.  
     Furthermore, the hook is not triggered when the user simply uses the command to [print out a reference help text](../../../Arguments/Universal-Switch:Help.md){data-preview}
 

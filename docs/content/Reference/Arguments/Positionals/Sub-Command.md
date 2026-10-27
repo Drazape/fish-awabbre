@@ -13,7 +13,7 @@ The *Sub-Command* token to be matched on the command-line
 |   `-2`   | Required |
 
 ## Details
-Miscallaneous details about the sub-command
+Miscellaneous details about the sub-command
 ### Relation with other positionals
 Argument Position
 :   The *Sub-Command* comes between the *Initial Arguments* and the *Expansion*

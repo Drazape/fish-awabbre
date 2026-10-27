@@ -16,7 +16,7 @@ The string that replaces the [*Sub-Command*](./Sub-Command.md){data-preview} on 
 |   `-1`   | Required |
 
 ## Details
-Miscallaneous details about the positional
+Miscellaneous details about the positional
 ### Relation with other positionals
 Argument Position
 :   followed by the *Sub-Command*; the last positional

@@ -20,13 +20,13 @@ Guide for distributing fish-subAbbr packages
     If you use multiple triggers, then the amount of time it takes for `sub-abbrs` to execute would double each time in the same session.
 ### Dynamic Functions
 For the package to be indexed by the repository, its function name must be prefixed with `_sub-abbr_pkg_`.  
-[Groups](../../Reference/Packages/Repository-Helper/Package-Tree.md){data-preview} are separated with a `_`; the group organisation is upto the developer, or the packager/distributor.
+[Groups](../../Reference/Packages/Repository-Helper/Package-Tree.md){data-preview} are separated with a `_`; the group organisation is up to the developer, or the packager/distributor.
 ```fish {title="Function Name Format"}
 _sub-abbr_pkg_<groups(sep:_)>_<pkgname>
 ```
 
 ### Static Functions
-In this case, you have the choice to activate your [static][static-function]{data-preview}[^static-function] (non-[dynamic][danamic-function]{data-preview}[^dynamic-function]) package only when all the abbreviations are activated.  
+In this case, you have the choice to activate your [static][static-function]{data-preview}[^static-function] (non-[dynamic][dynamic-function]{data-preview}[^dynamic-function]) package only when all the abbreviations are activated.  
 If this is what you want, then you must not follow the prefix convention; otherwise, do not use this method, and simply stick to the universal method used by [dynamic packages](#dynamic-functions) alike.
 
 [static-function]: https://fishshell.com/docs/current/tutorial.html#startup-where-s-bashrc "Official Fish documentation"
@@ -61,7 +61,7 @@ Each package is a single function in the repository which provides abbreviations
 3rd-party packages/repositories can use the program however they want. For example:
 
 - Simple packages can directly distribute the abbreviations into shell-initialization configuration. This way they don't need to be enabled after they have been installed (it was installed for the purpose of using it after all)
-- Complex packages can ship their own commands and frontends to configure the abbreviations and provide other features
+- Complex packages can ship their own commands and front ends to configure the abbreviations and provide other features
 - Packages may or may not choose to maintain compatibility with the official repository helper: `sub-abbrs`.
 You might be able to get some creative inspiration by exploring existing packages/repositories, or you may also choose to contribute to an unofficial repository — if it suits your project better. 
 

@@ -19,7 +19,7 @@ These tokens are optional data scopes that `sub-abbr` has requested:
 [prefix-config]: ../../../Configuration/Prefix.md
 
 `description`
-:   This is the internal description passed to the `abbr` built-in by `sub-abbr`. It embeds all the information passed to [Add][add-subommand]{data-preview}, other than the Base Commands and the [Initial Arguments][initials-positional]{data-preview}, for they are already embedded in the identifier.
+:   This is the internal description passed to the `abbr` built-in by `sub-abbr`. It embeds all the information passed to [Add][add-subcommand]{data-preview}, other than the Base Commands and the [Initial Arguments][initials-positional]{data-preview}, for they are already embedded in the identifier.
 
 [add-subcommand]: ../../../Arguments/Sub-Commands/Add/index.md
 [initials-positional]: ../../../Arguments/Positionals/Initial-Arguments.md

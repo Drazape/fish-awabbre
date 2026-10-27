@@ -21,7 +21,7 @@ Chained
 Visual Feedback
 :   The user is instantly informed if the flag they entered is the correct one.
 
-Flag Funcionality
+Flag Functionality
 :   Glancing back, one might not be able to instantly recall the short flag they typed out of muscle memory.  
     The long flag variant the short flag expanded into can provide more information on the flag, while still working as usual.
 
@@ -34,7 +34,7 @@ Command-line tokens the wrapper accepts as arguments
 
 ### Switches
 Optional arguments which modify the behavior of the wrapper
-#### Un-inherited
+#### Uninherited
 The following are switches that cannot be passed over through this wrapper:
 - [RegExp: `sub-command`](../../../../../Arguments/Sub-Commands/Add/Switches/Regular-Expression.md "Match command-line arguments with RegExp"){data-preview}
 - [Expander](../../../../../Arguments/Sub-Commands/Add/Switches/Expander.md "Use a command's output as the *Expansion*"){data-preview}

@@ -5,7 +5,7 @@ description: Work-around for multiple different *Initial Arguments* permutation
 ---
 
 # Multi *Initial Args* support
-Context-aware sub-command abbreviations must use the [*Regular Expressions* switch][regexp]{data-preview}, atleast with the `subcommand` scope, whenever the same [*Sub-Command*][subcommand]{data-preview} is being abbreviated more than once in the same [*Base Command*][add-base]{data-preview} (different [*Initial Arguments*][initials]{data-preview}).  
+Context-aware sub-command abbreviations must use the [*Regular Expressions* switch][regexp]{data-preview}, at least with the `subcommand` scope, whenever the same [*Sub-Command*][subcommand]{data-preview} is being abbreviated more than once in the same [*Base Command*][add-base]{data-preview} (different [*Initial Arguments*][initials]{data-preview}).  
 
 !!! info "Reason: `abbr` limitation"
     The reason is that you can't have more than one abbreviation for a *Sub-Command* and *Base Command* pair without using the *Regular Expression* switch.  
@@ -55,7 +55,7 @@ The easiest way to create such context-aware sub-command abbreviations is creati
 
 !!! info "Alternative with a single abbreviation"
     In this case, you can combine *Regular Expressions* on the *Initial Arguments* (instead of the *Sub-Command*), along with the [*Expander*][expander]{data-preview} switch to achieve equivalent results.
-    You would match all the different Initial Arguments that are accepted with *Regular Expressions*, and use the *Expander* to parse the command-line, dynamically outputting the respective [*Expanions*][expansion]{data-preview}
+    You would match all the different Initial Arguments that are accepted with *Regular Expressions*, and use the *Expander* to parse the command-line, dynamically outputting the respective [*Expansions*][expansion]{data-preview}
     !!! note "No Limitations"
         All the arguments in an index by a single abbreviation in the lowest-level back-end. We don't do that simply because of convenience.
 
