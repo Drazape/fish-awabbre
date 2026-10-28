@@ -15,7 +15,7 @@ Show the definition of context-aware sub-command abbreviations as it would be pa
 
 ## Details
 Positionals
-:   **Selective**: To get the definitions of certain abbreviations, use their identifier obtained from the [List sub-command](./List/index.md "Get identities of loaded abbrs"){data-preview}
+:   **Selective**: To get the definitions of certain abbreviations, use their [identifier](../Common-Values/Identifier.md){data-preview} obtained from the [List sub-command](./List/index.md "Get identities of loaded abbrs"){data-preview}
 :   **All**: If no positionals are provided, the definitions for all the abbreviations will be shown
 
 Uses

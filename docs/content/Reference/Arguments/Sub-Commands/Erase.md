@@ -14,7 +14,7 @@ Erase a content-aware abbreviation by its identifier
 
 ## Details
 Identifier Obtainment
-:   The identifier can be obtained from the [List sub-command](./List/index.md "Get identities of loaded abbrs"){data-preview}
+:   The [identifier](../Common-Values/Identifier.md){data-preview} can be obtained from the [List sub-command](./List/index.md "Get identities of loaded abbrs"){data-preview}
 
 Uses
 :   Intuitively deletion in case of [RegExp](./Add/Switches/Regular-Expression.md "Match *Sub-Command* with RegExp"){data-preview} context-aware abbreviations

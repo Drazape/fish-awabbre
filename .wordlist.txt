@@ -37,3 +37,4 @@ codebase
 Zensical
 PascalCase
 unrecommended
+unescaped
