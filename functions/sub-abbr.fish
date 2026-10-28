@@ -105,9 +105,9 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 test "$regex_scope_unmatched" -eq 1 &&
                     continue
                 set --query --local -- _flag_set_cursor &&
-                    if ! set --query --local -- cursor_string
+                    if ! set --query --local -- cursor_placeholder
                         continue
-                    else if test (count {$_flag_set_cursor}) -eq 1 && test {$_flag_set_cursor} != {$cursor_string}
+                    else if test (count {$_flag_set_cursor}) -eq 1 && test {$_flag_set_cursor} != {$cursor_placeholder}
                         continue
                     end
                 if set --query --local -- _flag_base
@@ -140,7 +140,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     test "$init_unmatched" -eq 1 &&
                         continue
                 end
-                set --erase --local -- bases initials subcommand expansion regex_scopes cursor_string use_expander forget_prefixes regard_flags
+                set --erase --local -- bases initials subcommand expansion regex_scopes cursor_placeholder use_expander forget_prefixes regard_flags
                 set --append -- filtered_identifiers {$identifier}
             end
             if set --query --local -- _flag_invert
@@ -184,19 +184,19 @@ function sub-abbr --description='Create abbreviations for sub-commands'
 
                 set --local -- cursor_equals
                 set --local -- cursor_flag
-                if set --query --local -- cursor_string
+                if set --query --local -- cursor_placeholder
                     set -- cursor_flag --set-cursor
-                    test -n "$cursor_string" &&
+                    test -n "$cursor_placeholder" &&
                         set -- cursor_equals '='
                 end
 
                 for command in echo emit
-                    set --local -- definition_tokens --base={$base_flag_value} --regex={$regex_scopes} {$cursor_flag}"$cursor_equals""$cursor_string" {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$subcommand} {$expansion}
+                    set --local -- definition_tokens --base={$base_flag_value} --regex={$regex_scopes} {$cursor_flag}"$cursor_equals""$cursor_placeholder" {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$subcommand} {$expansion}
                     set --query --local -- _flag_escaped &&
                         set --local -- definition_tokens (string escape --style=script -- {$definition_tokens})
                     $command -- {$definition_tokens}
                 end
-                set --erase --local -- bases initials subcommand expansion regex_scopes cursor_string use_expander forget_prefixes regard_flags
+                set --erase --local -- bases initials subcommand expansion regex_scopes cursor_placeholder use_expander forget_prefixes regard_flags
             end
         case erase
             $argparse 'h/help&' -- {$subcommand_args}

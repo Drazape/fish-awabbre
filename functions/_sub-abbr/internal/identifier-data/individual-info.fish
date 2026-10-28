@@ -2,7 +2,7 @@ function _sub-abbr_internal_identifier-data_individual-info --no-scope-shadowing
     # WARNING
     # Make sure you erase the variable you use from the `local` scope, even when used in a `for` loop.
     # Not doing so would have the variables persist even outside the scope the function was called.
-    # Example erasing all the variables: `set --erase --local -- bases initials subcommand expansion regex_scopes cursor_string use_expander forget_prefixes regard_flags`
+    # Example erasing all the variables: `set --erase --local -- bases initials subcommand expansion regex_scopes cursor_placeholder use_expander forget_prefixes regard_flags`
 
     # info embedded in identifier
     set --local -- escaped_identifier_positionals (
@@ -47,7 +47,7 @@ function _sub-abbr_internal_identifier-data_individual-info --no-scope-shadowing
     set --query --local -- _flag_regex &&
         set --function -- regex_scopes {$_flag_regex}
     set --query --local -- _flag_set_cursor &&
-        set --function -- cursor_string {$_flag_set_cursor}
+        set --function -- cursor_placeholder {$_flag_set_cursor}
     set --query --local -- _flag_expander &&
         set --function -- use_expander {$_flag_expander}
     set --query --local -- _flag_unprefix &&
