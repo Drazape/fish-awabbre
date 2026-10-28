@@ -14,7 +14,7 @@ Acknowledge flags part of the *Initial Arguments*
 
 ## Details
 Relation
-:   [*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding *Sub-Command*"){data-preview} (command-line): flags — if found to be one of the [*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding *Sub-Command*"){data-preview} — aren't ignored, and must match for the expansion to occur
+:   [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding *Sub-Command*"){data-preview} (command-line): flags — if found to be one of the [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding *Sub-Command*"){data-preview} — aren't ignored, and must match for the expansion to occur
 
 Use-case
 :   Abbreviations only meaningful with a specific flag

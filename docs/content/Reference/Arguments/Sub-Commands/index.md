@@ -16,6 +16,6 @@ Operations that can be performed using `sub-abbr`.
 | [Show](Show.md){data-preview} | Print definitions in the format accepted by Add. | Identifiers (optional; all when omitted) | — |
 | [Erase](Erase.md){data-preview} | Erase abbreviations by identifier. | Identifiers | — |
 
-[initials]: ../Positionals/Initial-Arguments.md
-[subcommand]: ../Positionals/Sub-Command.md
-[expansion]: ../Positionals/Expansion.md
+[initials]: ../Common-Values/Components/Initial-Arguments.md
+[subcommand]: ../Common-Values/Components/Sub-Command.md
+[expansion]: ../Common-Values/Components/Expansion.md

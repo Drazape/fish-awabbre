@@ -25,4 +25,4 @@ After they are provided, only the context-aware sub-command abbreviations whose 
     ```
 
 [add]: ../Add/index.md
-[expansion]: ../../Positionals/Expansion.md
+[expansion]: ../../Common-Values/Components/Expansion.md

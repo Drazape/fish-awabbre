@@ -16,16 +16,16 @@ Match command-line arguments with *Regular Expression*s
 Miscellaneous details about the switch
 ### Values
 `sub-command` (default)
-:   Applies to the [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview}
+:   Applies to the [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview}
 
 `initials`
-:   Applies to the [*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding"){data-preview}
+:   Applies to the [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview}
 ### Relation
-- The [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview}/[*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding"){data-preview} turns into a RegExp instead of a fixed string (and may require escapes)
-- Providing [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} is still necessary, unlike `builtin abbr` where you can directly pass the RegExp to the flag.
-- This switch is essential for multiple [*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding"){data-preview} permutations paired with the same [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} (`builtin abbr`'s restriction)
+- The [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview}/[*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview} turns into a RegExp instead of a fixed string (and may require escapes)
+- Providing [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} is still necessary, unlike `builtin abbr` where you can directly pass the RegExp to the flag.
+- This switch is essential for multiple [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview} permutations paired with the same [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} (`builtin abbr`'s restriction)
 !!! tip "Workaround Permutations"
-    Use `string escape --style=regex` for [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} for multiple permutations
+    Use `string escape --style=regex` for [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} for multiple permutations
 ### Single Token
 The *Regular Expression* is only matched against the individual arguments (not the entire command-line)
 
@@ -42,14 +42,14 @@ The *Regular Expression* is only matched against the individual arguments (not 
 ### Use-case
 Matching command-line arguments dynamically
 !!! tip "Switch Combo"
-    Pair it with [*Expander*](Expander.md "Use a command's output as the *Expansion*"){data-preview} to generate [*Expansions*](../../../Positionals/Expansion.md "replacement string"){data-preview} based on the current command-line
+    Pair it with [*Expander*](Expander.md "Use a command's output as the *Expansion*"){data-preview} to generate [*Expansions*](../../../Common-Values/Components/Expansion.md "replacement string"){data-preview} based on the current command-line
 
 !!! info "Implementation"
     Sub-Command
-    :   It is directly passed to `builtin abbr` with the [*Sub-Command*](../../../Positionals/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} as the value
+    :   It is directly passed to `builtin abbr` with the [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} as the value
 
     Initial Arguments
-    :   [*Initial Arguments*](../../../Positionals/Initial-Arguments.md "Args preceding"){data-preview} in itself is a `sub-abbr` exclusive feature. Thus, manually matched
+    :   [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview} in itself is a `sub-abbr` exclusive feature. Thus, manually matched
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

@@ -15,9 +15,18 @@ Create context-aware sub-command abbreviations
 ## Arguments
 Command-line arguments accepted by the *Add* sub-command
 ### Positionals
-1. [**Initial Arguments**](../../Positionals/Initial-Arguments.md){data-preview}: precedes the [*Sub-Command*](../../Positionals/Sub-Command.md){data-preview}. Becomes the new *Initial Arguments* for *Expansion*  
-2. [**Sub-Command**](../../Positionals/Sub-Command.md){data-preview}: The *Sub-Command* to be replaced (expanded) by the [*Expansion*](../../Positionals/Expansion.md){data-preview}. Comes after the [*Initial Arguments*](../../Positionals/Initial-Arguments.md){data-preview}
-3. [**Expansion**](../../Positionals/Expansion.md){data-preview}: The replacement ([*Expansion*](../../Positionals/Expansion.md){data-preview}) of the typed *Sub-Command*. Becomes the new *Sub-Command* for the *Initial Arguments*
+The *Add* sub-command accepts the positional arguments detailed in the following table:
+
+| Position | Name | Presence |  Relation with other components |
+| :------: | :--: | :------: |  ------------------------------ |
+| `1`:`-3` | [Initial Arguments][initials]{data-preview} | Optional | precedes the [*Sub-Command*](../../Common-Values/Components/Sub-Command.md){data-preview}. Becomes the new *Initial Arguments* for *Expansion*[expansion] |
+|   `-2`   | [Sub-Command][subcommand]{data-preview} | Required | The *Sub-Command* to be replaced (expanded) by the *Expansion*. Comes after the *Initial Arguments* |
+|   `-1`   | [**Expansion**][expansion]{data-preview} | Required | The replacement (*Expansion*) of the typed *Sub-Command*. Becomes the new *Sub-Command* for the *Initial Arguments*
+
+[initials]: ../../Common-Values/Components/Initial-Arguments.md
+[subcommand]: ../../Common-Values/Components/Sub-Command.md
+[expansion]: ../../Common-Values/Components/Expansion.md
+
 ### [Local Switches](./Switches/index.md){data-preview}
 
 ## Usage

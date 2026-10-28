@@ -22,7 +22,7 @@ These tokens are optional data scopes that `sub-abbr` has requested:
 :   This is the internal description passed to the `abbr` built-in by `sub-abbr`. It embeds all the information passed to [Add][add-subcommand]{data-preview}, other than the Base Commands and the [Initial Arguments][initials-positional]{data-preview}, for they are already embedded in the identifier.
 
 [add-subcommand]: ../../../Arguments/Sub-Commands/Add/index.md
-[initials-positional]: ../../../Arguments/Positionals/Initial-Arguments.md
+[initials-positional]: ../../../Arguments/Common-Values/Components/Initial-Arguments.md
 
 ## Example Use: universal identity management
 ### Problem: unloaded abbreviations

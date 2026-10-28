@@ -14,7 +14,7 @@ When the event is emitted, the following arguments are passed to the hook functi
 - all the tokens passed by the user (to the [*Add* sub-command][add-subcommand]{data-preview} of `sub-abbr`), as is.
 - the identifier of the created abbreviation as an additional final argument (after the [*Expansion*][expansion-positional]{data-preview}).
 
-[expansion-positional]: ../../../Arguments/Positionals/Expansion.md
+[expansion-positional]: ../../../Arguments/Common-Values/Components/Expansion.md
 [add-subcommand]: ../../../Arguments/Sub-Commands/Add/index.md
 
 ## Example Uses

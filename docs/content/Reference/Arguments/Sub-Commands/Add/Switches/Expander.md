@@ -48,6 +48,6 @@ Argument
 !!! tip "Sub-Command parameter in an Expander with arguments"
     In case of having the as a command with custom arguments, the *Sub-Command* will be the last argument
 
-[expansion]: ../../../Positionals/Expansion.md
+[expansion]: ../../../Common-Values/Components/Expansion.md
 [regexp]: ./Regular-Expression.md "Match command-line arguments with RegExp"
-[subcommand]: ../../../Positionals/Sub-Command.md "Token to match & replace"
+[subcommand]: ../../../Common-Values/Components/Sub-Command.md "Token to match & replace"

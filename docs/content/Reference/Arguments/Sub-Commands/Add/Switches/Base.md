@@ -17,7 +17,7 @@ Specify the Base Commands for which the abbreviation would expand for.
 
 ## Details
 Relation
-:   The *Base Command* must precede the [*Initial Arguments*](../../../Positionals/Initial-Arguments.md){data-preview} on the command-line for the [*Sub-Command*](../../../Positionals/Sub-Command.md){data-preview} to be expanded.
+:   The *Base Command* must precede the [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md){data-preview} on the command-line for the [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md){data-preview} to be expanded.
 
 Value
 :   The *Base Command* is can be an executable, function, or built-in called by Fish for the execution. It can be a single command or a list of commands for which the abbreviation expands for.

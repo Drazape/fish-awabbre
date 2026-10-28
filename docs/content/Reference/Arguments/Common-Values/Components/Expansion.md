@@ -7,22 +7,8 @@ description: The string that replaces the *Sub-Command* on match
 # Expansion
 The string that replaces the [*Sub-Command*](./Sub-Command.md){data-preview} on match
 
-!!! note "Only for creation"
-    Since this positional is not part of the identity, it is only accepted by the [Add](../Sub-Commands/Add/index.md){data-preview} sub-command.
-
-## Properties
-| Position | Presence |
-| :------: | :------: |
-|   `-1`   | Required |
-
 ## Details
 Miscellaneous details about the positional
-### Relation with other positionals
-Argument Position
-:   followed by the *Sub-Command*; the last positional
-
-Command-line
-:   Replaces *Sub-Command* 
 ### Tokens
 Argument Passing
 :   Passed as a single token
@@ -31,10 +17,10 @@ Command-line
 :   Can comprise multiple tokens (by including spaces; it replaces the *Sub-Command* as a literal string, not a token)
 
 ### Customizable Behavior
-[:lucide-settings: Set Color](../Sub-Commands/Add/Switches/Set-Cursor.md "Position the cursor at `%`"){data-preview .md-button .md-button--primary} End of command-line
+[:lucide-settings: Set Color](../../Sub-Commands/Add/Switches/Set-Cursor.md "Position the cursor at `%`"){data-preview .md-button .md-button--primary} End of command-line
 :   The cursor is placed after the ` ` suffix added to the *Expansion*
 
-[:lucide-settings: Expander](../Sub-Commands/Add/Switches/Expander.md "Use a command's output as the *Expansion*"){data-preview .md-button .md-button--primary} Static String
+[:lucide-settings: Expander](../../Sub-Commands/Add/Switches/Expander.md "Use a command's output as the *Expansion*"){data-preview .md-button .md-button--primary} Static String
 :   The *Expansion* is a static string which doesn't change.
 
 ## Usage
@@ -48,3 +34,4 @@ sub-abbr --add --base=<base-command> … <initial-arguments> <Sub-Command> <EXPA
 
     - `#!fish sub-abbr add --base=jj ci `**`commit`**
     - `#!fish sub-abbr add -0c --base={$subabbr_prefix} nh os switch `**`'switch % --bypass-root-check'`**
+    - `#!fish sub-abbr list --expansion='formatter run'`

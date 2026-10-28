@@ -28,8 +28,8 @@ Uses
     In case of Fixed Strings, it is always more intuitive to use the built-in `#!fish abbr --erase <Sub-Command>` (interactively)
 
 ## Arguments
-1. [**Initial Arguments**](../Positionals/Initial-Arguments.md "Wiki Page"){data-preview}: The *Initial Arguments* passed during creation
-2. [**Sub-Command**](../Positionals/Sub-Command.md "Wiki Page"){data-preview}: The *Sub-Command* passed during creation
+1. [**Initial Arguments**](../Common-Values/Components/Initial-Arguments.md "Wiki Page"){data-preview}: The *Initial Arguments* passed during creation
+2. [**Sub-Command**](../Common-Values/Components/Sub-Command.md "Wiki Page"){data-preview}: The *Sub-Command* passed during creation
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}

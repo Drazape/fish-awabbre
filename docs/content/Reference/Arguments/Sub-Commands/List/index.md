@@ -58,5 +58,5 @@ sub-abbr list [<flags>… -- Initials Sub-Command]
     |   `=`  |                 Fixed String                |
 
 [RegExp]: ../Add/Switches/Regular-Expression.md
-[initials]: ../../Positionals/Initial-Arguments.md
-[subcommand]: ../../Positionals/Sub-Command.md
+[initials]: ../../Common-Values/Components/Initial-Arguments.md
+[subcommand]: ../../Common-Values/Components/Sub-Command.md

@@ -1,11 +1,11 @@
 ---
 comments: true
 icon: lucide/map-pin
-description: Position the cursor at the separator present in the [*Expansion*](../../../Positionals/Sub-Command.md "Token to match & replace"){data-preview}
+description: Position the cursor at the separator present in the [*Expansion*](../../../Common-Values/Components/Sub-Command.md "Token to match & replace"){data-preview}
 ---
 
 # Set Cursor
-Position the cursor at the separator present in the [*Expansion*](../../../Positionals/Sub-Command.md "Token to match & replace"){data-preview}
+Position the cursor at the separator present in the [*Expansion*](../../../Common-Values/Components/Sub-Command.md "Token to match & replace"){data-preview}
 
 ## Properties
 |   Value  | Short |      Long    | Sub-Command | Inherited |
@@ -15,8 +15,8 @@ Position the cursor at the separator present in the [*Expansion*](../../../Posit
 ## Details
 Miscellaneous details about the switch
 ### Relation
-- The cursor is put in a specific spot in the [*Expansion*](../../../Positionals/Sub-Command.md "Token to match & replace"){data-preview} (a ` ` is still appended after the [*Expansion*](../../../Positionals/Sub-Command.md "Token to match & replace"){data-preview} token)
-- The [*Expansion*](../../../Positionals/Sub-Command.md "Token to match & replace"){data-preview} can't include the same characters as *Position* before *Position itself*; *Position* is deleted from the [*Expansion*](../../../Positionals/Sub-Command.md "Token to match & replace"){data-preview}, with cursor taking its place
+- The cursor is put in a specific spot in the [*Expansion*](../../../Common-Values/Components/Sub-Command.md "Token to match & replace"){data-preview} (a ` ` is still appended after the [*Expansion*](../../../Common-Values/Components/Sub-Command.md "Token to match & replace"){data-preview} token)
+- The [*Expansion*](../../../Common-Values/Components/Sub-Command.md "Token to match & replace"){data-preview} can't include the same characters as *Position* before *Position itself*; *Position* is deleted from the [*Expansion*](../../../Common-Values/Components/Sub-Command.md "Token to match & replace"){data-preview}, with cursor taking its place
 ### Value
 The string to replace with the cursor (default: `%`)
 ### Use-case

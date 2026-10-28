@@ -35,7 +35,7 @@ Filter the abbreviations listed by how their [Initial Arguments][initials]{data-
     If this switch isn't provided, both the types will be listed.
 
 
-[initials]: ../../../Positionals/Initial-Arguments.md
+[initials]: ../../../Common-Values/Components/Initial-Arguments.md
 [list]: ../index.md
 [regexp]: ../../Add/Switches/Regular-Expression.md
 [add]: ../../Add/index.md
