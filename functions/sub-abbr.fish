@@ -67,12 +67,18 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             end
             if set --query --local -- _flag_help
                 _subabbr_help_list= help-text --link=_sub-abbr_internal_helpText-linker {$list_description} \
-                    --positional='Initials | Filter by arguments that are matched before expanding the sub-command' \
+                    --positional='+Initials | Filter by arguments that are matched before expanding the sub-command' \
                     --flag={
                                 'invert:i | Invert the match result',
                                 'pos-regexp:m | Match command-line positionals with RegExp',
-                                'sub-command:S | Filter out abbreviations that don\'t match the specified Sub-Command',
-                                'expansion:E | Filter out abbreviations that don\'t match the specified Expansion'
+                                'sub-command:S | Only abbreviations that match the specified Sub-Command',
+                                'expansion:E | Only abbreviations that match the specified Expansion',
+                                'base:b | Specify Base Commands the abbreviation must trigger on',
+                                'unprefix:0 | Filter out abbreviations that tolerate '(format background black --bright '$subabbr_prefix')' before the Base Command',
+                                'regard-flags:s | Only abbreviations must acknowledge flags in the Initial Args',
+                                'set-cursor:c | Only abbreviations that manually position the cursor',
+                                'regex:r | Only abbreviations that match command-line arguments with Regex',
+                                'expander:e | Only abbreviations that use a function\'s output as the Expansion'
                             }
                 _sub-abbr_internal_revert-paths
                 return

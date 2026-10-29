@@ -47,11 +47,7 @@ function _sub-abbr_internal_helpText-linker --description='Linker for fish-subAb
                 case regard-flags
                     echo -- {$baseURL}/Sub-Commands/Add/Switches/Regard-Flags/
                 case regex
-                    if set --query --local -- _subabbr_help_list
-                        echo -- {$baseURL}/Sub-Commands/List/Switches/Regular-Expression/
-                    else
-                        echo -- {$baseURL}/Sub-Commands/Add/Switches/Regular-Expression/
-                    end
+                    echo -- {$baseURL}/Sub-Commands/Add/Switches/Regular-Expression/
                 case base
                     if set --query --local -- _subabbr_help_list
                         echo -- {$baseURL}/Sub-Commands/List/Switches/Base/
