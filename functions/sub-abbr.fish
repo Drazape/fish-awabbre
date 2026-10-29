@@ -167,7 +167,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             else
                 if ! _sub-abbr_internal_verify-arg_identifier-existance {$argv}
                     _sub-abbr_internal_revert-paths
-                    return 10
+                    return 2
                 end
                 set --function -- identifiers_to_show {$argv}
             end
@@ -209,11 +209,11 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             _sub-abbr_internal_identifier-data_gather-list commands
             if ! _sub-abbr_internal_verify-arg_more-args 1 {$subcommand_args}
                 _sub-abbr_internal_revert-paths
-                return 2
+                return 3
             end
             if ! _sub-abbr_internal_verify-arg_identifier-existance {$subcommand_args}
                 _sub-abbr_internal_revert-paths
-                return 3
+                return 4
             end
 
             # main operation
