@@ -37,6 +37,13 @@
 							substituteInPlace $out/share/fish/vendor_functions.d/sub-abbr.fish --replace-fail \
 								'/dev/null # shell-startup directories' ${inputs'.fish-format.packages.default}/share/fish/vendor_conf.d
 						'';
+
+						meta = {
+							description = "Fish: context-aware sub-command abbreviation plugin";
+							homepage = "https://github.com/Drazape/fish-subAbbr";
+							license = lib.licenses.mit;
+							platforms = lib.platforms.linux;
+						};
 					};
 				};
 				devShells.default = pkgs.mkShellNoCC { FISH_NIXPKG = self'.packages.default; }; # use with fish-nixenv
