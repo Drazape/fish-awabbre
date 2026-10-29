@@ -153,7 +153,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             if set --query --local -- _flag_invert
                 for identifier in {$identifiers}
                     contains -- {$identifier} {$filtered_identifiers} ||
-                        echo {$identifier}
+                        echo -- {$identifier}
                 end
             else
                 string repeat -- 1 {$filtered_identifiers}
@@ -288,7 +288,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                     )' might be meant to be specified earlier than '(
                         format background black --bright '--'
                     )'.' >&2
-                $print 'Run' (format background black --bright (status current-function)' add --help') 'to reference the' (format text italics 'Base') 'option.' >&2
+                $print Run (format background black --bright (status current-function)' add --help') 'to reference the' (format text italics 'Base') 'option.' >&2
                 return 6
             end
             ### Set Cursor
@@ -321,7 +321,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
                 begin
                     if _sub-abbr_internal_verify-arg_subcommand-contains ' ' || _sub-abbr_internal_verify-arg_subcommand-contains \n
                         $print incompatible (format text italics 'Sub-Command'): (format background red --bright {$subcommand}) >&2
-                        $print 'The' (format text italics 'Sub-Command') 'must be a single token.' >&2
+                        $print The (format text italics 'Sub-Command') 'must be a single token.' >&2
                         $print 'That is, it cannot contain spaces or newline characters—those are used for separating tokens.' >&2
                         _sub-abbr_internal_revert-paths
                         return 8
@@ -383,7 +383,7 @@ function sub-abbr --description='Create abbreviations for sub-commands'
             else
                 $print 'no sub-command specified.' >&2
             end
-            $print 'Run' (format background black --bright (status current-function)' --help') 'to reference the available sub-commands.' >&2
+            $print Run (format background black --bright (status current-function)' --help') 'to reference the available sub-commands.' >&2
             _sub-abbr_internal_revert-paths
             return 9
     end

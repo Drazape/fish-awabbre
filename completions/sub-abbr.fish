@@ -121,7 +121,7 @@ begin
                         for single_completions in (complete --do-complete="$base_command $initials ")
                             set --local -- completion_components (string split -- \t {$single_completions})
                             echo -n -- {$completion_components[1]}\t{$base_command}
-                            echo :\ {$completion_components[2]}
+                            echo -- :\ {$completion_components[2]}
                         end
                     end
                 end

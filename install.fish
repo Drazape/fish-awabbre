@@ -8,7 +8,7 @@ end
 # get from the remote GitHub repository
 if set --query --local -- remote
     if ! fish_is_root_user
-        echo (status basename): 'Must be ran as root'
+        echo -- (status basename): 'Must be ran as root'
         return 1
     end
     # Setup Cleanup
