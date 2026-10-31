@@ -313,7 +313,10 @@ function awabbre --description='Create abbreviations for sub-commands'
                     )' might be meant to be specified earlier than '(
                         format background black --bright '--'
                     )'.' >&2
-                $print Run (format background black --bright (status current-function)' add --help') 'to reference the' (format text italics 'Base') 'option.' >&2
+                set --local -- recommended_command (status current-function)' add --help'
+                $print Run (format background black --bright {$recommended_command}) 'to reference the' (format text italics 'Base') 'option.' >&2
+                commandline --current-buffer -- (status current-function)' add --help'
+                _awabbre_internal_revert-paths
                 return 6
             end
             ### Set Cursor
@@ -408,7 +411,9 @@ function awabbre --description='Create abbreviations for sub-commands'
             else
                 $print 'no sub-command specified.' >&2
             end
-            $print Run (format background black --bright (status current-function)' --help') 'to reference the available sub-commands.' >&2
+            set --local -- recommended_command (status current-function)' --help'
+            $print Run (format background black --bright {$recommended_command}) 'to reference the available sub-commands.' >&2
+            commandline --current-buffer -- {$recommended_command}
             _awabbre_internal_revert-paths
             return 9
     end
