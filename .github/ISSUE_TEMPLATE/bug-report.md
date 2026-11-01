@@ -15,6 +15,7 @@ assignees: ''
 <!-- A clear description of the bug -->
 
 # Behavior
+The following sections describe the unexpected behavior, comparing it to how it should have actually been.
 ## Expected
 <!-- What is supposed to happen, but doesn't -->
 
@@ -30,14 +31,14 @@ assignees: ''
 <!-- … -->
 
 # Additional Information
-<!-- Anything extra that you might want to add. This could include information you find to be of little use -->
+<!-- Optional. Anything extra that you might want to add. This could include information you find to be of little use -->
 
 
 # Solution
-<!-- Any solutions you suggest in order to solve the problem -->
+<!-- Optional. Any solutions you suggest in order to solve the problem -->
 
 
 # Workaround
-<!-- Any hacks you have considered -->
+<!-- Optional. Any hacks you have considered -->
 
 

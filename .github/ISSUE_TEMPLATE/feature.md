@@ -20,9 +20,9 @@ assignees: ''
 
 
 # Workaround
-<!-- Any alternative hacks you figured out / considered without the feature -->
+<!-- Optional. Any alternative hacks you figured out / considered without the feature -->
 
 
 # Solution
-<!-- The implementation you suggest. How you would like the feature to be accessible or made -->
+<!-- Optional. The implementation you suggest. How you would like the feature to be accessible or made -->
 
