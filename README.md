@@ -15,7 +15,7 @@
 -->
 
 # Purpose
-Simplify creating context-aware abbreviations [^simplification]
+Simplify creating context-aware abbreviations[^simplification], and allow a clean integration into existing command-line workflows.
 
 [^simplification]: You can easily abbreviate base-commands, but there is no straight-forward way to do the same with sub-commands. After the initial development, a GitHub [discussion](https://github.com/fish-shell/fish-shell/discussions/11682) & [Issue](https://github.com/fish-shell/fish-shell/issues/11944) in the Fish repository was discovered that comes up with this exact problem
 

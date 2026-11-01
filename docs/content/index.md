@@ -5,7 +5,7 @@ description: Home Page
 ---
 
 # Home
-A Fish abstraction to create context-aware abbreviations
+A Fish abstraction to create context-aware abbreviations, and cleanly integrating into existing command-line workflows.
 
 ## Purpose
 This is a 3rd-party solution to the problems likewise faced by the developer:  
