@@ -1,28 +1,22 @@
 ---
 comments: true
-icon: lucide/funnel
+icon: lucide/gallery-horizontal-end
 description: Filter the listed identifier by their command-line arguments.
 ---
 
 # Positionals
-[List](./index.md){data-preview} accepts the first 2 positional arguments accepted by [Add][add]{data-preview}
+[List](./index.md){data-preview} accepts [Initial Arguments][initials]{data-preview} as its positionals
 
-| Name | Position |
-| :--: | :------: |
-| Initial Arguments | `1`:`-2` |
-| Sub-Command | `-1` |
-
-They are passed exactly as passed to [Add][add]{data-preview}, but without the [Expansion][expansion]{data-preview}, since it is [not part of their identifier](./index.md#output){data-preview}.
-
-After they are provided, only the context-aware abbreviations whose identifiers match the provided positional arguments will be listed.
+After they are provided, only the context-aware abbreviations that match for the same *Initial Arguments* as the ones provided positional arguments are listed.
 
 !!! example "List identifiers filtered by sub-commands"
-    ```fish {title="Jujutsu log"}
-    awabbre list log
+    ```fish {title="Jujutsu bookmark"}
+    awabbre list bookmark
     ```
-    ```fish {title="Nix3 shell"}
-    awabbre list shell
+    ```fish {title="filter awabbres using prefixes by their actual “Base Commands”"}
+    awabbre list --base={$awabbre_prefix} nh
     ```
 
 [add]: ../Add/index.md
 [expansion]: ../../Common-Values/Components/Expansion.md
+[initials]: ../../Common-Values/Components/Initial-Arguments.md
