@@ -7,7 +7,7 @@ description: Filter the listed identifier by their command-line arguments.
 # Positionals
 [List](./index.md){data-preview} accepts [Initial Arguments][initials]{data-preview} as its positionals
 
-After they are provided, only the context-aware abbreviations that match for the same *Initial Arguments* as the ones provided positional arguments are listed.
+After they are provided, only the context-aware abbreviations (awabbres) that match for the same *Initial Arguments* as the ones provided positional arguments are listed.
 
 !!! example "List identifiers filtered by sub-commands"
     ```fish {title="Jujutsu bookmark"}

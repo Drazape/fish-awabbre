@@ -15,14 +15,14 @@
 -->
 
 # Purpose
-Simplify creating context-aware abbreviations[^simplification], and allow a clean integration into existing command-line workflows.
+Simplify creating context-aware abbreviations (awabbres)[^simplification], and allow a clean integration into existing command-line workflows.
 
-[^simplification]: You can easily abbreviate base-commands, but there is no straight-forward way to do the same with sub-commands. After the initial development, a GitHub [discussion](https://github.com/fish-shell/fish-shell/discussions/11682) & [Issue](https://github.com/fish-shell/fish-shell/issues/11944) in the Fish repository was discovered that comes up with this exact problem
+[^simplification]: You can easily abbreviate base-commands, but there is no straight-forward way to do the same with arguments. After the initial development, a GitHub [discussion](https://github.com/fish-shell/fish-shell/discussions/11682) & [Issue](https://github.com/fish-shell/fish-shell/issues/11944) in the Fish repository was discovered that comes up with this exact problem
 
 # Uses
 Following are some example uses of the program.
-## Defaults (convenience)
-In these examples, additional functionality is added as a “default” using abbreviations
+## Defaults (for convenience)
+In the following examples, the “default“ functionality of commands is extended using abbreviations.
 ### Switches for certain sub-commands  
 ```fish
 awabbre add --unprefix --set-cursor --base=run0 nh os switch{,' % --bypass-root-check'}
@@ -48,10 +48,15 @@ awabbre add --base=eza -- --long{,\ --group}`
 	The command is showcased a 2nd time, but this time, the command has `run0` prefixed to it; the expansion is still shown to work the same way.
 ](https://github.com/user-attachments/assets/bda2680d-980f-4834-ba41-a9086aa3afad)
 ## Clarity
-These are examples of some cosmetic abbreviations that provide clarity and visual feedback
-### Turning short flags into long
-Provides visual feedback that the short flag is correct!
-#### `eza`: long flag
+These are examples of some cosmetic abbreviations that accomplish the following experience enhancements:
+- Provide clarity by revealing the more verbose form.
+- Visual feedback upon expansion that the input is correct, without any typos.
+
+> [!NOTE]
+> This is especially useful for users having visual-impairment, for screen readers read the expansions aloud.
+
+Following are showcases of awabbres that expand the short flag into their long variants:
+#### `eza`: `long` flag
 ```fish
 awabbre add --base=eza -- -l --long
 ```
@@ -111,7 +116,7 @@ see [Erasing filtered awabbres](https://drazape.github.io/fish-awabbre/Guides/Us
 
 > [!TIP]
 > ### Quick Start
-> Simply add the following command to the [repository helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to your Fish configuration (without any arguments):
+> [Install fish-awabbre](#Installation) and simply add the following command to the [repository helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to your Fish configuration (without any arguments):
 > ```fish
 > awabbre-pkgs
 > ```
@@ -130,7 +135,7 @@ The arguments that `awabbre` accepts on the command-line
 #### [Sub-Commands](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/ "documentation")
 Distinct operations that the command performs
 ##### [Add](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/ "documentation")
-Sub-command to create context-aware abbreviations
+Sub-command to create context-aware abbreviations (awabbres)
 ###### Positional
 1. [**Initial Arguments**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Initial-Arguments/ "documentation"): Precedes the *Sub-Command*. Becomes the new *Initial Arguments* for *Expansion*  
 2. [**Sub-Command**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Sub-Command/ "documentation"): The *Sub-Command* to be replaced (expanded) by the *Expansion*. Comes after the *Initial Arguments*
@@ -154,7 +159,7 @@ Sub-command to create context-aware abbreviations
 > To learn about them, visit the linked documentation.
 
 ##### [List](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/List/ "documentation")
-Get the identifiers of loaded context-aware abbreviations
+Get the identifiers of loaded awabbres
 ##### [Show](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Show/ "documentation")
 Show the definition of an abbreviation, as passed to [*Add*](#Add)
 ##### [Erase](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Erase/ "documentation")

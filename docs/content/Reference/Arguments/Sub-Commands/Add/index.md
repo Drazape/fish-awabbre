@@ -1,11 +1,11 @@
 ---
 comments: true
 icon: lucide/circle-plus
-description: Create context-aware abbreviations
+description: Create context-aware abbreviations (awabbres)
 ---
 
 # Add
-Create context-aware abbreviations
+Create context-aware abbreviations (awabbres)
 
 ## Properties
 |  Name | Parent |

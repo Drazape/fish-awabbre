@@ -6,7 +6,7 @@ description: Show definition of a abbr by its identity
 ---
 
 # Show ^^`show`^^
-Show the definition of context-aware abbreviations as it would be passed to [*Add*][add-subcommand]{data-preview}
+Show the definition of context-aware abbreviations (awabbres) as it would be passed to [*Add*][add-subcommand]{data-preview}
 
 ## Uses
 Machine

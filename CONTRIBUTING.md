@@ -20,9 +20,16 @@ If a spelling “mistake” found is intentional (that happens often), add the w
 ## Generation
 The documentation site is generated using [Zensical](https://zensical.org/ "Official site: a modern static site generator designed to simplify building and maintaining project documentation")
 ## Style
-We majorly follow the [Google Documentation Style Guidelines](https://developers.google.com/style "Editorial guidelines for writing clear and consistent technical documentation for an audience of software developers and other technical practitioners"), but with some deviations and project-exclusive guidelines.
+We majorly follow the [Google Documentation Style Guidelines](https://developers.google.com/style "Editorial guidelines for writing clear and consistent technical documentation for an audience of software developers and other technical practitioners"), but with some deviations and project-exclusive guidelines*
+### Terminology
+In all the documents, follow the following instructions when using the frequently used interchangeable terminology *context-aware abbreviations* and *awabbres*.
+
+Introduce the term when first used by first writing the full term *context-aware abbreviations* along with the short term *awabbres* in parenthesis: *context-aware abbreviations (awabbres)*.  
+For all the other occurrences, only use the term *awabbres* without mentioning the long term with multiple words again.
+
+Even if the term is used only once in a document, still introduce the short term *awabbres*, given its frequent use.
 ### Deviations
-We take some liberty to move away from the guidelines.  
+We take some liberty to move away from the guidelines*  
 The following sections describe the major deviations we made.
 #### Curled Quotation
 In contrast to the straight quotation marks used in the Google Style (`"`), we instead use curly quotation marks (`“` & `”`) outside code-blocks.

@@ -288,7 +288,7 @@ function awabbre --description='Create abbreviations for sub-commands'
             end
             ### Help
             if set --query --local -- _flag_help
-                help-text --link=_awabbre_internal_helpText-linker 'Create context-aware abbreviations' \
+                help-text --link=_awabbre_internal_helpText-linker 'Create context-aware abbreviations (awabbres)' \
                     --positional={
                         '+Initial Args | All arguments that come before the Sub-Command',
                         'Sub-Command | Comes after the Initial Args; replaced by the Expansion',
