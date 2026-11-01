@@ -64,6 +64,8 @@ function _awabbre_internal_helpText-linker --description='Linker for fish-awabbr
                     echo -- {$baseURL}/Sub-Commands/List/Switches/Expansion/
                 case invert
                     echo -- {$baseURL}/Sub-Commands/List/Switches/Invert/
+                case escape
+                    echo -- {$baseURL}/Sub-Commands/Show/Switches/Escape/
             end
     end
 end

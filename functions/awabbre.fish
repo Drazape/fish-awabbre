@@ -172,11 +172,11 @@ function awabbre --description='Create abbreviations for sub-commands'
                 string repeat -- 1 {$filtered_identifiers}
             end
         case show
-            $argparse 'e/escaped&' 'h/help&' -- {$subcommand_args}
+            $argparse 'e/escape&' 'h/help&' -- {$subcommand_args}
             if set --query --local -- _flag_help
                 help-text --link=_awabbre_internal_helpText-linker {$show_description} \
                     --positional='+Identifier | Identifier of abbr to show details for' \
-                    --flag='escaped:e | Print definition as if on the command-line'
+                    --flag='escape:e | Print definition as if on the command-line'
                 _awabbre_internal_revert-paths
                 return
             end
@@ -198,17 +198,17 @@ function awabbre --description='Create abbreviations for sub-commands'
                 _awabbre_internal_identifier-data_individual-info {$identifier}
 
                 # display: machine parsable: commandline evaluation → argparse
-                set --query --local -- _flag_escaped &&
+                set --query --local -- _flag_escape &&
                     test (count {$regex_scopes}) -gt 1 &&
                     set -- regex_scopes \{(string join -- , {$regex_scopes})\}
 
-                if test (count {$bases}) -ne 1 && set --query --local -- _flag_escaped
+                if test (count {$bases}) -ne 1 && set --query --local -- _flag_escape
                     set --function -- base_flag_value \{(
                         string escape --style=script -- {$bases} |
                             string join -- ,)\}
                 else
                     set --function -- base_flag_value {$bases}
-                    set --query --local -- _flag_escaped &&
+                    set --query --local -- _flag_escape &&
                         set --function -- base_flag_value (
                             string escape --style=script -- {$base_flag_value})
                 end
@@ -223,7 +223,7 @@ function awabbre --description='Create abbreviations for sub-commands'
 
                 for command in echo emit
                     set --local -- definition_tokens {$cursor_flag}"$cursor_equals""$cursor_placeholder" {$use_expander} {$forget_prefixes} {$regard_flags} -- {$initials} {$subcommand} {$expansion}
-                    set --query --local -- _flag_escaped &&
+                    set --query --local -- _flag_escape &&
                         set --local -- definition_tokens (string escape --style=script -- {$definition_tokens})
                     set --prepend -- definition_tokens --base={$base_flag_value} --regex={$regex_scopes}
                     $command -- {$definition_tokens}

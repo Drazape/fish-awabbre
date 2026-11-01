@@ -25,6 +25,10 @@ begin
         --condition='contains -- "$(__fish_print_cmd_args_without_options)[2]" erase show' \
         --arguments='(awabbre list)'
 
+    single-switch --short-option=e --long-option=escape \
+        --description='Print definitions as if on the to be entered command-line' \
+        --condition='test "$(__fish_print_cmd_args_without_options)[2]" = show'
+
     begin
         set --local -- list_complete_condition \
             'test "$(__fish_print_cmd_args_without_options)[2]" = list'
