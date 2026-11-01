@@ -93,7 +93,7 @@ awabbre add --base=jj ci commit
 
 > [!TIP]
 > ### Quick Start
-> Simply add the following command to your Fish configuration (without any arguments):
+> Simply add the following command to the [repository helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to your Fish configuration (without any arguments):
 > ```fish
 > awabbre-pkgs
 > ```
@@ -107,17 +107,17 @@ awabbre add --base=jj ci commit
 ## `awabbre`
 Create personal Sub-Command abbreviations in the scope
 
-### Arguments
+### [Arguments](https://drazape.github.io/fish-awabbre/Reference/Arguments/ "documentation")
 The arguments that `awabbre` accepts on the command-line
-#### Sub-Commands
+#### [Sub-Commands](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/ "documentation")
 Distinct operations that the command performs
-##### Add
+##### [Add](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/ "documentation")
 Sub-command to create context-aware abbreviations
 ###### Positional
 1. [**Initial Arguments**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Initial-Arguments/ "documentation"): Precedes the *Sub-Command*. Becomes the new *Initial Arguments* for *Expansion*  
 2. [**Sub-Command**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Sub-Command/ "documentation"): The *Sub-Command* to be replaced (expanded) by the *Expansion*. Comes after the *Initial Arguments*
 3. [**Expansion**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Expansion/ "documentation"): The replacement (*Expansion*) of the typed *Sub-Command*. Becomes the new *Sub-Command* for the *Initial Arguments*
-###### Switches
+###### [Switches](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/ "documentation")
 | Name | Description | Long | Short | Inherited [^inherited-switches] |
 | :--: | ----------- | :--: | :---: | :-----------------------------: |
 | [**Help**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Universal-Switches/Help/ "documentation") | Show a reference manual — consisting of the [purpose](#awabbre "The purpose of the command") & [arguments](#Arguments "Descriptions on all the supported arguments") | `help` | `h` | ❔ universal |
@@ -130,16 +130,21 @@ Sub-command to create context-aware abbreviations
 
 [^inherited-switches]: ✅ retained switches are passed to `abbr`; ⏫ extended switches add behavior; ❌ exclusive switches are specific to `awabbre`.
 [^multi-bases]: *RegExp* must be passed in order to use the same *Sub-Command* with the same *Base-Command* in a different position. For example, you can only have `jj l{,og}` and `jj op l{,og}` if *RegExp* is used. (You don't have to do anything extra, other than escape any regular expressions)
-##### List
+
+> [!NOTE]
+> The functionality of the following management and debugging sub-commands—the positionals and the switches—are not listed here to avoid clutter.  
+> To learn about them, visit the linked documentation.
+
+##### [List](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/List/ "documentation")
 Get the identifiers of loaded context-aware abbreviations
-##### Show
+##### [Show](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Show/ "documentation")
 Show the definition of an abbreviation, as passed to [*Add*](#Add)
-##### Erase
+##### [Erase](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Erase/ "documentation")
 Erase a context-aware abbreviation by its identifier
 
 ## `awabbre-pkgs`
-Helper to conveniently enable compatible package groups, or packages.  
-Package groups are groups of packages which can be enabled in bulk.  
+[Helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to conveniently enable compatible package groups, or packages.  
+[Package groups](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Package-Tree/ "documentation") are groups of packages which can be enabled in bulk.  
 
 ### Arguments
 Various arguments supported by `awabbre-pkgs` on the command-line
