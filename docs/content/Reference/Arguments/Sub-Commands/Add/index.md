@@ -1,11 +1,11 @@
 ---
 comments: true
 icon: lucide/circle-plus
-description: Create context-aware abbreviations
+description: Create context-aware abbreviations (awabbres)
 ---
 
 # Add
-Create context-aware abbreviations
+Create context-aware abbreviations (awabbres)
 
 ## Properties
 |  Name | Parent |
@@ -31,5 +31,5 @@ The *Add* sub-command accepts the positional arguments detailed in the following
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-awabbre add --base=<base_commands>… [<creation_flags>] -- <initials> <sub-command> <expansion>
+awabbre add --base=<base_commands>… [<creation_flags>] -- [<initials>] <sub-command> <expansion>
 ```

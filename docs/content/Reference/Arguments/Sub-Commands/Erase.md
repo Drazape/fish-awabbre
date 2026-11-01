@@ -5,7 +5,7 @@ description: Erase a content-aware abbreviation by its identifier
 ---
 
 # Erase
-Erase a content-aware abbreviation by its identifier
+Erase a content-aware abbreviation (awabbre) by its identifier
 
 ## Properties
 |   Name  | Positional Values |
@@ -17,12 +17,12 @@ Identifier Obtainment
 :   The [identifier](../Common-Values/Identifier.md){data-preview} can be obtained from the [List sub-command](./List/index.md "Get identities of loaded abbrs"){data-preview}
 
 Uses
-:   Intuitively deletion in case of [RegExp](./Add/Switches/Regular-Expression.md "Match *Sub-Command* with RegExp"){data-preview} context-aware abbreviations
+:   Intuitively deletion in case of [RegExp](./Add/Switches/Regular-Expression.md "Match *Sub-Command* with RegExp"){data-preview} context-aware abbreviations (awabbres)
 
 !!! info "Implementation"
-    The human ID is converted into the ID identified by `builtin abbr`
+    The human ID is converted into the ID identified by the `abbr` built-in
     - *RegExp*: the entire command-line
-    - *Fixed String*: The Sub-Command (`builtin abbr` limitation)
+    - *Fixed String*: The Sub-Command (the `abbr` built-in limitation)
 
 !!! tip "Alt Fixed Strings eraser"
     In case of Fixed Strings, it is always more intuitive to use the built-in `#!fish abbr --erase <Sub-Command>` (interactively)

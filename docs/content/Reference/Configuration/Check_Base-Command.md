@@ -5,7 +5,7 @@ description: Configure checking of the Base Command existence before adding
 ---
 
 # Check Base Command
-Configure checks for if the [*Base Command*](../Arguments/Sub-Commands/Add/Switches/Base.md){data-preview} exists
+Configure how the existence of the [*Base Command*](../Arguments/Sub-Commands/Add/Switches/Base.md){data-preview} is checked
 
 | Name | Accepted Values | Default |
 | :--: | :-------------: | :-----: |

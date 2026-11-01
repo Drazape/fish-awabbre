@@ -1,11 +1,11 @@
 ---
 comments: true
 icon: lucide/arrow-big-down-dash
-description: Deactivate `run0` command-prefix toleration
+description: Deactivate `$awabbre_prefix` command-prefix toleration
 ---
 
 # Unprefix
-Deactivate [`$awabbre_prefix`][prefix-config]{data-preview} toleration before the Base Command
+Deactivate toleration of tokens part of [`$awabbre_prefix`][prefix-config]{data-preview} when encountered before the Base Command
 
 [prefix-config]: ../../../../Configuration/Prefix.md
 
@@ -32,15 +32,15 @@ Use-case
 awabbre add --base=<base-command> … <UNPREFIX-FLAG> (?:`--`) …
 ```
 
-!!! example "abbreviating `run0`"
-    Always use `--empower` so that the created files are owned by the calling user, not `root`.
-    ```fish {title="command" .no-select}
-    awabbre add -0s --base=run0 -- {,--empower\ }touch
-    ```
-    Here, *Unprefix* is used since you typically wouldn't prefix `run0`—the prefixes are usually elevation commands.
-
 !!! example "Expanding only with `run0`"
     Only bypass *root check* on an attempt to run as `root`
     ```fish {title="command" .no-select}
     awabbre add -0c --base=run0 nh os switch{,' % --bypass-root-check'}
     ```
+
+!!! example "abbreviating `run0`"
+    The following awabbre definition adds the `--empower` flag when `touch` is used with `run0`.
+    ```fish {title="command" .no-select}
+    awabbre add --unprefix --base=run0 -- {,--empower\ }touch
+    ```
+    Here, *Unprefix* is used since you typically wouldn't prefix `run0`—the prefixes are usually elevation commands.

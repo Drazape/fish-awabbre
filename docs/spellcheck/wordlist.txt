@@ -42,3 +42,7 @@ awabbres
 pkgs
 unexpanded
 unexpansion
+indexable
+Unselective
+Standardless
+distributable

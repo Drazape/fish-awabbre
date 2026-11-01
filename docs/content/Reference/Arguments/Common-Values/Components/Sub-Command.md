@@ -14,12 +14,12 @@ Argument Position
 :   The *Sub-Command* comes between the *Initial Arguments* and the *Expansion*
 
 Command-line
-:   Replaced with the *Expansion*
+:   Upon match, it is replaced with the *Expansion*
 ### Single Token
 It must comprise only one token; that is, only one token can be replaced by the expansion. (Fish imposed; reasonable — since otherwise, it would be a UX nightmare)
 ### Customizable Behavior
 [:lucide-settings: Regular Expressions](../../Sub-Commands/Add/Switches/Regular-Expression.md "Match command-line arguments with RegExp"){data-preview .md-button .md-button--primary} Plain String matching
-:   The expansion occurs when the *Sub-Command* matches as a plain string, not Regex
+:   The expansion occurs when the *Sub-Command* matches as a plain string, not a RegExp
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
@@ -33,5 +33,5 @@ awabbre list [<initial-arguments>] --sub-command=<SUB-COMMAND>
 
     - `#!fish awabbre add --base=jj `**`ci`**` commit`
     - `#!fish awabbre add -0c --base=run0 nh os `**`switch`**` 'switch % --bypass-root-check'`
-    - `#!fish awabbre list --base=jj `**`ci`**
+    - `#!fish awabbre list --base=jj --sub-command=`**`ci`**
     - `#!fish awabbre list -0c --base=run0 nh os `**`--sub-command=switch`**

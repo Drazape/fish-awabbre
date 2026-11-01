@@ -5,7 +5,7 @@ description: Match command-line arguments with *Regular Expression*s
 ---
 
 # Regular Expression
-Match command-line arguments with *Regular Expression*s
+Match certain command-line arguments with *Regular Expressions* rather than fixed strings that match exactly.
 
 ## Properties
 |       Values        | Short |   Long  | Sub-Command |    Inherited       |
@@ -13,25 +13,38 @@ Match command-line arguments with *Regular Expression*s
 | Multiple & Optional |  `r`  | `regex` | [Add](../index.md){data-preview} | ✅ true (extended) |
 
 ## Details
-Miscellaneous details about the switch
+The following sections describe various miscellaneous details about the switch:
+
 ### Values
 `sub-command` (default)
 :   Applies to the [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview}
 
 `initials`
 :   Applies to the [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview}
-### Relation
-- The [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview}/[*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview} turns into a RegExp instead of a fixed string (and may require escapes)
-- Providing [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} is still necessary, unlike `builtin abbr` where you can directly pass the RegExp to the flag.
-- This switch is essential for multiple [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview} permutations paired with the same [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} (`builtin abbr`'s restriction)
-!!! tip "Workaround Permutations"
-    Use `string escape --style=regex` for [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} for multiple permutations
-### Single Token
-The *Regular Expression* is only matched against the individual arguments (not the entire command-line)
 
-!!! note "Same boundaries as `builtin abbr`"
+!!! note "Both in the same awabbre"
+    You can use both values in the same awabbre definition.  
+    To do so, specify both the values in separate `--regex` flags; that is, pass the following 2 arguments: `--regex=sub-command` `--regex=initials`
+
+### Relation
+- The *Sub-Command*/*Initial Arguments* turn into a RegExp instead of a fixed string
+- The *Sub-Command* is still passed as a positional; this flag only changes how it is interpreted.
+
+!!! note "Difference with the `abbr` built-in"
+    This is in contrast to the `abbr` built-in where, if the flag is used, you can directly pass the RegExp sub-command to the flag.
+
+- This switch is essential for multiple *Base Command*, and *Initial Arguments* permutations paired with the same *Sub-Command* at the same index (restriction of the `abbr` built-in)
+
+!!! tip "Workaround Permutations"
+    To bypass the permutation limitation, you must use `--regex=sub-command` even when the *Sub-Command* isn't actually a RegExp.  
+    In this case, escape the said *Sub-Command* with `string escape --style=regex` so that it is still interpreted literally.
+
+### Single Token
+The *Regular Expression* is only matched against the individual arguments at their respective indexes (not the entire command-line at once)
+
+!!! note "Same boundaries as the `abbr` built-in"
     When matching tokens on the command-line (both `sub-command` and `initials`), no leading or trailing tokens are matched by default.
-    That is, the inputted query is wrapped as follows: `^(QUERY)$`, retaining the behavior from `builtin abbr`
+    That is, the inputted query is wrapped as follows: `^(QUERY)$`, retaining the behavior from the `abbr` built-in
     !!! example "Example invalid query"
         The query `QUERY` does not match the target `prefix-QUERY-suffix`
 
@@ -46,12 +59,12 @@ Matching command-line arguments dynamically
 
 !!! info "Implementation"
     Sub-Command
-    :   It is directly passed to `builtin abbr` with the [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md "Args preceding *Sub-Command*"){data-preview} as the value
+    :   It is directly passed to the `abbr` built-in with the *Sub-Command* as the value
 
     Initial Arguments
-    :   [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview} in itself is a `awabbre` exclusive feature. Thus, manually matched
+    :   [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md "Args preceding"){data-preview} are manually matched, for they are a `awabbre` exclusive feature.
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-awabbre add --base=<base-commands>… --regex[=<value>…] <creation_flags>… -- <initials> <sub-command> <expansion>
+awabbre add --base=<base-commands>… --regex[=<value>…] [<creation_flags>…] -- [<initials>] <sub-command> <expansion>
 ```

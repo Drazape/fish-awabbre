@@ -5,7 +5,7 @@ description: The string that replaces the *Sub-Command* on match
 ---
 
 # Expansion
-The string that replaces the [*Sub-Command*](./Sub-Command.md){data-preview} on match
+This is the string that replaces the [*Sub-Command*](./Sub-Command.md){data-preview} upon match on the command-line
 
 ## Details
 Miscellaneous details about the positional

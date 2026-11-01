@@ -27,7 +27,7 @@ Use
 
 ## Usage
 ```fish {title="Format" .no-copy .no-select}
-awabbre [<sub-command>…] <HELP-FLAG>
+awabbre [<sub-command>…] --help
 ```
 
 !!! info "Insignificance of Arguments"

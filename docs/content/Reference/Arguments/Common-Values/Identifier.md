@@ -5,20 +5,23 @@ description: A minimal distinct string that identifies an abbreviation
 ---
 
 # Identifier
-The *Identifier* is a **minimal content-addressed string** that distinctively identifies a context-aware abbreviation created with [Add][add-subcommand]{data-preview}.
+The *Identifier* is a **minimal content-addressed string** that distinctively identifies each context-aware abbreviation (awabbre) created with [Add][add-subcommand]{data-preview}.
 
 [add-subcommand]: ../Sub-Commands/Add/index.md
 
 ## Use
-These *Identifiers* can be specified to other `awabbre` sub-commands and external tools to refer to a specific abbreviations.
+An *Identifier* token can be specified to other `awabbre` sub-commands and external tools to refer to a specific abbreviation.
 
 ## Obtainment
-The Identifiers associated with an abbreviation is returned by [List][list-subcommand]{data-preview}.
+The Identifiers associated with each of the abbreviation are outputted by [List][list-subcommand]{data-preview}.
+<!-- Used the word *outputted* instead of *returned*.
+---- This is because Fish function returns only refers to exit codes
+-->
 
 [list-subcommand]: ../Sub-Commands/List/index.md
 
 ## Composition
-The *Identifier* comprises of only elements that determine what value is matched on the command-line.   
+The *Identifier* comprises only elements that determine what value is matched on the command-line.   
 That is, the components that determine details like what the abbreviation expands to, and where the cursor is placed, are not part of the identifier.  
 In other words, the identifier is kept minimal, with only those components that are necessary for keeping each abbreviation distinct from others.
 
