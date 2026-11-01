@@ -73,7 +73,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                     --positional='+Initials | Filter by arguments that are matched before expanding the sub-command' \
                     --flag={
                                 'invert:i | Invert the match result',
-                                'cmdline-regexp:m | Match command-line argument values with RegExp',
+                                'value-regexp:m | Match command-line argument values with RegExp',
                                 'sub-command:S | Only abbreviations that match the specified Sub-Command',
                                 'expansion:E | Only abbreviations that match the specified Expansion',
                                 'base:b | Specify Base Commands the abbreviation must trigger on',

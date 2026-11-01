@@ -21,7 +21,7 @@ When this switch is enabled for a scope of value, the values for which the scope
 This allows much more flexible matching of argument values which would otherwise not be possible with the other built-in filtering options alone.
 
 !!! note "Different than Sub-command match type"
-    This switch is different than the [Match](./Match.md){data-preview} switch, which filters the listed identifiers by their sub-command match type as defined during their [addition][add]{data-preview}.  
+    This switch is different than the [*Regular Expressions* switch](../../Add/Switches/Regular-Expression.md){data-preview}, which filters the listed identifiers by their sub-command match type as defined during their [addition][add]{data-preview}.  
     Whereas this switch filters the listed identifiers by interpreting the matched values in scope as regular expressions rather than fixed strings.
 
 ## Values
