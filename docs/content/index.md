@@ -5,7 +5,7 @@ description: Home Page
 ---
 
 # Home
-A Fish abstraction to create context-aware abbreviations, and cleanly integrating into existing command-line workflows.
+A Fish abstraction to create context-aware abbreviations, and packages made to cleanly integrating into existing command-line workflows.
 
 ## Purpose
 This is a 3rd-party solution to the problems likewise faced by the developer:  
@@ -23,6 +23,9 @@ Though the original `abbr` built-in is capable of creating all sorts of abbrevia
 - Fired off even when the sub-command lies in unexpected positions
 - Not fired off when used with elevation commands like `run0` and `sudo`
 - Hard to customize
+- Require lots of boilerplate to create, and are hard to maintain
+- Are hard to manage, list, and debug
+- Standardless, and not easily distributable
 
 ### Individual solutions
 The problem with this approach is that multiple repetitive functions are created, violating the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself "Wikipedia: Don't Repeat Yourself"){data-preview}.
@@ -47,3 +50,12 @@ This program is designed carefully to tackle these issues; for that, it does the
 - Improve upon `builtin abbr`
 	- Once the user escapes the *Sub-Command* in the current command, you don't have to escape it again
 	- Unlike `builtin abbr`, the flags modifying the argument treatment don't modify the argument structure itself. (doesn't accept values if it is already setup to be provided as a positional)
+	- Add features and conveniences exclusive to fish-awabbre
+- Make management and debugging of such abbreviations easier with different sub-commands
+- Make abbreviations more extendable and abstractions with a Software Development Kit
+- Intuitive development with superior user-experience that includes:
+  - advanced completions
+  - colored output
+  - extensive documentation
+  - standardization
+  - operation separation with sub-commands
