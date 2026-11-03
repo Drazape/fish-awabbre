@@ -6,7 +6,6 @@ RegExp
 Unprefix
 md
 lucide
-subAbbr
 Unabstracted
 customizable
 APIs
