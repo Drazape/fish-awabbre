@@ -2,7 +2,7 @@ begin
     set --local -- common_complete complete --command=awabbre-pkgs --no-files
     $common_complete
 
-    function sub
+    function _awabbre-pkgs_completion_next-pkg-or-group
         set --local -- path (__fish_print_cmd_args_without_options)[2..]
 
         set --local -- parent_group _awabbre_pkg_"$(string join -- _ {$path} \0)"
@@ -16,5 +16,5 @@ begin
 
     end
 
-    $common_complete --arguments={$pkg} --arguments='(sub)'
+    $common_complete --arguments={$pkg} --arguments='(_awabbre-pkgs_completion_next-pkg-or-group)'
 end
