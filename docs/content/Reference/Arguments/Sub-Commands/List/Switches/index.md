@@ -16,4 +16,4 @@ Switches accepted by the [List](../index.md){data-preview} sub-command to filter
 | [Value RegExp](Value-RegExp.md){data-preview} | `regex` | `r` | None (toggle) | Interpret the supplied positionals as regular expressions. |
 | [Invert](Invert.md){data-preview} | `invert` | `i` | None (toggle) | Invert the filters applied by the other arguments. |
 
-Besides the switches previously tabulated, you can also use any of the other switches accepted by the [Add sub-command](../../Add/index.md){data-preview} to further filter out the identifiers based on what value was provided to them during their definition.
+Besides the switches previously tabulated, you can also use any of the [other switches accepted by the Add sub-command](../../Add/Switches/index.md){data-preview} to further filter out the identifiers based on what value was provided to them during their definition.
