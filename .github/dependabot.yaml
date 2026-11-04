@@ -4,4 +4,4 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/" # Look for `.github/workflows` in the `root` directory
     schedule:
-      interval: "weekly"
+      interval: "monthly"
