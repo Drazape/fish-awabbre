@@ -4,7 +4,7 @@ begin
         # os: allow root
         _awabbre_internal_default-prefix
         for prefix in {$awabbre_prefix}
-            awabbre add --unprefix --expander --regex=sub-command --base={$awabbre_prefix} -- {$exec_name} os 'switch|boot|build\-image|build\-vm|rollback|test' '_awabbre_lib_expander_append --bypass-root-check'
+            awabbre add --unprefix --expander --regex=sub-command --base={$awabbre_prefix} -- {$exec_name} os (string join -- \| switch boot build{,\\-{image,vm}} rollback test) '_awabbre_lib_expander_append --bypass-root-check'
         end
     end
 end
