@@ -1,7 +1,13 @@
-# REF: https://docs.github.com/en/code-security/supply-chain-security/keeping-your-actions-up-to-date-with-dependabot
 version: 2
 updates:
+
+  # REF: https://docs.github.com/en/code-security/supply-chain-security/keeping-your-actions-up-to-date-with-dependabot
   - package-ecosystem: "github-actions"
-    directory: "/" # Look for `.github/workflows` in the `root` directory
+    directory: "/"
     schedule:
       interval: "monthly"
+
+  - package-ecosystem: "nix"
+    directory: "/"
+    schedule:
+      interval: "daily"
