@@ -33,11 +33,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793696052,
-        "narHash": "sha256-YCki/JltOrO5W5kUlZLezRa1SyMiSkZqRde54p6puzI=",
+        "lastModified": 1793804204,
+        "narHash": "sha256-uejASY+Zvld72ZsuZV8o3iZUVdeGUokCil0pDh5NH/A=",
         "owner": "Drazape",
         "repo": "fish-helpText",
-        "rev": "59c9f3608eb457444fa882e07aa0f797abf8d756",
+        "rev": "7333cfca7f5cfffc1949a28f958aa3d493bfebf1",
         "type": "github"
       },
       "original": {
