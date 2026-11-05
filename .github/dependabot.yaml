@@ -1,6 +1,5 @@
 version: 2
 updates:
-
   # REF: https://docs.github.com/en/code-security/supply-chain-security/keeping-your-actions-up-to-date-with-dependabot
   - package-ecosystem: "github-actions"
     target-branch: "develop"
@@ -17,6 +16,6 @@ updates:
     cooldown:
       default-days: 0
     groups:
-      all-nix:
+      nix:
         patterns:
           - "*"
