@@ -3,11 +3,13 @@ updates:
 
   # REF: https://docs.github.com/en/code-security/supply-chain-security/keeping-your-actions-up-to-date-with-dependabot
   - package-ecosystem: "github-actions"
+    target-branch: "develop"
     directory: "/"
     schedule:
       interval: "monthly"
 
   - package-ecosystem: "nix"
+    target-branch: "develop"
     directory: "/"
     schedule:
       interval: "daily"
