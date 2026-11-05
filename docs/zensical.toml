@@ -10,7 +10,6 @@ copyright = """
 """
 docs_dir = "./content/"
 site_dir = "./site/"
-custom_dir = "./overrides/"
 extra_css = ["stylesheets/extra.css"]
 
 [project.extra]
@@ -47,6 +46,7 @@ description = """
 
 # Defaults
 [project.theme]
+custom_dir = "./overrides/"
 logo = "icon.png"
 favicon = "icon.png"
 language = "en"
