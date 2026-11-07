@@ -78,6 +78,24 @@ awabbre add --base=jj ci commit
 --- As per the [Google Documentation Style Guide](https://developers.google.com/style/accessibility#general-dos-and-donts), the information should convey the full meaning without any use of “puntuation marks” (the Right Arrow symbol)
 -->
 
+## Natural language
+Abbreviating arguments sounding like natural language
+
+> [!NOTE]
+> These awabbres shouldn't reduce possibilities for what can be done with the command.  
+> To achieve that, these abbreviation typically only abbreviate arguments that would otherwise be invalid.
+
+Example abbreviations:
+```
+awabbre add --base=awabbre -- add create
+
+# see below to understand following two awabbres
+awabbre add --base=awabbre -- erase all '(awabbre list)'
+awabbre add --base=awabbre -- clear 'erase (awabbre list)'
+```
+
+see [Erasing filtered awabbres](https://drazape.github.io/fish-awabbre/Guides/Usage/Erasing-filtered-awabbres/) to learn how abbreviations expanding into substituted `awabbre list` work
+
 > [!TIP]
 > Check the [packages](#Discover-Packages) for more complicated & useful abbreviations
 
