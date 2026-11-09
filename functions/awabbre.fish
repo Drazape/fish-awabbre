@@ -186,7 +186,7 @@ function awabbre --description='Create abbreviations for sub-commands'
             if test (count {$argv}) -eq 0
                 set --function -- identifiers_to_show {$identifiers}
             else
-                if ! _awabbre_internal_verify-arg_identifier-existance {$argv}
+                if ! _awabbre_internal_verify-arg_identifier-existence {$argv}
                     _awabbre_internal_revert-paths
                     return 2
                 end
@@ -243,7 +243,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                 _awabbre_internal_revert-paths
                 return 3
             end
-            if ! _awabbre_internal_verify-arg_identifier-existance {$subcommand_args}
+            if ! _awabbre_internal_verify-arg_identifier-existence {$subcommand_args}
                 _awabbre_internal_revert-paths
                 return 4
             end
