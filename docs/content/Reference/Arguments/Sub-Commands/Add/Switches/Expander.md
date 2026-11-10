@@ -8,9 +8,15 @@ description: Dynamically expand using a command's output as the *Expansion* stri
 Dynamically expand using a command's output as the [*Expansion*][expansion]{data-preview} string
 
 ## Properties
-|  Value | Short | Long | Sub-Command |      Inherited     |
-| :----: | :---: | :----: | :-------: | :----------------: |
-| None (toggle) | `e` | `expander` | Add | ✅ true (improved) |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>None (toggle)</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>e</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>expander</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td>Add</td></tr>
+    <tr><td><strong>Inherited</strong></td><td>✅ true (improved)</td></tr>
+  </tbody>
+</table>   
 
 ## Details
 Relation

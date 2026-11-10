@@ -8,9 +8,15 @@ description: Acknowledge flags part of the *Initial Arguments*
 Acknowledge the flag tokens part of *Initial Arguments*
 
 ## Properties
-| Value | Short |      Long      | Sub-Command | Inherited |
-| :---: | :---: | :------------: | :---------: | :-------: |
-|  None |  `s`  | `regard-flags` | [Add](../index.md){data-preview} | ❌ false |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>None</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>s</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>regard-flags</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>Add</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>❌ false</td></tr>
+  </tbody>
+</table>   
 
 ## Details
 Relation

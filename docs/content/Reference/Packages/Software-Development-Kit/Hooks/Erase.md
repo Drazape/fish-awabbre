@@ -5,9 +5,12 @@ description: Trigger before erasing an abbreviation
 ---
 
 # Erase
-| Trigger | Event |
-| :-----: | :---: |
-| After erasing an abbr | `awabbre_erase` |
+<table>
+  <tbody>
+    <tr><td><strong>Trigger</strong></td><td>After erasing an abbr</td></tr>
+    <tr><td><strong>Event</strong></td><td><code>awabbre_erase</code></td></tr>
+  </tbody>
+</table>   
 
 ## Tokens
 When the event is emitted, all the identifiers passed by the user (to the [*Erase* sub-command][erase-subcommand]{data-preview} of `awabbre`) are passed as is to the hook function.

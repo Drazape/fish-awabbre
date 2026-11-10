@@ -5,9 +5,12 @@ description: Trigger before collecting info about an abbr
 ---
 
 # Collect Info
-| Trigger | Event |
-| :-----: | :---: |
-| After displaying information about an identifier | `awabbre_collect-info` |
+<table>
+  <tbody>
+    <tr><td><strong>Trigger</strong></td><td>After displaying information about an identifier</td></tr>
+    <tr><td><strong>Event</strong></td><td><code>awabbre_collect-info</code></td></tr>
+  </tbody>
+</table>   
 
 ## Tokens
 The definition of the abbreviation as given by [Show][show-subcommand]{data-preview} in a machine parsable format, that is, as it is passed to [Add][add-subcommand]{data-preview}.

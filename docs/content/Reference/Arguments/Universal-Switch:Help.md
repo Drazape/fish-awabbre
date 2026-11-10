@@ -8,9 +8,13 @@ description: Show a reference manual for the given sub-command
 Show a reference manual for the given sub-command
 
 ## Properties
-| Value | Short |  Long  |
-| :---: | :---: | :----: |
-|  None |  `h`  | `help` |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>None</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>h</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>help</code></td></tr>
+  </tbody>
+</table>   
 
 ## Details
 Universal

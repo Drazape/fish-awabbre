@@ -5,9 +5,12 @@ description: Trigger for abbr creation
 ---
 
 # Add
-| Trigger | Event |
-| :-----: | :---: |
-| After abbr creation | `awabbre_add` |
+<table>
+  <tbody>
+    <tr><td><strong>Trigger</strong></td><td>After abbr creation</td></tr>
+    <tr><td><strong>Event</strong></td><td><code>awabbre_add</code></td></tr>
+  </tbody>
+</table>   
 
 ## Tokens
 When the event is emitted, the following arguments are passed to the hook functions:

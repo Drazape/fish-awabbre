@@ -11,9 +11,15 @@ Specify the Base Commands for which the abbreviation would expand for.
     Among [switches](./index.md){data-preview}, this is the only one that is required by [Add](../index.md){data-preview} for the abbreviation to be valid.
 
 ## Properties
-|   Value  | Short | Long | Sub-Command | Inherited |
-| :------: | :---: | :--: | :---------: | :---------: |
-| Required / Variable |  `b`  | `base` | [Add](../index.md){data-preview} | ✅ True |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>Required / Variable</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>b</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>base</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>Add</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>✅ True</td></tr>
+  </tbody>
+</table>   
 
 ## Details
 Relation

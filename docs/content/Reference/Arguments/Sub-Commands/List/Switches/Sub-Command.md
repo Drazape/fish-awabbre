@@ -9,9 +9,15 @@ description: Only list identifiers that expand the specified Sub-Command
 Filter listed abbreviations to only those abbreviations that expand the specified [*Sub-Command* value](../../../Common-Values/Components/Sub-Command.md){data-preview}.
 
 ## Properties
-| Value | Short | Long | Sub-Command | Inherited |
-| :---: | :---: | :--: | :---------: | :-------: |
-| Required | `S` | `sub-command` | [List][list]{data-preview} | ❌ false |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>Required</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>S</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>sub-command</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>List</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>❌ false</td></tr>
+  </tbody>
+</table>   
 
 !!! example "List abbreviations that expand `ci`"
     ```fish

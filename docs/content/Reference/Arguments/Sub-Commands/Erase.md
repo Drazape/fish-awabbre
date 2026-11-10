@@ -7,11 +7,6 @@ description: Erase a content-aware abbreviation by its identifier
 # Erase
 Erase a content-aware abbreviation (awabbre) by its identifier
 
-## Properties
-|   Name  | Positional Values |
-| :-----: | :---------------: |
-| `erase` | Required |
-
 ## Details
 Identifier Obtainment
 :   The [identifier](../Common-Values/Identifier.md){data-preview} can be obtained from the [List sub-command](./List/index.md "Get identities of loaded abbrs"){data-preview}

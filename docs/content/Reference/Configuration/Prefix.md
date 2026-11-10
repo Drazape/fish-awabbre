@@ -7,9 +7,13 @@ description: Set prefixes tolerable by Base Command
 # Base Prefix
 Configure the prefixes that will be tolerated if they precede the [*Base Command*](../Arguments/Sub-Commands/Add/Switches/Base.md){data-preview}
 
-| Name | Accepted Values | Default |
-| :--: | :-------------: | :-----: |
-| `awabbre_prefix` | Base Commands | `run0` `sudo` `doas` |
+<table>
+  <tbody>
+    <tr><td><strong>Name</strong></td><td><code>awabbre_prefix</code></td></tr>
+    <tr><td><strong>Accepted Values</strong></td><td>Base Commands</td></tr>
+    <tr><td><strong>Default</strong></td><td><code>run0</code> <code>sudo</code> <code>doas</code></td></tr>
+  </tbody>
+</table>   
 
 !!! example "Elevation with `run0`"
     If `$awabbre_prefix` is set to `run0`, then all abbreviations would expand even if the actual *Base Command* is preceded by `run0` for privilege escalation.

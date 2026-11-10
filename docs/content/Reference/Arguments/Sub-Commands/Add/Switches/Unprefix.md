@@ -13,9 +13,15 @@ Normally, if a token from `$awabbre_prefix` precedes the Base Command on the co
 With this switch enabled for the respective abbreviations, those tokens are no longer respected.
 
 ## Properties
-| Value | Short |    Long    | Sub-Command | Inherited |
-| :---: | :---: | :--------: | :---------: | :-------: |
-|  None |  `0`  | `unprefix` |     [Add](../index.md){data-preview}     |  ❌ false |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>None</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>0</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>unprefix</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>Add</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>❌ false</td></tr>
+  </tbody>
+</table>   
 
 ## Details
 Relation

@@ -7,9 +7,13 @@ description: Configure checking of the Base Command existence before adding
 # Check Base Command
 Configure how the existence of the [*Base Command*](../Arguments/Sub-Commands/Add/Switches/Base.md){data-preview} is checked
 
-| Name | Accepted Values | Default |
-| :--: | :-------------: | :-----: |
-| `awabbre_nonexistent_basecommand` | `allow` `quiet` | Unset |
+<table>
+  <tbody>
+    <tr><td><strong>Name</strong></td><td><code>awabbre_nonexistent_basecommand</code></td></tr>
+    <tr><td><strong>Accepted Values</strong></td><td><code>allow</code> <code>quiet</code></td></tr>
+    <tr><td><strong>Default</strong></td><td>Unset</td></tr>
+  </tbody>
+</table>   
 
 ## Default (unset)
 By default, fish-awabbre checks if the *Base Command* we're adding the abbreviation for exists.  

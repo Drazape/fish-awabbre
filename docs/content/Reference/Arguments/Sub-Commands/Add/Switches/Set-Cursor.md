@@ -8,10 +8,15 @@ description: Position the cursor at the separator present in the Expansion
 Position the cursor at the separator present in the [*Expansion*](../../../Common-Values/Components/Sub-Command.md "Token to match & replace"){data-preview}
 
 ## Properties
-|   Value  | Short |      Long    | Sub-Command | Inherited |
-| :------: | :---: | :----------: | :---------: | :-------: |
-| Optional |  `c`  | `set-cursor` | [Add](../index.md){data-preview} | ✅ true |
-
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>Optional</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>c</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>set-cursor</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>Add</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>✅ true</td></tr>
+  </tbody>
+</table>   
 
 ### Value
 Position (default: `%`)

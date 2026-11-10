@@ -5,9 +5,12 @@ description: Trigger before gathering identities
 ---
 
 # Gather Identifiers
-| Trigger | Event |
-| :-----: | :---: |
-| Before gathering identities | `awabbre_gather-identifiers` |
+<table>
+  <tbody>
+    <tr><td><strong>Trigger</strong></td><td>Before gathering identities</td></tr>
+    <tr><td><strong>Event</strong></td><td><code>awabbre_gather-identifiers</code></td></tr>
+  </tbody>
+</table>   
 
 ## Tokens
 The hook functions may be passed the following fixed tokens as arguments.  

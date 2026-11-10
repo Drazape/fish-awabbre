@@ -8,9 +8,15 @@ description: List identifiers that accept all the specified Base Commands
 Filter out the abbreviations that don't accept all the *Base Commands* specified as the value
 
 ## Properties
-| Value | Short |   Long  |     Sub-Command     | Inherited |
-| :---: | :---: | :-----: | :-----------------: | :-------: |
-| Optional | `b` | `base` | [List][list]{data-preview} | ❌ false |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>Optional</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>b</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>base</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>List</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>❌ false</td></tr>
+  </tbody>
+</table>   
 
 !!! note "Logical And"
     The listed identifiers must accept all the *Base Commands* specified as the value, not just one of them.
@@ -30,5 +36,4 @@ Filter out the abbreviations that don't accept all the *Base Commands* specifie
     awabbre list --base={nix,nh}
     ```
 
-[list]: ../index.md
 [base-of-add]: ../../Add/Switches/Base.md

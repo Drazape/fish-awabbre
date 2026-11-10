@@ -8,9 +8,15 @@ description: Match command-line arguments with *Regular Expression*s
 Match certain command-line arguments with *Regular Expressions* rather than fixed strings that match exactly.
 
 ## Properties
-|       Values        | Short |   Long  | Sub-Command |    Inherited       |
-| :-----------------: | :---: | :-----: | :---------: | :----------------: |
-| Multiple & Optional |  `r`  | `regex` | [Add](../index.md){data-preview} | ✅ true (extended) |
+<table>
+  <tbody>
+    <tr><td><strong>Values</strong></td><td>Multiple & Optional</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>r</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>regex</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>Add</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>✅ true (extended)</td></tr>
+  </tbody>
+</table>   
 
 ## Details
 The following sections describe various miscellaneous details about the switch:

@@ -8,10 +8,15 @@ description: Match the command-line positionals with RegExp
 Match argument values with Regular Expressions
 
 ## Properties
-| Value | Short |   Long  |     Sub-Command     | Inherited |
-| :---: | :---: | :-----: | :-----------------: | :-------: |
-| Multiple (scopes) |  `r`  | `regex` | [List][list]{data-preview} | ❌ false |
-
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>Multiple (scopes)</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>r</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>regex</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>List</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>❌ false</td></tr>
+  </tbody>
+</table>   
 
 ## Description
 By default, the arbitrary values provided as positionals, or to flags, are fixed strings; they are exactly matched to whatever they are filtering to be included.

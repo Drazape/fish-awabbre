@@ -9,9 +9,15 @@ description: Only list identifiers with the specified expansion token
 Filter listed abbreviations to only those abbreviations that expand to the specified [*Expansion* value](../../../Common-Values/Components/Expansion.md){data-preview}.
 
 ## Properties
-| Value | Short | Long | Sub-Command | Inherited |
-| :---: | :---: | :--: | :---------: | :------- |
-| Required | `E` | `expansion` | [List][list]{data-preview} | ❌ false |
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>Required</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>E</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>expansion</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>List</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>❌ false</td></tr>
+  </tbody>
+</table>   
 
 !!! example "List abbreviations that expand to `commit`"
     ```fish

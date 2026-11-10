@@ -7,11 +7,6 @@ description: List the identifier of each content-aware abbreviation loaded
 # List
 List the [identifier][identifier]{data-preview} of each content-aware abbreviation loaded
 
-## Properties
-|  Name  | Positional Values |
-| :----: | :---------------: |
-| `list` | Required |
-
 ## Details
 Miscellaneous details about the sub-command
 

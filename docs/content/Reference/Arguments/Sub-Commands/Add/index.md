@@ -7,11 +7,6 @@ description: Create context-aware abbreviations (awabbres)
 # Add
 Create context-aware abbreviations (awabbres)
 
-## Properties
-|  Name | Parent |
-| :---: | :----: |
-| `add` |  None  |
-
 ## Arguments
 Command-line arguments accepted by the *Add* sub-command
 ### Positionals
