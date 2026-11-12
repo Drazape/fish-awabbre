@@ -5,6 +5,20 @@ description: Home Page
 ---
 
 # Home
+![
+	Showcase of the abbreviations included in the official Jujutsu package.
+	The showcased sub-command is `rebase`.
+	The command starts with a regular abbreviation of the *Base Command* `j` abbreviating into `jj`.
+	Next, the following tokens are typed and are expanded in the following order:
+	the short flag `-R` expands to `--repository=` (before the value: `/etc/nixos/`).
+	`rebase` remains as-is, unabbreviated.
+	Similarly, the short flag with a value: `-r@` expands to the long flag `--revisions=@`.
+	Lastly, the short flag `-o` expands into the long variant: `--onto=` (before the value: `@--`).
+](https://github.com/user-attachments/assets/e0ce20db-37ce-400e-aaba-d2983aa8c5ac)
+<!-- While the following information can be better visually parsed with the use of `→`, the whole purpose of alt text is conveying information of the GIF for the visually-impaired readers.
+---- As per the [Google Documentation Style Guide](https://developers.google.com/style/accessibility#general-dos-and-donts), the information should convey the full meaning without any use of “puntuation marks” (the Right Arrow symbol)
+-->
+
 A Fish abstraction to create context-aware abbreviations (awabbres), and packages made to cleanly integrate into existing command-line workflows.
 
 ## Purpose
