@@ -2,6 +2,8 @@ name: Documentation
 
 on:
   push:
+    branches-ignore:
+      - develop # check already performed on protected branch
   pull_request:
 
 jobs:
