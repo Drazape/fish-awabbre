@@ -19,11 +19,10 @@ For the package to be loaded by the official repository helper `awabbre-pkgs`, a
 ### Function naming convention (recommended)
 Regardless of how the function is distributed, it can be activated using the function naming convention method.
 
-For compliance, the package's function name must be prefixed with `_awabbre_pkg_`.  
-[Groups](../../Reference/Packages/Repository-Helper/Package-Tree.md){data-preview} are separated with a `_`; the group organisation is up to the developer, or the packager/distributor.
-```fish {title="Function Name Format"}
-_awabbre_pkg_[<groups(sep:_)>_]<pkgname>
-```
+For compliance, the package's function name must be prefixed with `_awabbre_pkg_`.
+
+!!! tip "Package Tree support"
+    Complaint packages can additionally be organised as part of the [Package Tree](../../Reference/Packages/Repository-Helper/Package-Tree.md){data-preview}
 
 ### Event trigger (static function only)
 In case of static functions, you additionally have the choice of activate your [static][static-function]{data-preview}[^static-function] (non-[dynamic][dynamic-function]{data-preview}[^dynamic-function]) package with a [Fish event trigger][fish-events]{data-preview}.
