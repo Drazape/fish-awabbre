@@ -91,7 +91,7 @@ Abbreviating arguments sounding like natural language
 > To achieve that, these abbreviation typically only abbreviate arguments that would otherwise be invalid.
 
 Example abbreviations:
-```
+```fish
 awabbre add --base=awabbre -- add create
 
 # see below to understand following two awabbres
