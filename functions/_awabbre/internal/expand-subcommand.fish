@@ -1,6 +1,6 @@
 function _awabbre_internal_expand-subcommand --description='Expand a subcommand'
     # Input
-    argparse b/base=+\& r/regex\& e/expander\& 0/unprefix\& s/regard-flags\& -- {$argv}
+    argparse b/base=+\& m/manual-space-suffix\& r/regex\& e/expander\& 0/unprefix\& s/regard-flags\& -- {$argv}
     set --local -- subcommand {$argv[1]}
     set --function -- expansion {$argv[2]}
     set --function -- initial_args {$argv[3..]}
@@ -42,6 +42,9 @@ function _awabbre_internal_expand-subcommand --description='Expand a subcommand'
             set -- index_count (math {$index_count} + 1)
         end
     end
+
+    set --query --local -- _flag_manual_space_suffix &&
+        set --global -- _awabbre_expanded_with_setcursor # let the helper handle the space suffix based on if the bind trigger type is used
 
     echo -- {$expansion}
 end
