@@ -1,10 +1,10 @@
 # Main Callables (visible)
-(`awabbre` `awabbre-pkgs`)
+(`awabbre` `awabbre-pkgs_select`)
 Functions called directly by the end-users
 
 ## `awabbre`
 Create personal Sub-Command abbreviations in the scope
-## `awabbre-pkgs`
+## `awabbre-pkgs_select`
 Conveniently access Sub-Command abbreviation packages from the official repository
 
 
@@ -18,7 +18,7 @@ Helper functions called by `awabbre`
 
 ## Packages
 (`pkg/official/`)
-Packages that users typically enable using `awabbre-pkgs` in their Fish shell-initialization configuration
+Packages that users typically enable using `awabbre-pkgs_select` in their Fish shell-initialization configuration
 
 > [!TIP]
 > See the [Contribution Guide](../CONTRIBUTING.md#official-packages) to learn how to add more packages — correctly

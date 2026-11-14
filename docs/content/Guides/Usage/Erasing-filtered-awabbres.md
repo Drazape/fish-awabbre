@@ -30,12 +30,12 @@ awabbre erase (awabbre list <filter>)
     ```fish { title="Command" .no-select }
     awabbre erase (awabbre list)
     ```
-!!! example "Clear awabbre-pkgs whose sub-command is matched with RegExp"
+!!! example "Clear awabbre-pkgs_select whose sub-command is matched with RegExp"
     To clear all the abbreviations whose sub-command is matched with a RegExp, set the match type to `regex`:
     ```fish { title="Command" .no-select }
     awabbre erase (awabbre list --match=regex)
     ```
-!!! example "Clear awabbre-pkgs for the Jujutsu command"
+!!! example "Clear awabbre-pkgs_select for the Jujutsu command"
     To clear all the awabbres for the Jujutsu command, pass the [*Base Command*](../../Reference/Arguments/Sub-Commands/List/Switches/Base.md){data-preview} for it to `awabbre list`:
     ```fish { title="Base Command" .no-select }
     awabbre erase (awabbre list --base=jj)

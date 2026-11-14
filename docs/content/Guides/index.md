@@ -12,4 +12,4 @@ Task-oriented instructions for setting up fish-awabbre and for working with abbr
 | Section | Summary | Guides |
 | ------- | ------- | ------ |
 | [Meta](Meta/index.md){data-preview} | Install the program and distribute abbreviation packages. | [Installation](Meta/Installation.md){data-preview}, [Package Distribution](Meta/Distribution.md){data-preview} |
-| [Usage](Usage/index.md){data-preview} | Manage abbreviations in an interactive Fish session. | [Erasing filtered awabbre-pkgs](./Usage/Erasing-filtered-awabbres.md){data-preview}, [Multi *Initial Args* support](Usage/Multi_Initial-Args_support.md){data-preview} |
+| [Usage](Usage/index.md){data-preview} | Manage abbreviations in an interactive Fish session. | [Erasing filtered awabbre-pkgs_select](./Usage/Erasing-filtered-awabbres.md){data-preview}, [Multi *Initial Args* support](Usage/Multi_Initial-Args_support.md){data-preview} |

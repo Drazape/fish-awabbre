@@ -37,3 +37,14 @@ If no value is set, then the prefixes default to the tokens `run0`, `sudo`, and 
     The value must be set prior to any abbreviation is added, or any packages are loaded.
 
     While fish-awabbre itself can adapt to the modified configuration value, Fish abbreviations are internally immutable; that is, you cannot override the *Base Commands* once defined.
+
+## Affected Components
+These are components that are affected any user configuration made to the `$awabbre_prefix`.
+
+Moreover, one of these components, whichever is called first, automatically sets the value of `$awabbre_prefix` to the [default tokens](#values){data-preview} if it is not already set.
+
+[Awabbre Manager](Awabbre-Manager/index.md){data-preview}
+:   The individual awabbre manager creates awabbres that tolerate the prefixes set in `$awabbre_prefix` during expansions.
+
+[Lazybind Repository Helper](Packages/Repository-Helpers/Lazybind/index.md){data-preview}
+:   While matching the command-line, the Lazybind helper skips through any set prefixes. This is to avoid loading unnecessary packages when the user is not actually calling the *Base Command*.

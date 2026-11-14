@@ -29,7 +29,7 @@ This is a 3rd-party solution to the problems likewise faced by the developer:
 !!! note "Prerequisite knowledge"
     You don't need any experience with the Fish shell or the Fish script to use this program.  
     However, the documentation throughout this site assumes advanced fluency with the command-line itself.  
-    Furthermore, you additionally need proficiency with Fish to [create packages for fish-awabbre](./Reference/Packages/Repository-Helper/Package-Tree.md){data-preview}, and use the provided [Software Development Kit](./Reference/Packages/Software-Development-Kit/Expanders/index.md){data-preview}.
+    Furthermore, you additionally need proficiency with Fish to [create packages for fish-awabbre](./Reference/Packages/index.md){data-preview}, and use the provided [Software Development Kit](./Reference/Packages/Software-Development-Kit/Expanders/index.md){data-preview}.
 
 ### Internal Built-in
 Though the original `abbr` built-in is capable of creating all sorts of abbreviations, if we use the built-in methods without any complex custom functions and parsing of `commandline`, it leads to abbreviations that are:
