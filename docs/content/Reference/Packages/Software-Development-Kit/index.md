@@ -12,5 +12,5 @@ Abstractions officially provided to extend the functionality of fish-awabbre, an
 | Area | Summary | Pages |
 | ---- | ------- | ----- |
 | [Expanders](Expanders/index.md){data-preview} | Convert an input into the replacement string at expansion time. | [Append](Expanders/Append.md){data-preview} |
-| [Hooks](Hooks/index.md){data-preview} | Run plugin code when abbreviations are created, shown, or erased. | [Add](Hooks/Add.md){data-preview}, [Erase](Hooks/Erase.md){data-preview}, [Collect Info](Hooks/Collect-Info.md){data-preview}, [Gather Identifiers](Hooks/Gather-Identifiers.md){data-preview} |
-| [Wrappers](Wrappers/index.md){data-preview} | Provide complete command-line frameworks around abbreviations. | [Flag](Wrappers/Flag/index.md){data-preview}: [Mandatory Long](Wrappers/Flag/Mandatory-Long.md){data-preview}, [To Long](Wrappers/Flag/To-Long/index.md){data-preview}, [Chain](Wrappers/Flag/To-Long/Chain.md){data-preview} |
+| [Hooks](Hooks/index.md){data-preview} | Run plugin code when awabbres are created, listed, shown, or erased. | [Add](Hooks/Add.md){data-preview}, [Erase](Hooks/Erase.md){data-preview}, [Collect Info](Hooks/Collect-Info.md){data-preview}, [Gather Identifiers](Hooks/Gather-Identifiers.md){data-preview} |
+| [Wrappers](Wrappers/index.md){data-preview} | Provide complete command-line frameworks around awabbres. | [Flag](Wrappers/Flag/index.md){data-preview}: [Mandatory Long](Wrappers/Flag/Mandatory-Long.md){data-preview}, [To Long](Wrappers/Flag/To-Long/index.md){data-preview}, [Chain](Wrappers/Flag/To-Long/Chain.md){data-preview} |

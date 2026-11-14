@@ -6,9 +6,9 @@ description: Home Page
 
 # Home
 ![
-	Showcase of the abbreviations included in the official Jujutsu package.
+	Showcase of the awabbres included in the official Jujutsu package.
 	The showcased sub-command is `rebase`.
-	The command starts with a regular abbreviation of the *Base Command* `j` abbreviating into `jj`.
+	The command starts with a raw abbreviation of the *Base Command* `j` awabbreviating into `jj`.
 	Next, the following tokens are typed and are expanded in the following order:
 	the short flag `-R` expands to `--repository=` (before the value: `/etc/nixos/`).
 	`rebase` remains as-is, unabbreviated.
@@ -29,7 +29,7 @@ This is a 3rd-party solution to the problems likewise faced by the developer:
 !!! note "Prerequisite knowledge"
     You don't need any experience with the Fish shell or the Fish script to use this program.  
     However, the documentation throughout this site assumes advanced fluency with the command-line itself.  
-    Furthermore, you additionally need proficiency with Fish to [create packages for fish-awabbre](./Reference/Packages/Repository-Helper/Package-Tree.md){data-preview}, and use the provided [Software Development Kit](./Reference/Packages/Software-Development-Kit/Expanders/index.md){data-preview}.
+    Furthermore, you additionally need proficiency with Fish to [create packages for fish-awabbre](./Reference/Packages/index.md){data-preview}, and use the provided [Software Development Kit](./Reference/Packages/Software-Development-Kit/Expanders/index.md){data-preview}.
 
 ### Internal Built-in
 Though the original `abbr` built-in is capable of creating all sorts of abbreviations, if we use the built-in methods without any complex custom functions and parsing of `commandline`, it leads to abbreviations that are:
@@ -67,3 +67,9 @@ This program is designed carefully to tackle these issues; for that, it does the
 	- Add features and conveniences exclusive to fish-awabbre
 - Make management and debugging of such abbreviations easier with different sub-commands
 - Make abbreviations more extendable and abstractions with a Software Development Kit
+
+## Documentation
+| Section | Summary |
+| ------- | ------- |
+| [Guides](Guides/index.md){data-preview} | Task-oriented instructions for installing, distributing, and using fish-awabbre. |
+| [Reference](Reference/index.md){data-preview} | Complete details of the command-line arguments, configuration, and packages. |

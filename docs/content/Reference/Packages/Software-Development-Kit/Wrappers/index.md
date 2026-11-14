@@ -1,14 +1,19 @@
 ---
 comments: true
 icon: lucide/package
-description: Abbreviation frameworks
+description: Context-aware abbreviation (awabbre) frameworks
 ---
 
 # Wrappers
 Library frameworks with independent arguments and working; abstractions over other commands.
 
 These are made to make package development more intuitive when a mere Expansion library isn't enough.  
-These functions are not limited to changing the expansion, but to every aspect of the abbreviation, and beyond.
+These functions are not limited to changing the expansion, but to every aspect of the awabbre, and beyond.
+
+## Wrappers
+| Wrapper | Summary |
+| ------- | ------- |
+| [Flag](Flag/index.md){data-preview} | Transform short flags into long flags and enforce values for flags that require them. |
 
 ## Uses
 - Directly called from the package instead of calling `awabbre`

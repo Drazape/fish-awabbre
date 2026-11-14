@@ -26,17 +26,17 @@ awabbre erase (awabbre list <filter>)
     ```
 
 !!! example "Clear All"
-    To clear all the abbreviations, simply don't apply a filter to `awabbre list`:
+    To clear all the awabbres, simply don't apply a filter to `awabbre list`:
     ```fish { title="Command" .no-select }
     awabbre erase (awabbre list)
     ```
-!!! example "Clear awabbre-pkgs whose sub-command is matched with RegExp"
-    To clear all the abbreviations whose sub-command is matched with a RegExp, set the match type to `regex`:
+!!! example "Clear awabbre-pkgs_select whose sub-command is matched with RegExp"
+    To clear all the awabbres whose sub-command is matched with a RegExp, set the match type to `regex`:
     ```fish { title="Command" .no-select }
     awabbre erase (awabbre list --match=regex)
     ```
-!!! example "Clear awabbre-pkgs for the Jujutsu command"
-    To clear all the awabbres for the Jujutsu command, pass the [*Base Command*](../../Reference/Arguments/Sub-Commands/List/Switches/Base.md){data-preview} for it to `awabbre list`:
+!!! example "Clear awabbre-pkgs_select for the Jujutsu command"
+    To clear all the awabbres for the Jujutsu command, pass the [*Base Command*](../../Reference/Awabbre-Manager/Arguments/Sub-Commands/List/Switches/Base.md){data-preview} for it to `awabbre list`:
     ```fish { title="Base Command" .no-select }
     awabbre erase (awabbre list --base=jj)
     ```
@@ -47,7 +47,7 @@ awabbre erase (awabbre list <filter>)
     awabbre erase (awabbre list --base=jj rebase)
     ```
 
-    To learn about more filtering options, see [*List* sub-command](../../Reference/Arguments/Sub-Commands/List/index.md){data-preview}.
+    To learn about more filtering options, see [*List* sub-command](../../Reference/Awabbre-Manager/Arguments/Sub-Commands/List/index.md){data-preview}.
 
 
 !!! info "Working"
@@ -55,6 +55,6 @@ awabbre erase (awabbre list <filter>)
 
     [Pacman-removing-unused-packages]: https://wiki.archlinux.org/title/Pacman/Tips_and_tricks#Removing_unused_packages_(orphans) "example from Arch Wiki: Tips and Tricks: Removing unused packages"
 
-    1. the `list` sub-command outputs identifiers for all the abbreviations found that are context-aware—separated by newline.
+    1. the `list` sub-command outputs identifiers for all the awabbres found that are context-aware—separated by newline.
     2. Fish's command substitution converts said output into a list of identifiers.
     3. The entire list is passed to the `erase` sub-command, clearing all the awabbres.

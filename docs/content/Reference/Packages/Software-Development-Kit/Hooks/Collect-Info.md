@@ -1,7 +1,7 @@
 ---
 comments: true
 icon: lucide/info
-description: Trigger before collecting info about an abbr
+description: Trigger before collecting info about an awabbre
 ---
 
 # Collect Info
@@ -13,10 +13,10 @@ description: Trigger before collecting info about an abbr
 </table>   
 
 ## Tokens
-The definition of the abbreviation as given by [Show][show-subcommand]{data-preview} in a machine parsable format, that is, as it is passed to [Add][add-subcommand]{data-preview}.
+The definition of the awabbre as given by [Show][show-subcommand]{data-preview} in a machine parsable format, that is, as it is passed to [Add][add-subcommand]{data-preview}.
 
-[show-subcommand]: ../../../Arguments/Sub-Commands/Show/index.md
-[add-subcommand]: ../../../Arguments/Sub-Commands/Add/index.md
+[show-subcommand]: ../../../Awabbre-Manager/Arguments/Sub-Commands/Show/index.md
+[add-subcommand]: ../../../Awabbre-Manager/Arguments/Sub-Commands/Add/index.md
 
 ## Example Use: Displaying additional information
 The functions that trigger on the event can display additional specialized information to the human user.

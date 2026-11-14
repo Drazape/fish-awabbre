@@ -1,12 +1,19 @@
 ---
-status: new
 comments: true
 icon: lucide/fishing-hook
 description: Triggers for arbitrary plugins
 ---
 
 # Hooks
-Hooks are triggers that can be used by arbitrary plugins for various purposes to modify and extend the functionality of abbreviations.
+Hooks are triggers that can be used by arbitrary plugins for various purposes to modify and extend the functionality of awabbres.
+
+## Hooks
+| Hook | Trigger |
+| ---- | ------- |
+| [Add](Add.md){data-preview} | After an awabbre is created. |
+| [Collect Info](Collect-Info.md){data-preview} | After displaying information about an identifier. |
+| [Erase](Erase.md){data-preview} | After an awabbres is erased. |
+| [Gather Identifiers](Gather-Identifiers.md){data-preview} | Before gathering identifiers for listing or erasing. |
 
 ## Activation
 The hooks are activated through [Fish events](https://fishshell.com/docs/current/language.html#event-handlers "official Fish Shell documentation page: Language#event-handlers"), which loaded functions can listen to.
@@ -14,7 +21,7 @@ The hooks are activated through [Fish events](https://fishshell.com/docs/current
 !!! note "Operations only"
     The hook is triggered only when the main operation of one of the sub-commands is guaranteed to be executed.  
     That is, only after the user configuration is resolved, and all the checks are validated.  
-    Furthermore, the hook is not triggered when the user simply uses the command to [print out a reference help text](../../../Arguments/Universal-Switch:Help.md){data-preview}
+    Furthermore, the hook is not triggered when the user simply uses the command to [print out a reference help text](../../../Awabbre-Manager/Arguments/Universal-Switch:Help.md){data-preview}
 
 Each event name is prepended with `awabbre`—for example, the [event for Add](./Add.md){data-preview} would be `awabbre_add`
 
@@ -34,7 +41,7 @@ You should use hooks instead of [wrappers](../Wrappers/index.md){data-preview} f
 
 ### Uniformity
 Single interface 
-:   The users can manage all the abbreviations through the same interface, without having to refer to a new one for each plugin.
+:   The users can manage all the awabbres through the same interface, without having to refer to a new one for each plugin.
 
 Familiarity
 :   Hooks lets the user run the official, familiar `awabbre`, without having to learn the additional wrapper program.

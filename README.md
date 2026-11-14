@@ -1,4 +1,4 @@
-# Showcase: [Jujutsu](../functions/awabbre/pkg/official/jj.fish)
+# Showcase: [Jujutsu](functions/_awabbre/pkg/official/jj.fish)
 ![
 	Showcase of the abbreviations included in the official Jujutsu package.
 	The showcased sub-command is `rebase`.
@@ -36,7 +36,7 @@ awabbre add --unprefix --set-cursor --base=run0 nh os switch{,' % --bypass-root-
 
 ### A combination of switches
 ```fish
-awabbre add --base=eza -- --long{,\ --group}`
+awabbre add --base=eza -- --long{,\ --group}
 ```
 [^eza-why-group]  
 [^eza-why-group]: Shows the group of the owned files when viewing in the long format.
@@ -116,11 +116,11 @@ see [Erasing filtered awabbres](https://drazape.github.io/fish-awabbre/Guides/Us
 
 > [!TIP]
 > ### Quick Start
-> [Install fish-awabbre](#Installation) and simply add the following command to the [repository helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to your Fish configuration (without any arguments):
+> [Install fish-awabbre](#Installation) and simply add the following command to the [repository helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to your [Fish shell initialization](https://fishshell.com/docs/current/language.html#configuration-files "Fish Shell documentation: shell initialization configuration script"):
 > ```fish
-> awabbre-pkgs_select
+> awabbre-pkgs lazybind
 > ```
-> Doing so will load all the packages (that is, the included abbreviations) on each shell startup
+> Doing so will load all installed packages (that is, the included awabbreviations) on-demand.
 
 > [!TIP]
 > ### Detailed [documentation](https://drazape.github.io/fish-awabbre/ "GitHub Pages: Zensical documentation")
@@ -130,26 +130,26 @@ see [Erasing filtered awabbres](https://drazape.github.io/fish-awabbre/Guides/Us
 ## `awabbre`
 Create personal Sub-Command abbreviations in the scope
 
-### [Arguments](https://drazape.github.io/fish-awabbre/Reference/Arguments/ "documentation")
+### [Arguments](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/ "documentation")
 The arguments that `awabbre` accepts on the command-line
-#### [Sub-Commands](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/ "documentation")
+#### [Sub-Commands](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/ "documentation")
 Distinct operations that the command performs
-##### [Add](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/ "documentation")
+##### [Add](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/ "documentation")
 Sub-command to create context-aware abbreviations (awabbres)
 ###### Positional
-1. [**Initial Arguments**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Initial-Arguments/ "documentation"): Precedes the *Sub-Command*. Becomes the new *Initial Arguments* for *Expansion*  
-2. [**Sub-Command**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Sub-Command/ "documentation"): The *Sub-Command* to be replaced (expanded) by the *Expansion*. Comes after the *Initial Arguments*
-3. [**Expansion**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Positionals/Expansion/ "documentation"): The replacement (*Expansion*) of the typed *Sub-Command*. Becomes the new *Sub-Command* for the *Initial Arguments*
-###### [Switches](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/ "documentation")
+1. [**Initial Arguments**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Common-Values/Components/Initial-Arguments/ "documentation"): Precedes the *Sub-Command*. Becomes the new *Initial Arguments* for *Expansion*  
+2. [**Sub-Command**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Common-Values/Components/Sub-Command/ "documentation"): The *Sub-Command* to be replaced (expanded) by the *Expansion*. Comes after the *Initial Arguments*
+3. [**Expansion**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Common-Values/Components/Expansion/ "documentation"): The replacement (*Expansion*) of the typed *Sub-Command*. Becomes the new *Sub-Command* for the *Initial Arguments*
+###### [Switches](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/ "documentation")
 | Name | Description | Long | Short | Inherited [^inherited-switches] |
 | :--: | ----------- | :--: | :---: | :-----------------------------: |
-| [**Help**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Universal-Switches/Help/ "documentation") | Show a reference manual — consisting of the [purpose](#awabbre "The purpose of the command") & [arguments](#Arguments "Descriptions on all the supported arguments") | `help` | `h` | ❔ universal |
-| [**RegExp**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/Regular-Expression/ "documentation") | Match *Sub-Command* with Regular Expressions. Essential (with `sub-command`) for abbreviating the same pair of *Sub-Command* & *Initial Arguments* [^multi-bases] | `regex` | `r` | ⏫ extended |
-| [**Expander**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/Expander "documentation") | Use the output of a command as the *Expansion* | `expander` | `e` | ⏫ extended |
-| [**Base**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/Base/ "documentation") | Specify the *Base Commands* the abbreviation triggers for | `base` | `b` | ✅ retained |
-| [**Set Cursor**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/Set-Cursor "documentation") | Set the cursor to a position. Same usage as the internal switch | `set-cursor` | `c` | ✅ retained | 
-| [**Unprefix**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/Unprefix "documentation") | Deactivate toleration of `$awabbre_prefix` before the Base Command; that is, do not expand the *Sub-Command* if the *Initial Args* is prefixed with `run0` | `unprefix` | `0` | ❌ exclusive |
-| [**Regard Flags**](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Add/Switches/Regard-Flags "documentation") | Acknowledge flags in the *Initial Arguments*; If not set, switches in the *Initial Arguments* are ignored | `regard-flags` | `s` | ❌ exclusive |
+| [**Help**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Universal-Switch:Help/ "documentation") | Show a reference manual — consisting of the [purpose](#awabbre "The purpose of the command") & [arguments](#arguments "Descriptions on all the supported arguments") | `help` | `h` | ❔ universal |
+| [**RegExp**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Regular-Expression/ "documentation") | Match *Sub-Command* with Regular Expressions. Essential (with `sub-command`) for abbreviating the same pair of *Sub-Command* & *Initial Arguments* [^multi-bases] | `regex` | `r` | ⏫ extended |
+| [**Expander**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Expander "documentation") | Use the output of a command as the *Expansion* | `expander` | `e` | ⏫ extended |
+| [**Base**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Base/ "documentation") | Specify the *Base Commands* the abbreviation triggers for | `base` | `b` | ✅ retained |
+| [**Set Cursor**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Set-Cursor "documentation") | Set the cursor to a position. Same usage as the internal switch | `set-cursor` | `c` | ✅ retained | 
+| [**Unprefix**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Unprefix "documentation") | Deactivate toleration of `$awabbre_prefix` before the Base Command; that is, do not expand the *Sub-Command* if the *Initial Args* is prefixed with `run0` | `unprefix` | `0` | ❌ exclusive |
+| [**Regard Flags**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Regard-Flags "documentation") | Acknowledge flags in the *Initial Arguments*; If not set, switches in the *Initial Arguments* are ignored | `regard-flags` | `s` | ❌ exclusive |
 
 [^inherited-switches]: ✅ retained switches are passed to `abbr`; ⏫ extended switches add behavior; ❌ exclusive switches are specific to `awabbre`.
 [^multi-bases]: *RegExp* must be passed in order to use the same *Sub-Command* with the same *Base-Command* in a different position. For example, you can only have `jj l{,og}` and `jj op l{,og}` if *RegExp* is used. (You don't have to do anything extra, other than escape any regular expressions)
@@ -158,29 +158,31 @@ Sub-command to create context-aware abbreviations (awabbres)
 > The functionality of the following management and debugging sub-commands—the positionals and the switches—are not listed here to avoid clutter.  
 > To learn about them, visit the linked documentation.
 
-##### [List](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/List/ "documentation")
-Get the identifiers of loaded awabbres
+##### [List](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/List/ "documentation")
+Get the [identifiers](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Common-Values/Components/Identifier/ "documentation") of loaded awabbres, with your applied filters.
 ##### [Show](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Show/ "documentation")
 Show the definition of an abbreviation, as passed to [*Add*](#Add)
 ##### [Erase](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Erase/ "documentation")
 Erase a context-aware abbreviation by its identifier
 
-## `awabbre-pkgs_select`
-[Helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to conveniently enable compatible package groups, or packages.  
-[Package groups](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Package-Tree/ "documentation") are groups of packages which can be enabled in bulk.  
+### [Configuration](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Configuration/ "documentation")
+Fish variables that universally customize the behavior of `awabbre`; for example, the tolerated [prefixes](https://drazape.github.io/fish-awabbre/Reference/Prefix/ "documentation") before the *Base Command*
 
-### Arguments
-Various arguments supported by `awabbre-pkgs_select` on the command-line
-#### Positional
-None
-:   When no arguments are specified, all the packages are activated
+## `awabbre-pkgs`
+[Repository helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") that organises compatible packages in a [package tree](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Package-Tree/ "documentation") and loads them with the available [loaders](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Loaders/ "documentation").  
+[Package groups](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Package-Tree/ "documentation") are groups of packages which can be enabled in bulk.
 
-Group or Package path
-:   The path to the package group, or package
+### Loaders
+| Loader | Loads packages |
+| ------ | -------------- |
+| [`select`](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Loaders/Select/ "documentation") | Immediately; the path passed to it selects the group or package |
+| [`lazybind`](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Loaders/Lazy-Bind/ "documentation") | On demand; when one of the *Base Commands* provided by a compliant package is entered |
+
+Packages matching any RegExp in the `$awabbre_mask_pkgs` variable are [masked](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Masking/ "documentation"); neither loader will load them.
 
 > [!TIP]
 > ### Discover Packages
->	- [Official](../functions/awabbre/pkg/official/ "Repository package source")
+>	- [Official](functions/_awabbre/pkg/official/ "Repository package source")
 >	- [3rd-party](https://github.com/topics/fish-awabbre/ "GitHub topic")
 > #### [Create](./CONTRIBUTING.md "Contribution Redirect")
 ---

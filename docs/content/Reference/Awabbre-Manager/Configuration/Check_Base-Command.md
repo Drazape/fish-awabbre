@@ -1,0 +1,35 @@
+---
+comments: true
+icon: lucide/check-check
+description: Configure checking of the Base Command existence before adding
+---
+
+# Check Base Command
+Configure how the existence of the [*Base Command*](../Arguments/Sub-Commands/Add/Switches/Base.md){data-preview} is checked
+
+<table>
+  <tbody>
+    <tr><td><strong>Name</strong></td><td><code>awabbre_nonexistent_basecommand</code></td></tr>
+    <tr><td><strong>Accepted Values</strong></td><td><code>allow</code> <code>quiet</code></td></tr>
+    <tr><td><strong>Default</strong></td><td>Unset</td></tr>
+  </tbody>
+</table>   
+
+## Default (unset)
+By default, fish-awabbre checks if the *Base Command* we're adding the awabbre for exists.  
+If it doesn't, it fails and outputs an error message.
+
+This is best for users who selectively enable their packages with only the commands they use, and also for package developers to avoid typos in the *Base Command*.
+
+## Values
+To change the [default](#default-unset) behavior, you can set the `awabbre_nonexistent_basecommand` variable to one of the following values:
+
+### Quiet
+If the value of `awabbre_nonexistent_basecommand` is `quiet`, it will fail if the *Base Command* doesn't exist, but it will not output an error message.
+
+This is useful for users who enable all their packages without manually filtering which commands they use.  
+This setup automatically enables all the new packages that are added.
+
+### Allow
+If the value of `awabbre_nonexistent_basecommand` is set to `allow`, it will simply not check if the *Base Command* exists, and will add the awabbre regardless.  
+Also, there would obviously be no warning displayed.

@@ -5,19 +5,19 @@ description: Work-around for multiple different *Initial Arguments* permutation
 ---
 
 # Multi *Initial Args* support
-whenever the same [*Sub-Command*][subcommand]{data-preview} is being abbreviated more than once in the same [*Base Command*][add-base]{data-preview} (different [*Initial Arguments*][initials]{data-preview}), context-aware abbreviations (awabbres) must use the [*Regular Expressions* switch][regexp]{data-preview} with at least the `subcommand` scope.  
+whenever the same [*Sub-Command*][subcommand]{data-preview} is being awabbreviated more than once in the same [*Base Command*][add-base]{data-preview} (different [*Initial Arguments*][initials]{data-preview}), context-aware abbreviations (awabbres) must use the [*Regular Expressions* switch][regexp]{data-preview} with at least the `subcommand` scope.  
 
 !!! info "Reason: `abbr` limitation"
-    The reason is that internally in Fish, you can't have more than one abbreviation for a *Sub-Command* and *Base Command* pair without using the *Regular Expression* switch.  
+    The reason is that internally in Fish, you can't have more than one awabbre for a *Sub-Command* and *Base Command* pair without using the *Regular Expression* switch.  
 
     This is because of the implementation of Fish's builtin [abbreviations][internal-interactive-abbreviations].  
-    the [built-in `abbr` command][internal-abbreviations-command] identifies an abbreviation as a pair of the *Sub-Command* and *Base Command*, and an identifier can be assigned to only a single abbreviation.
+    the [built-in `abbr` command][internal-abbreviations-command] identifies an awabbre as a pair of the *Sub-Command* and *Base Command*, and an identifier can be assigned to only a single awabbre.
 
     An attempt to create any more with different *Initial Arguments* will result in overwriting of the older one — because the *Initial Arguments* are a concept exclusive to awabbres.  
 
     Such a scenario is worked-around using the *Regular Expression* flag.  
-    When used, this flag allows us to have custom identifiers for the abbreviations.  
-    Therefore, `awabbre` internally uses the built-in `abbr` command's *Function* switch to parse the `commandline`, letting one create as many abbreviations for the same *Sub-Command* as one wants.
+    When used, this flag allows us to have custom identifiers for the awabbres.  
+    Therefore, `awabbre` internally uses the built-in `abbr` command's *Function* switch to parse the `commandline`, letting one create as many awabbres for the same *Sub-Command* as one wants.
 
 ## Cases
 !!! tip "Different *Initial Args*"
@@ -50,14 +50,14 @@ whenever the same [*Sub-Command*][subcommand]{data-preview} is being abbreviated
 ### Different Indexes
 You need to use this workaround in case the same *Sub-Command* is used at different indexes of positionals.
 !!! example "Jujutsu: `log`"
-    For both `jj operation l` and `jj l` to co-exist (even if they have the same expansion), you must create 2 context-aware abbreviations (awabbres).
+    For both `jj operation l` and `jj l` to co-exist (even if they have the same expansion), you must create 2 awabbres.
     ```fish {title="Definitions"}
     awabbre add --base=jj --regex=sub-command -- l{,og}
     awabbre add --base=jj --regex=sub-command -- operation l{,og}
     ```
 
 ### Different *Expansions*
-The easiest way to create such awabbres is creating them as separate abbreviations.
+The easiest way to create such awabbres is creating them as separate awabbres.
 !!! example "Jujutsu: different `-r` expansions"
     In Jujutsu, the sub-commands `diff` and `log` both accept the `-r` short flag, but long variants slightly differ for each of the sub-command.  
     For `log` the long variant is `--revision`; while for `diff`, it's `--revisions` (notice the `s` suffix).
@@ -70,14 +70,14 @@ The easiest way to create such awabbres is creating them as separate abbreviatio
 
     1. the `s` suffix on the `--revisions` expansion for the `diff` sub-command is abscent in the `--revision` expansion for the `log` sub-command.
 
-!!! info "Alternative with a single abbreviation"
+!!! info "Alternative with a single awabbre"
     In this case, you can combine *Regular Expressions* on the *Initial Arguments* (instead of the *Sub-Command*), along with the [*Expander*][expander]{data-preview} switch to achieve equivalent results.
 
     To achieve that, you would match all the different Initial Arguments that are accepted with *Regular Expressions*, and use the *Expander* to parse the command-line.  
     For the expanders output, you would map the *Initial Arguments* to the respective [*Expansions*][expansion]{data-preview}.
 
     !!! note "No Limitations"
-        All the arguments in an index by a single abbreviation in the lowest-level back-end.  
+        All the arguments in an index by a single awabbre in the lowest-level back-end.  
         We don't do that simply because that wouldn't be convenient.
 
 
@@ -86,9 +86,9 @@ The easiest way to create such awabbres is creating them as separate abbreviatio
 [internal-abbreviations-command]: https://fishshell.com/docs/current/cmds/abbr.html "The internal abbreviation backend used by awabbre"
 [internal-interactive-abbreviations]: https://fishshell.com/docs/current/interactive.html#abbreviations
 
-[initials]: ../../Reference/Arguments/Common-Values/Components/Initial-Arguments.md
-[subcommand]: ../../Reference/Arguments/Common-Values/Components/Sub-Command.md
-[expansion]: ../../Reference/Arguments/Common-Values/Components/Expansion.md
-[regexp]: ../../Reference/Arguments/Sub-Commands/Add/Switches/Regular-Expression.md
-[expander]: ../../Reference/Arguments/Sub-Commands/Add/Switches/Expander.md
-[add-base]: ../../Reference/Arguments/Sub-Commands/Add/Switches/Base.md
+[initials]: ../../Reference/Awabbre-Manager/Arguments/Common-Values/Components/Initial-Arguments.md
+[subcommand]: ../../Reference/Awabbre-Manager/Arguments/Common-Values/Components/Sub-Command.md
+[expansion]: ../../Reference/Awabbre-Manager/Arguments/Common-Values/Components/Expansion.md
+[regexp]: ../../Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Regular-Expression.md
+[expander]: ../../Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Expander.md
+[add-base]: ../../Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Base.md

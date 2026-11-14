@@ -1,5 +1,4 @@
 ---
-status: new
 title: Chain
 comments: true
 icon: lucide/square-stack
@@ -28,4 +27,4 @@ Command-line tokens the wrapper accepts as arguments
 3. **Long Flag**: The word after the `--`. Expands *Short Flag* into it
 
 ### Switches
-Unlike the normal variant, only the necessary [*Base* switch](../../../../../Arguments/Sub-Commands/Add/Switches/Base.md){data-preview} is supported.
+Unlike the normal variant, only the necessary [*Base* switch](../../../../../Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Base.md){data-preview} is supported.

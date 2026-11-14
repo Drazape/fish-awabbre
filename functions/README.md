@@ -18,10 +18,11 @@ Helper functions called by `awabbre`
 
 ## Packages
 (`pkg/official/`)
-Packages that users typically enable using `awabbre-pkgs` in their Fish shell-initialization configuration
+Packages that users typically enable using the [Repository Helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") in their Fish shell-initialization configuration
 
 > [!TIP]
-> See the [Contribution Guide](../CONTRIBUTING.md#official-packages) to learn how to add more packages — correctly
+> See [Package Distribution](https://drazape.github.io/fish-awabbre/Guides/Meta/Distribution/#official-repository "documentation") to learn how to add more packages — correctly
 
 ## Library
+(`lib/`)
 Functions for creating [packages](#Packages)

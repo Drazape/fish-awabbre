@@ -1,0 +1,50 @@
+---
+comments: true
+icon: lucide/terminal
+description: Specify Base Commands accepted by the awabbre
+---
+
+# Base
+Specify the Base Commands for which the context-aware abbreviation (awabbre) would expand for.
+
+!!! note "Required Switch"
+    Among [switches](./index.md){data-preview}, this is the only one that is required by [Add](../index.md){data-preview} for the awabbre to be valid.
+
+## Properties
+<table>
+  <tbody>
+    <tr><td><strong>Value</strong></td><td>Required / Variable</td></tr>
+    <tr><td><strong>Short</strong></td><td><code>b</code></td></tr>
+    <tr><td><strong>Long</strong></td><td><code>base</code></td></tr>
+    <tr><td><strong>Sub-Command</strong></td><td><a href="../index.md" data-preview>Add</a></td></tr>
+    <tr><td><strong>Inherited</strong></td><td>✅ True</td></tr>
+  </tbody>
+</table>   
+
+## Details
+Relation
+:   The *Base Command* must precede the [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md){data-preview} on the command-line for the [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md){data-preview} to be expanded.
+
+Value
+:   The *Base Command* is an executable, a function, or a built-in called by Fish for execution.  
+    It can be a single command or a list of commands for which the awabbre expands for.
+
+Use-cases
+:   Conditionally expanding awabbres based on if one of the [prefixes](../../../../../Prefix.md) are used.
+
+:   Awabbreviating universal flags supported by multiple Base Commands.
+
+!!! info "Separation from *Initial Arguments*"
+    Some awabbres would be the logically the same for multiple different *Base Commands*.  
+    As such, to avoid creating duplicate awabbres, `awabbre` would require the *Base Command* to be specified multiple times for the same awabbre.  
+    The *Initial Arguments* already span a variable amount of tokens; thus, we cannot include yet another variable amount of tokens to the positionals—that slot is already occupied.
+
+    While options are supposed to be optional, they also serve as a way to separate multiple variable lists from one another.  
+    This is what this switch is used for—to separate the multiple *Base Commands* from the *Initial Arguments*.
+
+    One might think that they could have been included in the *Initial Arguments* by matching multiple *Base Commands* with Regex instead of multiple tokens, but that is a limitation with internal Fish abbreviations itself—the *Base Command*, though can be specified multiple times, can only be matched with fixed strings.
+
+## Usage
+```fish {title="Format" .no-copy .no-select}
+awabbre --base=<BASE-COMMANDS>… <creation_flags> -- [<initials>] <sub-command> <expansion>
+```
