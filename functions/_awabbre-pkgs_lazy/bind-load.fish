@@ -24,7 +24,7 @@ function _awabbre-pkgs_lazybind_load --description='Load packages based on BaseÂ
     end
 
     set --local -- pkglist_varname _awabbre_pkgs_command_(string escape --style=var -- {$base_command})
-    if set --query -- {$pkglist_varname}
+    set --query -- {$pkglist_varname} &&
         for pkg in {$$pkglist_varname}
             if contains -- {$pkg} {$_awabbre_loaded_pkgs} {$awabbre_mask_pkgs}
                 continue
@@ -33,5 +33,4 @@ function _awabbre-pkgs_lazybind_load --description='Load packages based on BaseÂ
                 $pkg
             end
         end
-    end
 end
