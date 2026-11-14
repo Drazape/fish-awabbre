@@ -19,13 +19,19 @@ function _lazy-awabbre-pkgs_bind-load --description='Load packages based on Base
     # load each package only once
     if test (count {$base_command}) -eq 0 || contains -- {$base_command} {$_awabbre_loaded_pkgs_commands}
         return 1
+    else
+        set --append --global -- _awabbre_loaded_pkgs_commands {$base_command}
     end
 
     set --local -- pkglist_varname _awabbre_pkgs_command_(string escape --style=var -- {$base_command})
     if set --query -- {$pkglist_varname}
-        set --append --global -- _awabbre_loaded_pkgs_commands {$base_command}
         for pkg in {$$pkglist_varname}
-            $pkg
+            if contains -- {$pkg} {$_awabbre_loaded_pkgs}
+                continue
+            else
+                set --append --global -- _awabbre_loaded_pkgs {$pkg}
+                $pkg
+            end
         end
     end
 end
