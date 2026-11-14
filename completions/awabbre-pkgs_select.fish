@@ -1,8 +1,8 @@
 begin
-    set --local -- common_complete complete --command=awabbre-pkgs --no-files
+    set --local -- common_complete complete --command=awabbre-pkgs_select --no-files
     $common_complete
 
-    function _awabbre-pkgs_completion_next-pkg-or-group
+    function _awabbre-pkgs_select_completion_next-pkg-or-group
         set --local -- path (__fish_print_cmd_args_without_options)[2..]
 
         set --local -- parent_group _awabbre_pkg_"$(string join -- _ {$path} \0)"
@@ -13,8 +13,7 @@ begin
             echo -n -- \t{$_flag_description}
             echo # Separate new line from description, in case it doesn't exist
         end
-
     end
 
-    $common_complete --arguments={$pkg} --arguments='(_awabbre-pkgs_completion_next-pkg-or-group)'
+    $common_complete --arguments={$pkg,'(_awabbre-pkgs_select_completion_next-pkg-or-group)'}
 end

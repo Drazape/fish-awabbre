@@ -118,7 +118,7 @@ see [Erasing filtered awabbres](https://drazape.github.io/fish-awabbre/Guides/Us
 > ### Quick Start
 > [Install fish-awabbre](#Installation) and simply add the following command to the [repository helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to your Fish configuration (without any arguments):
 > ```fish
-> awabbre-pkgs
+> awabbre-pkgs_select
 > ```
 > Doing so will load all the packages (that is, the included abbreviations) on each shell startup
 
@@ -165,12 +165,12 @@ Show the definition of an abbreviation, as passed to [*Add*](#Add)
 ##### [Erase](https://drazape.github.io/fish-awabbre/Reference/Arguments/Sub-Commands/Erase/ "documentation")
 Erase a context-aware abbreviation by its identifier
 
-## `awabbre-pkgs`
+## `awabbre-pkgs_select`
 [Helper](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/ "documentation") to conveniently enable compatible package groups, or packages.  
 [Package groups](https://drazape.github.io/fish-awabbre/Reference/Packages/Repository-Helper/Package-Tree/ "documentation") are groups of packages which can be enabled in bulk.  
 
 ### Arguments
-Various arguments supported by `awabbre-pkgs` on the command-line
+Various arguments supported by `awabbre-pkgs_select` on the command-line
 #### Positional
 None
 :   When no arguments are specified, all the packages are activated

@@ -1,4 +1,4 @@
-function _lazy-awabbre-pkgs_map_bulk --description='Map multiple packages to multiple commands'
+function _awabbre-pkgs_lazybind_map_bulk --description='Map multiple packages to multiple commands'
     argparse 'p/packages=+' -- {$argv}
 
     for command in {$argv}

@@ -1,4 +1,4 @@
-_lazy-awabbre-pkgs_map_pairs \
+_awabbre-pkgs_lazybind_map_pairs \
     run0 official_nix_nh \
     nix official_nix_nix3 \
     {,official_}jj
