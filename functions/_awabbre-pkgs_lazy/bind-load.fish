@@ -17,7 +17,7 @@ function _awabbre-pkgs_lazybind_load --description='Load packages based on BaseÂ
     end
 
     # load each package only once
-    if test (count {$base_command}) -eq 0 || contains -- {$base_command} {$_awabbre_loaded_pkgs_commands}
+    if test (count {$base_command}) -eq 0 || contains -- {$base_command} {$_awabbre_loaded_pkgs_commands} {$argv}
         return 1
     else
         set --append --global -- _awabbre_loaded_pkgs_commands {$base_command}
