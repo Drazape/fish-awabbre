@@ -1,5 +1,5 @@
 function _awabbre-pkgs_lazybind_load --description='Load packages based on Base Command'
-    for base_or_prefix in (commandline --current-process --tokens-expanded)[1]
+    for base_or_prefix in (commandline --current-process --tokens-expanded)
         if contains -- {$base_or_prefix} {$awabbre_prefix}
             continue
         else
