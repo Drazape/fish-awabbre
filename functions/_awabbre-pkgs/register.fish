@@ -1,6 +1,8 @@
 function _awabbre-pkgs_register --description='Store loaded packages, and return its state' --argument-names=pkg
-    contains -- {$pkg} {$awabbre_mask_pkgs} &&
-        return 2
+    for regex_query in $awabbre_mask_pkgs
+        string match --regex --quiet -- {$regex_query} {$pkg} &&
+            return 2
+    end
 
     if contains -- {$pkg} {$_awabbre_loaded_pkgs}
         return 1
