@@ -1,5 +1,9 @@
 on:
   push:
+    branches-ignore:
+      # already performed on protected branches
+      - develop
+      - main
   pull_request:
     types: [opened, synchronize, reopened, closed]
 name: 'Readme: Table of Contents'
