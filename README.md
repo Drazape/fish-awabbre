@@ -19,8 +19,36 @@ Simplify creating context-aware abbreviations (awabbres)[^simplification], and a
 
 [^simplification]: You can easily abbreviate base-commands, but there is no straight-forward way to do the same with arguments. After the initial development, a GitHub [discussion](https://github.com/fish-shell/fish-shell/discussions/11682) & [Issue](https://github.com/fish-shell/fish-shell/issues/11944) in the Fish repository was discovered that comes up with this exact problem
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [Uses](#uses)
+  - [Defaults (for convenience)](#defaults-for-convenience)
+    - [Switches for certain sub-commands](#switches-for-certain-sub-commands)
+    - [A combination of switches](#a-combination-of-switches)
+  - [Clarity](#clarity)
+      - [`eza`: `long` flag](#eza-long-flag)
+      - [Jujutsu: *Sub-Command* aliases](#jujutsu-sub-command-aliases)
+  - [Natural language](#natural-language)
+- [Usage](#usage)
+  - [`awabbre`](#awabbre)
+    - [Arguments](#arguments)
+      - [Sub-Commands](#sub-commands)
+        - [Add](#add)
+          - [Positional](#positional)
+          - [Switches](#switches)
+        - [List](#list)
+        - [Show](#show)
+        - [Erase](#erase)
+    - [Configuration](#configuration)
+  - [`awabbre-pkgs`](#awabbre-pkgs)
+    - [Loaders](#loaders)
+- [Installation](#installation)
+  - [User: Fisher](#user-fisher)
+  - [System](#system)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Uses
 Following are some example uses of the program.
