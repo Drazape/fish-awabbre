@@ -4,10 +4,9 @@ function _awabbre-pkgs_register --description='Store loaded packages, and return
             return 2
     end
 
-    if contains -- {$pkg} {$_awabbre_loaded_pkgs}
+    contains -- {$pkg} {$_awabbre_loaded_pkgs} &&
         return 1
-    else
-        set --append --global -- _awabbre_loaded_pkgs {$pkg}
-        return 0
-    end
+
+    set --append --global -- _awabbre_loaded_pkgs {$pkg}
+    return 0
 end
