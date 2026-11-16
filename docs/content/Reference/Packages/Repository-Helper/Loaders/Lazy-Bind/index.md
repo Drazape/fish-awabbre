@@ -83,4 +83,47 @@ To escape, Fish's built-in command `string escape --style=var` can be used on th
     But as previously attempted, this approach is not feasable because of the following reasons:
     - Completion files are not instantaneously loaded when a command is entered on the command-line, and may need the user to press ++Tab++ for the loading.
 
-!!! info "Implementation"
+!!! info "Internal Design"
+    ## Implementation
+    The following sections describe the internal design and implementation details of the Lazy Bind helper.  
+    As such, they are not relevant to the user.
+    ### Requirements
+    Unlike completions, awabbres must be loaded instantaneously when a Base Command is entered on the command-line; If they aren't, tokens may be flakily expanded.
+
+    ### Trigger
+    The Base Command is checked every time the user presses ++space++ on the command-line.  
+    This is done by binding the internal loader `_awabbre-pkgs_lazybind_load` to the ++space++ key, which is the default key for token expansion.
+
+    #### Working around side-effects
+    When unbinded, the ++space++ key does 2 things:
+
+    - It expands the token under the cursor, if any.
+    - It, of course, inserts a space character at the cursor position.
+
+    When the ++space++ key is binded, the default behavior is lost.  
+    This is worked around by performing these operations manually.
+
+    ##### Expanding abbreviations
+    The abbreviation under the cursor are expanded with the [special input function][special-input-functions] `expand-abbr`
+
+    [special-input-functions]: https://fishshell.com/docs/current/cmds/bind.html#special-input-functions "Official Fish shell documentation: Bind built-in: ##special input functions"
+
+    This is directly done unconditionally in the ++space++ binding made by the helper, and not in the loader.
+
+    ##### Inserting a space character
+    Unlike raw abbreviations, the special input function `expand-abbr` does not insert a space character after the expanded abbreviation.
+
+    The space insertion is done conditionally in the loader, depending on data from `awabbre`
+
+    - If the cursor is manually positioned to a specific spot, then a space mustn't be inserted.
+    - If the cursor is not manually positioned, then a space must be inserted after the expanded abbreviation to preserve the default behavior.
+
+    A cursor is not manually positioned if the following conditions are met:
+
+    - The [Set Cursor switch](../../../../Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Set-Cursor.md) is not used.
+    - The Set Cursor switch is used, but the cursor position string is not present in the Expansion.
+
+    ### Caching
+    A list of loaded packages and commands is kept in Fish global variables.
+
+    If found, it is not redundantly loaded .
