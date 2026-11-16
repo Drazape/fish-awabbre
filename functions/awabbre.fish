@@ -400,10 +400,13 @@ function awabbre --description='Create abbreviations for sub-commands'
                     abbr {$common_flags} -- "$subcommand"
                 end
             end
-            set --query --local -- _flag_set_cursor &&
-                set --local -- manual_space_suffix_flag --manual-space-suffix # used by `bind-load` compatible repo helpers to manually insert a space after expansion if the abbreviation doesn't set the cursor position
-            function {$identifier} --argument-names=subcommand --inherit-variable={_flag_base,expansion,initial_args,regex_initials,manual_space_suffix_flag,_flag_{unprefix,regard_flags,expander}}
-                _awabbre_internal_expand-subcommand --base={$_flag_base} {$manual_space_suffix_flag} {$regex_initials} {$_flag_expander} {$_flag_unprefix} {$_flag_regard_flags} -- {$subcommand} {$expansion} {$initial_args}
+            if set --query --local -- _flag_set_cursor
+                set --function -- explicit_cursor_value {$_flag_set_cursor}
+                test (count {$explicit_cursor_value}) -eq 0 &&
+                    set --function -- explicit_cursor_value '%'
+            end
+            function {$identifier} --argument-names=subcommand --inherit-variable={explicit_cursor_value,expansion,initial_args,regex_initials,_flag_{base,unprefix,regard_flags,expander}}
+                _awabbre_internal_expand-subcommand --base={$_flag_base} --set-cursor={$explicit_cursor_value} {$manual_space_suffix_flag} {$regex_initials} {$_flag_expander} {$_flag_unprefix} {$_flag_regard_flags} -- {$subcommand} {$expansion} {$initial_args}
             end
 
             emit -- awabbre_add --identifier={$identifier} {$argv_opts} -- {$argv}

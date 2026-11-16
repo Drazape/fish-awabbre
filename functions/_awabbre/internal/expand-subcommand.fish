@@ -1,6 +1,6 @@
 function _awabbre_internal_expand-subcommand --description='Expand a subcommand'
     # Input
-    argparse b/base=+\& m/manual-space-suffix\& r/regex\& e/expander\& 0/unprefix\& s/regard-flags\& -- {$argv}
+    argparse b/base=+\& /set-cursor=\& m/manual-space-suffix\& r/regex\& e/expander\& 0/unprefix\& s/regard-flags\& -- {$argv}
     set --local -- subcommand {$argv[1]}
     set --function -- expansion {$argv[2]}
     set --function -- initial_args {$argv[3..]}
@@ -8,6 +8,11 @@ function _awabbre_internal_expand-subcommand --description='Expand a subcommand'
         set --local -- expander_arguments (commandline --tokens-expanded --input={$expansion}) # command substitutions can't be used as the *Base Command* in Fish
         set --function -- expansion ($expander_arguments {$subcommand})
     end
+
+    # manual space for lazybind loader
+    set --query --local -- _flag_set_cursor &&
+        string match --entire --quiet -- {$_flag_set_cursor} {$expansion} &&
+        set --global -- _awabbre_expanded_with_setcursor # let the helper handle the space suffix based on if the bind trigger type is used
 
     # Commandline
     set --local -- argv (commandline --tokens-expanded --current-process)[..-2]
@@ -42,9 +47,6 @@ function _awabbre_internal_expand-subcommand --description='Expand a subcommand'
             set -- index_count (math {$index_count} + 1)
         end
     end
-
-    set --query --local -- _flag_manual_space_suffix &&
-        set --global -- _awabbre_expanded_with_setcursor # let the helper handle the space suffix based on if the bind trigger type is used
 
     echo -- {$expansion}
 end
