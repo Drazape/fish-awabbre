@@ -65,7 +65,7 @@ To escape, Fish's built-in command `string escape --style=var` can be used on th
 
         <table>
           <tbody>
-            <tr><td><strong><code>_awabbre_pkgs_command_jj</code>t</strong></td><td><code>e_awabbre_pkg_official_jjcode></td></tr>
+            <tr><td><strong><code>_awabbre_pkgs_command_jj</code></strong></td><td><code>_awabbre_pkg_official_jj</code></td></tr>
             <tr><td><strong><code>_awabbre_pkgs_command_nh</code></strong></td><td><code>_awabbre_pkg_official_nix_nh</code></td></tr>
             <tr><td><strong><code>_awabbre_pkgs_command_nix</code></strong></td><td><code>_awabbre_pkg_official_nix_nix3</code></td></tr>
           </tbody>
