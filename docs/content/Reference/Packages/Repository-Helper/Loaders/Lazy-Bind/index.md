@@ -80,8 +80,7 @@ To escape, Fish's built-in command `string escape --style=var` can be used on th
     So instead of mapping commands to a single definition file, package developers include their packages in a variable that is mapped to the Base Command.
 
     Moreover, since completion files are simply Fish scripts that are sourced into the session, on the surface we could use them for awabbres.  
-    But as previously attempted, this approach is not feasable because of the following reasons:
-    - Completion files are not instantaneously loaded when a command is entered on the command-line, and may need the user to press ++Tab++ for the loading.
+    But as previously attempted, this approach is not feasable because completion files are not instantaneously loaded when a command is entered on the command-line, and may need the user to press ++tab++ for the loading.
 
 !!! info "Internal Design"
     ## Implementation
