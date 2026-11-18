@@ -123,7 +123,7 @@ Abbreviating arguments sounding like natural language
 
 Example abbreviations:
 ```fish
-awabbre add --base=awabbre -- add create
+awabbre add --base=awabbre -- create add
 
 # see below to understand following two awabbres
 awabbre add --base=awabbre -- erase all '(awabbre list)'
