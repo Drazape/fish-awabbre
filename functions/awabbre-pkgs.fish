@@ -14,5 +14,23 @@ function awabbre-pkgs --description='Package repository helper'
 
             set --local -- escaped_masked_commands (string escape --style=script -- {$subcommand_args})
             bind space expand-abbr '_awabbre-pkgs_lazybind_load '"$escaped_masked_commands"
+        case \*
+            _awabbre_internal_dependencies_load-plugins # load `format`
+            set --local -- print echo -- (format text dim (status function))(format text dim (format text color white ':'))
+
+            # print error
+            if set --query --local -- argv[1]
+                $print 'invalid loader (sub-command):' (format text bold (format background red --bright {$argv[1]})) >&2
+            else
+                $print 'no loader (sub-command) specified.' >&2
+            end
+
+            # recommend Lazybind helper
+            set --local -- recommended_command (status current-function)' lazybind'
+            $print (format text color yellow 'TIP:') run (format background black --bright {$recommended_command}) 'to load packages on-demand'
+            commandline --current-buffer -- {$recommended_command}
+
+            _awabbre_internal_dependencies_revert-paths # unload `format`
+            return 1
     end
 end
