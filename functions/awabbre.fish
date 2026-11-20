@@ -1,13 +1,5 @@
 function awabbre --description='Create abbreviations for sub-commands'
-    # Nix dependencies: string placements to be overridden with store paths
-    for dependency_configurations in /dev/null # shell-startup directories
-        for dependency_config in {$dependency_configurations}/*
-            source -- {$dependency_config}
-        end
-    end
-    set --function -- additional_function_paths PATHS-TO-DEPENDENCY-FUNCTIONS
-    set --prepend -- fish_function_path {$additional_function_paths}
-
+    _awabbre_internal_dependencies_load-plugins
     begin
         set --local -- output_name (format text dim (status function))
         set --function -- argparse{,} --name={$output_name}
@@ -31,7 +23,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                 'erase | '{$erase_description}
             } \
             --flag='help:h | Display the reference manual for the current sub-command'
-        _awabbre_internal_revert-paths
+        _awabbre_internal_dependencies_revert-paths
         return
     end
 
@@ -65,7 +57,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                     '0/unprefix&' \
                     's/regard-flags&' \
                     -- {$subcommand_args}
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return 1
             end
             if set --query --local -- _flag_help
@@ -83,7 +75,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                                 'regex:r | Only abbreviations that match command-line arguments with Regex',
                                 'expander:e | Only abbreviations that use a function\'s output as the Expansion'
                             }
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return
             end
             set --query --local -- _flag_regex &&
@@ -177,7 +169,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                 help-text --link=_awabbre_internal_helpText-linker {$show_description} \
                     --positional='+Identifier | Identifier of abbr to show details for' \
                     --flag='escape:e | Print definition as if on the command-line'
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return
             end
 
@@ -187,7 +179,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                 set --function -- identifiers_to_show {$identifiers}
             else
                 if ! _awabbre_internal_verify-arg_identifier-existence {$argv}
-                    _awabbre_internal_revert-paths
+                    _awabbre_internal_dependencies_revert-paths
                     return 2
                 end
                 set --function -- identifiers_to_show {$argv}
@@ -234,17 +226,17 @@ function awabbre --description='Create abbreviations for sub-commands'
             $argparse 'h/help&' -- {$subcommand_args}
             if set --query --local -- _flag_help
                 help-text --link=_awabbre_internal_helpText-linker {$erase_description} --positional='+Identifier | the context-aware abbreviation identifier to erase'
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return
             end
 
             _awabbre_internal_identifier-data_gather-list commands
             if ! _awabbre_internal_verify-arg_more-args 1 {$subcommand_args}
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return 3
             end
             if ! _awabbre_internal_verify-arg_identifier-existence {$subcommand_args}
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return 4
             end
 
@@ -283,7 +275,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                     0/unprefix \
                     s/regard-flags \
                     -- {$subcommand_args}
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return 5
             end
             ### Help
@@ -302,7 +294,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                         'regex:r | Match command-line arguments with Regex',
                         'expander:e | Use the output of a command as the Expansion'
                     }
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return
             end
             if ! set --query --local -- _flag_base
@@ -316,7 +308,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                 set --local -- recommended_command (status current-function)' add --help'
                 $print Run (format background black --bright {$recommended_command}) 'to reference the' (format text italics 'Base') 'option.' >&2
                 commandline --current-buffer -- (status current-function)' add --help'
-                _awabbre_internal_revert-paths
+                _awabbre_internal_dependencies_revert-paths
                 return 6
             end
             ### Set Cursor
@@ -338,7 +330,7 @@ function awabbre --description='Create abbreviations for sub-commands'
             begin
                 # appropriate number of arguments. Not using `argparse` so that `--help can have as many arguments as it wants` and better formatted output
                 if ! _awabbre_internal_verify-arg_more-args 2 {$argv}
-                    _awabbre_internal_revert-paths
+                    _awabbre_internal_dependencies_revert-paths
                     return 7
                 end
                 # Name arguments
@@ -351,7 +343,7 @@ function awabbre --description='Create abbreviations for sub-commands'
                         $print incompatible (format text italics 'Sub-Command'): (format background red --bright {$subcommand}) >&2
                         $print The (format text italics 'Sub-Command') 'must be a single token.' >&2
                         $print 'That is, it cannot contain spaces or newline characters—those are used for separating tokens.' >&2
-                        _awabbre_internal_revert-paths
+                        _awabbre_internal_dependencies_revert-paths
                         return 8
                     end
                 end
@@ -419,8 +411,8 @@ function awabbre --description='Create abbreviations for sub-commands'
             set --local -- recommended_command (status current-function)' --help'
             $print Run (format background black --bright {$recommended_command}) 'to reference the available sub-commands.' >&2
             commandline --current-buffer -- {$recommended_command}
-            _awabbre_internal_revert-paths
+            _awabbre_internal_dependencies_revert-paths
             return 9
     end
-    _awabbre_internal_revert-paths
+    _awabbre_internal_dependencies_revert-paths
 end

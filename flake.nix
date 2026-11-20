@@ -32,9 +32,10 @@
 						src = ./.;
 						installPhase = ''${lib.meta.getExe pkgs.fish} --no-config --private -- ${./install.fish} ${./.}'';
 						fixupPhase = ''
-							substituteInPlace $out/share/fish/vendor_functions.d/awabbre.fish --replace-fail \
+							loader=$out/share/fish/vendor_functions.d/_awabbre_internal_dependencies_load-plugins.fish
+							substituteInPlace $loader --replace-fail \
 								PATHS-TO-DEPENDENCY-FUNCTIONS '{${inputs'.fish-helpText.packages.default},${inputs'.fish-format.packages.default}}/share/fish/vendor_functions.d'
-							substituteInPlace $out/share/fish/vendor_functions.d/awabbre.fish --replace-fail \
+							substituteInPlace $loader --replace-fail \
 								'/dev/null # shell-startup directories' ${inputs'.fish-format.packages.default}/share/fish/vendor_conf.d
 						'';
 
