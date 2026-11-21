@@ -1,4 +1,4 @@
-function awabbre --description='Create abbreviations for sub-commands'
+function awabbre --description='Context-aware argument abbreviations manager'
     _awabbre_internal_dependencies_load-plugins
     begin
         set --local -- output_name (format text dim (status function))
@@ -10,12 +10,12 @@ function awabbre --description='Create abbreviations for sub-commands'
     $argparse --stop-nonopt 'h/help&' -- {$argv}
 
     # general sub-command reference
-    set --local -- add_description 'Create a new abbreviation, or override an existing one'
-    set --local -- list_description 'List the identifier of each abbreviation currently loaded'
-    set --local -- show_description 'Show the details of an abbreviation by its identifier'
-    set --local -- erase_description 'Erase an abbreviation by its identifier'
+    set --local -- add_description 'Create a new awabbre, or override an existing one'
+    set --local -- list_description 'List the identifier of each awabbre currently loaded'
+    set --local -- show_description 'Show the details of an awabbre by its identifier'
+    set --local -- erase_description 'Erase an awabbre by its identifier'
     if set --query --local -- _flag_help
-        help-text --link=_awabbre_internal_helpText-linker 'Context-aware Sub-Command abbreviations' \
+        help-text --link=_awabbre_internal_helpText-linker 'Context-aware argument abbreviations manager' \
             --sub-command={
                 'add | '{$add_description},
                 'list | '{$list_description},
@@ -66,14 +66,14 @@ function awabbre --description='Create abbreviations for sub-commands'
                     --flag={
                                 'invert:i | Invert the match result',
                                 'value-regexp:m | Match command-line argument values with RegExp',
-                                'sub-command:S | Only abbreviations that match the specified Sub-Command',
-                                'expansion:E | Only abbreviations that match the specified Expansion',
-                                'base:b | Specify Base Commands the abbreviation must trigger on',
-                                'unprefix:0 | Filter out abbreviations that tolerate '(format background black --bright '$awabbre_prefix')' before the Base Command',
-                                'regard-flags:s | Only abbreviations must acknowledge flags in the Initial Args',
-                                'set-cursor:c | Only abbreviations that manually position the cursor',
-                                'regex:r | Only abbreviations that match command-line arguments with Regex',
-                                'expander:e | Only abbreviations that use a function\'s output as the Expansion'
+                                'sub-command:S | Only awabbres matching the specified Sub-Command',
+                                'expansion:E | Only awabbres matching the specified Expansion',
+                                'base:b | Specify Base Commands the awabbre must trigger on',
+                                'unprefix:0 | Filter out awabbres that tolerate '(format background black --bright '$awabbre_prefix')' before the Base Command',
+                                'regard-flags:s | Only awabbres acknowledging flags in the Initial Args',
+                                'set-cursor:c | Only awabbres manually positioning the cursor',
+                                'regex:r | Only awabbres matching command-line arguments with Regex',
+                                'expander:e | Only awabbres using a function\'s output as the Expansion'
                             }
                 _awabbre_internal_dependencies_revert-paths
                 return
@@ -225,7 +225,7 @@ function awabbre --description='Create abbreviations for sub-commands'
         case erase
             $argparse 'h/help&' -- {$subcommand_args}
             if set --query --local -- _flag_help
-                help-text --link=_awabbre_internal_helpText-linker {$erase_description} --positional='+Identifier | the context-aware abbreviation identifier to erase'
+                help-text --link=_awabbre_internal_helpText-linker {$erase_description} --positional='+Identifier | the identity of the awabbre to erase'
                 _awabbre_internal_dependencies_revert-paths
                 return
             end

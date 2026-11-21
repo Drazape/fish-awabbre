@@ -9,7 +9,7 @@ function _awabbre-pkgs_lazybind_load --description='Load packages based on BaseÂ
     end
 
     # When using the `expand-abbr` input function, a space isn't automatically suffixed after the expansion.
-    # This is worked around by the expander of each awabbre reporting if teh abbreviation doesn't manually set the cursor's position.
+    # This is worked around by the expander of each awabbre reporting if the awabbre doesn't manually set the cursor's position.
     if set --query --global -- _awabbre_expanded_with_setcursor
         set --erase --global -- _awabbre_expanded_with_setcursor
     else
