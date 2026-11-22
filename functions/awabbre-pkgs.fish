@@ -25,9 +25,16 @@ function awabbre-pkgs --description='Package repository helper'
                 $print 'no loader (sub-command) specified.' >&2
             end
 
-            # recommend Lazybind helper
-            set --local -- recommended_command (status current-function)' lazybind'
-            $print (format text color yellow 'TIP:') run (format background black --bright {$recommended_command}) 'to load packages on-demand'
+            # recommend a loader
+            if set --query --global -- _awabbre_loaded_pkgs_commands # lazybind is already active
+                set --function -- subcommand_suggestion select
+                set --function -- subcommand_purpose 'explicitly load packages'
+            else
+                set --function -- subcommand_suggestion lazybind
+                set --function -- subcommand_purpose 'load packages on-demand'
+            end
+            set --local -- recommended_command (status current-function)\ {$subcommand_suggestion}
+            $print (format text color yellow 'TIP:') run (format background black --bright {$recommended_command}) to {$subcommand_purpose}
             commandline --current-buffer -- {$recommended_command}
 
             _awabbre_internal_dependencies_revert-paths # unload `format`
