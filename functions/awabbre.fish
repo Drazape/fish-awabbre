@@ -307,7 +307,7 @@ function awabbre --description='Context-aware argument abbreviations manager'
                     )'.' >&2
                 set --local -- recommended_command (status current-function)' add --help'
                 $print Run (format background black --bright {$recommended_command}) 'to reference the' (format text italics 'Base') 'option.' >&2
-                commandline --current-buffer -- (status current-function)' add --help'
+                commandline --current-buffer -- {$recommended_command}
                 _awabbre_internal_dependencies_revert-paths
                 return 6
             end
