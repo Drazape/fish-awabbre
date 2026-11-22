@@ -16,7 +16,7 @@ function awabbre-pkgs --description='Package repository helper'
             bind space expand-abbr '_awabbre-pkgs_lazybind_load '"$escaped_masked_commands"
         case \*
             _awabbre_internal_dependencies_load-plugins # load `format`
-            set --local -- print echo -- (format text dim (status function))(format text dim (format text color white ':'))
+            set --local -- print echo -- (format text dim (status function)(format text color white ':'))
 
             # print error
             if set --query --local -- argv[1]
