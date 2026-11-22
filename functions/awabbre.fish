@@ -1,7 +1,7 @@
 function awabbre --description='Context-aware argument abbreviations manager'
     _awabbre_internal_dependencies_load-plugins
     begin
-        set --local -- output_name (format text dim (status function))
+        set --local -- output_name (format text dim (status current-function))
         set --function -- argparse{,} --name={$output_name}
         set --function -- error_output_prefix {$output_name}(format text dim (format text color white ':'))
         set --function -- print echo -- {$error_output_prefix}
