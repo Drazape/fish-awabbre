@@ -37,5 +37,5 @@ If a flag accepts multiple values, and so are provided, they are turned into the
     ```
     ```diff {title="Accepted Base Commands"}
     - --base=command foo --base=command bar
-    + --base={'command-foo','command-bar'}
+    + --base={'command foo','command bar'}
     ```
