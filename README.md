@@ -172,7 +172,7 @@ Sub-command to create context-aware abbreviations (awabbres)
 2. [**Sub-Command**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Common-Values/Components/Sub-Command/ "documentation"): The *Sub-Command* to be replaced (expanded) by the *Expansion*. Comes after the *Initial Arguments*
 3. [**Expansion**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Common-Values/Components/Expansion/ "documentation"): The replacement (*Expansion*) of the typed *Sub-Command*. Becomes the new *Sub-Command* for the *Initial Arguments*
 ###### [Switches](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/ "documentation")
-| Name | Description | Long | Short | Inherited [^inherited-switches] |
+| Name | Description | Long | Short | Inheritance [^switch-inheritance] |
 | :--: | ----------- | :--: | :---: | :-----------------------------: |
 | [**Help**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Universal-Switch:Help/ "documentation") | Show a reference manual — consisting of the [purpose](#awabbre "The purpose of the command") & [arguments](#arguments "Descriptions on all the supported arguments") | `help` | `h` | ❔ universal |
 | [**RegExp**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Regular-Expression/ "documentation") | Match *Sub-Command* with Regular Expressions. Essential (with `sub-command`) for abbreviating the same pair of *Sub-Command* & *Initial Arguments* [^multi-bases] | `regex` | `r` | ⏫ extended |
@@ -182,7 +182,7 @@ Sub-command to create context-aware abbreviations (awabbres)
 | [**Unprefix**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Unprefix "documentation") | Deactivate toleration of `$awabbre_prefix` before the Base Command; that is, do not expand the *Sub-Command* if the *Initial Args* is prefixed with `run0` | `unprefix` | `0` | ❌ exclusive |
 | [**Regard Flags**](https://drazape.github.io/fish-awabbre/Reference/Awabbre-Manager/Arguments/Sub-Commands/Add/Switches/Regard-Flags "documentation") | Acknowledge flags in the *Initial Arguments*; If not set, switches in the *Initial Arguments* are ignored | `regard-flags` | `s` | ❌ exclusive |
 
-[^inherited-switches]: ✅ retained switches are passed to `abbr`; ⏫ extended switches add behavior; ❌ exclusive switches are specific to `awabbre`.
+[^switch-inheritance]: ✅ retained switches are passed to `abbr`; ⏫ extended switches add behavior; ❌ exclusive switches are specific to `awabbre`.
 [^multi-bases]: *RegExp* must be passed in order to use the same *Sub-Command* with the same *Base-Command* in a different position. For example, you can only have `jj l{,og}` and `jj op l{,og}` if *RegExp* is used. (You don't have to do anything extra, other than escape any regular expressions)
 
 > [!NOTE]
