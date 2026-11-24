@@ -9,11 +9,6 @@ function _awabbre_internal_expand-subcommand --description='Expand a subcommand'
         set --function -- expansion ($expander_arguments {$subcommand})
     end
 
-    # manual space for lazybind loader
-    set --query --local -- _flag_set_cursor &&
-        string match --entire --quiet -- {$_flag_set_cursor} {$expansion} &&
-        set --global -- _awabbre_expanded_with_setcursor # let the helper handle the space suffix based on if the bind trigger type is used
-
     # Commandline
     set --local -- argv (commandline --tokens-expanded --current-process)[..-2]
     set --query --local -- _flag_regard_flags ||
@@ -48,5 +43,9 @@ function _awabbre_internal_expand-subcommand --description='Expand a subcommand'
         end
     end
 
+    # manual space for lazybind loader
+    set --query --local -- _flag_set_cursor &&
+        string match --entire --quiet -- {$_flag_set_cursor} {$expansion} &&
+        set --global -- _awabbre_expanded_with_setcursor # let the helper handle the space suffix based on if the bind trigger type is used
     echo -- {$expansion}
 end
