@@ -8,7 +8,7 @@ description: Switches accepted by the Add sub-command.
 # Switches
 Switches accepted by the [Add](../index.md){data-preview} sub-command.
 
-| Name | Description | Long | Short | Value | Inherited [^inherited-switches] |
+| Name | Description | Long | Short | Value | Inherited [^inherited] |
 | :--: | ----------- | :--: | :---: | ----- | :-----------------------------: |
 | [**RegExp**](./Regular-Expression.md){data-preview} | Match command-line arguments with Regular Expressions. Essential with [Sub-Command](../../../Common-Values/Components/Sub-Command.md){data-preview} for awabbreviating the same pair of [*Sub-Command*](../../../Common-Values/Components/Sub-Command.md){data-preview} & [*Initial Arguments*](../../../Common-Values/Components/Initial-Arguments.md){data-preview} | `regex` | `r` | Multiple, optional | ⏫ extended |
 | [**Expander**](./Expander.md){data-preview} | Use the output of a command as the [*Expansion*](../../../Common-Values/Components/Expansion.md){data-preview} | `expander` | `e` | None (toggle) | ⏫ extended |
