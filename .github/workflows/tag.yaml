@@ -1,10 +1,7 @@
 name: Tag Version
 
 on:
-  workflow_run:
-    workflows: ["Build"]
-    types:
-      - completed
+  push:
     branches:
       - main
 
@@ -12,10 +9,14 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    uses: $/.github/workflows/build-nixpkg.yaml
+  docs:
+    uses: $/.github/workflows/docs.yaml
   tag:
     name: Tag Version
+    needs: [build, docs]
     runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'success'
     permissions:
       contents: write
       issues: write

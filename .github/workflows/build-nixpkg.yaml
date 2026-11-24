@@ -4,7 +4,9 @@ on:
   push:
     branches-ignore:
       - 'gh-pages'
-      - develop # already performed on protected branch
+      # already performed on protected branch
+      - develop
+      - main # ran as a job during release
   pull_request:
 
 permissions:
