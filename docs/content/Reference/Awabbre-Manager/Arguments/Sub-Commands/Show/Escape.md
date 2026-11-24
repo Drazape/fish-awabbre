@@ -10,7 +10,7 @@ Change the definitions output to be escaped as if they were to be passed to the 
 ## Properties
 | Value | Short | Long | Sub-Command | Inherited |
 | :---: | :---: | :--: | :---------: | :-------: |
-| None | `e` | `escape` | [Show][show] | No |
+| None | `e` | `escape` | [Show](./index.md){data-preview} | No |
 
 ## Description
 By default, the definitions are printed just as they are stored after being parsed by the shell into separate elements.
