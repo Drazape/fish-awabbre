@@ -11,8 +11,14 @@ permissions:
 jobs:
   build:
     uses: $/.github/workflows/build-nixpkg.yaml
+    permissions:
+      contents: read
   docs:
     uses: $/.github/workflows/docs.yaml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
   tag:
     name: Tag Version
     needs: [build, docs]
@@ -36,4 +42,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release   
+        run: npx semantic-release

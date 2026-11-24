@@ -27,4 +27,4 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v3
         with:
-          files: nixpkg.tar.gz 
+          files: nixpkg.tar.gz

@@ -1,6 +1,7 @@
 name: Build Nixpkg
 
 on:
+  workflow_call:
   push:
     branches-ignore:
       - 'gh-pages'

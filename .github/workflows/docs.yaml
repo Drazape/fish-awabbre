@@ -1,6 +1,7 @@
 name: Documentation
 
 on:
+  workflow_call:
   push:
     branches-ignore:
       # check already performed on protected branch
