@@ -219,16 +219,24 @@ Packages matching any RegExp in the `$awabbre_mask_pkgs` variable are [masked](h
 ---
 
 # Installation
-The following are some universal installation methods, for you can use them on any distribution.
+> [!IMPORTANT]
+> For system installation methods specializing in certain Linux distributions, see the [Package Manager install guide](https://drazape.github.io/fish-awabbre/Guides/Meta/Installation/#package-manager "Distribution Package Managers")
+
+Following are some distro-agnostic installation methods:
 ## User: [Fisher](https://github.com/jorgebucaran/fisher "Fish plugin manager")
+> [!TIP]
+> If you can't use one of the supported system package managers, using this is the second recommendation.
+
 ```fish
 fisher install Drazape/fish-awabbre
 ```
 
 ## System
+The following curl-to-fish script installs (and updates) fish-awabbre when executed
+
+> [!NOTE]
+> This method is not recommended—nor is it well supported
+
 ```fish
 curl -fsSL 'https://raw.githubusercontent.com/Drazape/fish-awabbre/main/install.fish' | run0 fish -NP
 ```
-
-> [!IMPORTANT]
-> [More specialized ways to install](https://drazape.github.io/fish-awabbre/Guides/Meta/Installation/#package-manager "Distribution Package Managers")
