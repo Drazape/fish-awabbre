@@ -2,29 +2,71 @@ name: Release
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
+
+permissions:
+  contents: read
 
 jobs:
-  release:
-    name: Release
+  build:
+    uses: $/.github/workflows/build-nixpkg.yaml
+    permissions:
+      contents: read
+
+  docs:
+    uses: $/.github/workflows/docs.yaml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+  tag:
+    name: Tag Version
+    needs: [build, docs]
     runs-on: ubuntu-latest
     permissions:
       contents: write
       issues: write
       pull-requests: write
-      actions: read
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
     steps:
       - name: Checkout
         uses: actions/checkout@v7
-      - name: Download build artifact
-        uses: actions/download-artifact@v8
         with:
-          run-id: ${{ github.event.workflow_run.id }}
-          path: .
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24.10.0"
+      - id: tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          npx semantic-release
+          echo "tag=$(git tag --points-at HEAD | sort -V | tail -1)" >> "$GITHUB_OUTPUT"
+
+  release:
+    name: Release
+    needs: [tag]
+    if: needs.tag.outputs.tag != ''
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.tag.outputs.tag }}
+      - uses: actions/download-artifact@v8
+        with:
           name: nixpkg.tar.gz
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Release
-        uses: softprops/action-gh-release@v3
+      - uses: softprops/action-gh-release@v3
         with:
+          tag_name: ${{ needs.tag.outputs.tag }}
           files: nixpkg.tar.gz
+          generate_release_notes: true
