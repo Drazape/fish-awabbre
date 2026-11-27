@@ -53,7 +53,7 @@ function awabbre --description='Context-aware argument abbreviations manager'
                     'b/base=+&' \
                     'r/regex=*&!_awabbre_internal_verify-arg_regex-val' \
                     'e/expander&' \
-                    'c/set-cursor=?&' \
+                    'c/set-cursor=?&!_awabbre_internal_verify-arg_unempty-cursor' \
                     '0/unprefix&' \
                     's/regard-flags&' \
                     -- {$subcommand_args}
@@ -270,7 +270,7 @@ function awabbre --description='Context-aware argument abbreviations manager'
                     b/base=+!_awabbre_internal_verify-arg_base-command \
                     r/regex=\*!_awabbre_internal_verify-arg_regex-val \
                     e/expander \
-                    c/set-cursor=? \
+                    c/set-cursor=?!_awabbre_internal_verify-arg_unempty-cursor \
                     h/help\& \
                     0/unprefix \
                     s/regard-flags \
@@ -312,7 +312,7 @@ function awabbre --description='Context-aware argument abbreviations manager'
                 return 6
             end
             ### Set Cursor
-            set --query --local _flag_set_cursor && if test -z {$_flag_set_cursor}
+            set --query --local _flag_set_cursor && if test (count {$_flag_set_cursor}) -eq 0
                 set -- set_cursor --set-cursor
             else
                 set -- set_cursor --set-cursor={$_flag_set_cursor}
