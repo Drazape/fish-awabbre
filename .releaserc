@@ -1,1 +1,8 @@
-{"plugins":["@semantic-release/commit-analyzer"]}
+{
+  "plugins": ["@semantic-release/commit-analyzer"],
+  "success": {
+    "path": "@semantic-release/github",
+    "releasedLabels": ["released"],
+    "successComment": ":tada: This ${issue.pull_request ? 'PR is included' : 'issue has been resolved'} in version ${nextRelease.version} :tada:\n\nThe release is available on [GitHub release](https://github.com/Drazape/fish-awabbre/releases/tag/${nextRelease.gitTag})"
+  }
+}
